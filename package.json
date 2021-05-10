@@ -5,13 +5,13 @@
   "private": true,
   "scripts": {
     "script": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "vivi dev --apps=app1 --uniqueName=name",
-    "build": "vivi build --env=test --apps=app1"
+    "dev": "hoolinks dev --apps=app1 --uniqueName=name",
+    "build": "hoolinks build --env=test --apps=app1"
   },
   "author": "",
   "license": "ISC",
   "bin": {
-    "vivi": "./bin/index.js"
+    "hoolinks": "./bin/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
