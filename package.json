@@ -1,11 +1,11 @@
 {
-  "name": "webpack5",
+  "name": "hoolinks-cli",
   "version": "1.0.0",
-  "description": "webpack5探索",
+  "description": "昊链专用脚手架工具",
   "private": true,
   "scripts": {
     "script": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "hoolinks dev --apps=app1 --uniqueName=name",
+    "dev": "hoolinks dev --env=test --apps=app1 --uniqueName=name",
     "build": "hoolinks build --env=test --apps=app1"
   },
   "author": "",
