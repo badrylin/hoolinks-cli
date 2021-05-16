@@ -3,11 +3,11 @@
  * @Date: 2021-04-27 09:08:43
  * @description: 生产环境
  */
-import { webpackCompiler } from "./main";
 import { llog } from "./utils/logs";
+import { CliMain } from "./webpack";
 
-export const runBuild = () => {
-    webpackCompiler.run((err, stats) => {
+export default () => {
+    CliMain.compiler.run((err, stats) => {
         if (err) {
             llog(err.message, "red");
             return;

@@ -4,12 +4,12 @@
  * @description: 开发环境
  */
 import webpackDevServer from 'webpack-dev-server';
-import { webpackCompiler } from './main';
 import { eConfig } from './utils/config';
 import { SRC_PATH } from './utils/global';
 import { llog } from './utils/logs';
+import { CliMain } from './webpack';
 
-const devServer: webpackDevServer.Configuration = {
+export const devServerConfig: webpackDevServer.Configuration = {
     contentBase: SRC_PATH,
     /* open: true, */
     stats: 'errors-only',
@@ -19,9 +19,9 @@ const devServer: webpackDevServer.Configuration = {
     ...eConfig.devServer,
 }
 
-export const runDev = () => {
+export default () => {
     // @ts-ignore
-    const wds = new webpackDevServer(webpackCompiler, devServer).listen(devServer.port, (error) => {
+    new webpackDevServer(CliMain.compiler, devServerConfig).listen(devServerConfig.port, (error) => {
         llog(error, 'red');
     })
 }

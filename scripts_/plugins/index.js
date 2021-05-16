@@ -10,9 +10,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.plugins = void 0;
 var clean_webpack_plugin_1 = require("clean-webpack-plugin");
+var webpack_1 = require("webpack");
 var webpackbar_1 = __importDefault(require("webpackbar"));
+var params_1 = require("../utils/params");
 var htmlPlugin_1 = require("./htmlPlugin");
 exports.plugins = __spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), [
     new clean_webpack_plugin_1.CleanWebpackPlugin({}),
     new webpackbar_1.default({}),
+    new webpack_1.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(params_1.Params.env),
+        'process.env.environment': JSON.stringify(params_1.Params.env),
+        'process.env.apps': JSON.stringify(params_1.Params.apps),
+        'process.env.uniqueName': JSON.stringify(params_1.Params.uniqueName),
+    })
 ]);

@@ -2,11 +2,12 @@ import path from "path";
 import { Configuration, webpack } from "webpack";
 import { module } from "./module";
 import { plugins } from "./plugins";
-import { DIST_PATH, ROOT_PATH, apps, pkg } from "./utils/global";
+import { DIST_PATH, ROOT_PATH, apps, pkg, IS_DEV } from "./utils/global";
 import { llog } from "./utils/logs";
 import { merge } from 'webpack-merge';
 import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
 import { eConfig } from "./utils/config";
+import { devServerConfig } from "./dev";
 
 const entry = {};
 
@@ -22,7 +23,7 @@ const config: Configuration = {
     module,
     plugins,
     resolve: {
-        extensions: [".js", ".json", ".ts", ".tsx", ".jsx"]
+        extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
     },
     output: {
         path: DIST_PATH,
@@ -50,21 +51,24 @@ const config: Configuration = {
     },
 };
 
-let webpackCompiler = webpack(
-    eConfig.speedTest
-    ? new SpeedMeasurePlugin(eConfig.speedTest).wrap(merge(config, eConfig.webpack))
-    : merge(config, eConfig.webpack)
-);
-
-let startTime = 0;
-webpackCompiler.hooks.compile.tap('compile', () => {
-    llog('打包中...')
-    startTime = Date.now()
-})
-webpackCompiler.hooks.done.tap('done', () => {
-    llog(`打包完成，耗时${(Date.now() - startTime) / 1000}s`)
-    /* llog(`监听本地，http://localhost:${devServer.port}/`); */
-})
-
-export { webpackCompiler };
-
+export class CliMain {
+    /** webpack实例 */
+    static compiler = null;
+    /** 初始化 */
+    static init = () => {
+        CliMain.compiler = webpack(
+            eConfig.speedTest
+            ? new SpeedMeasurePlugin(eConfig.speedTest).wrap(merge(config, eConfig.webpack))
+            : merge(config, eConfig.webpack)
+        );
+        let startTime = 0;
+        CliMain.compiler.hooks.compile.tap('compile', () => {
+            llog('打包中...')
+            startTime = Date.now()
+        })
+        CliMain.compiler.hooks.done.tap('done', () => {
+            llog(`打包完成，耗时${(Date.now() - startTime) / 1000}s`)
+            llog(`监听本地，http://localhost:${devServerConfig.port}/`);
+        })
+    }
+}
