@@ -14,55 +14,57 @@ var webpack_merge_1 = require("webpack-merge");
 var speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
 var config_1 = require("./utils/config");
 var dev_1 = require("./dev");
-var entry = {};
-global_1.apps.forEach(function (app) {
-    entry[app] = path_1.default.join(global_1.ROOT_PATH, "./src/" + app + "/index.ts");
-});
-/** 主配置 */
-var config = {
-    mode: "production",
-    devtool: "eval-source-map",
-    entry: entry,
-    module: module_1.module,
-    plugins: plugins_1.plugins,
-    resolve: {
-        extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
-    },
-    output: {
-        path: global_1.DIST_PATH,
-        filename: "[name]/js/[name].[chunkhash:7].js",
-        publicPath: "../",
-        /* uniqueName: `${pkg.name}_[chunkhash:7]`, */
-        chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
-    },
-    optimization: {
-        runtimeChunk: false,
-        splitChunks: {
-            maxInitialRequests: 3,
-            maxAsyncRequests: 5,
-            minChunks: 1,
-            cacheGroups: {
-                common: {
-                    chunks: "initial",
-                    name: "common",
-                    minSize: 1,
-                    test: /([\\/]node_modules[\\/])/,
-                    priority: -10,
-                },
-            },
-        },
-    },
-};
 var CliMain = /** @class */ (function () {
     function CliMain() {
     }
+    /** webpack主配置 */
+    CliMain.config = {
+        mode: "production",
+        devtool: "eval-source-map",
+        entry: function () {
+            var entry = {};
+            global_1.apps.forEach(function (app) {
+                entry[app] = path_1.default.join(global_1.ROOT_PATH, "./src/" + app + "/index.ts");
+            });
+            return entry;
+        },
+        module: module_1.module,
+        plugins: plugins_1.plugins,
+        resolve: {
+            extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
+        },
+        output: {
+            path: global_1.DIST_PATH,
+            filename: "[name]/js/[name].[chunkhash:7].js",
+            publicPath: "../",
+            /* uniqueName: `${pkg.name}_[chunkhash:7]`, */
+            chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
+        },
+        optimization: {
+            runtimeChunk: false,
+            splitChunks: {
+                maxInitialRequests: 3,
+                maxAsyncRequests: 5,
+                minChunks: 1,
+                cacheGroups: {
+                    common: {
+                        chunks: "initial",
+                        name: "common",
+                        minSize: 1,
+                        test: /([\\/]node_modules[\\/])/,
+                        priority: -10,
+                    },
+                },
+            },
+        },
+    };
     /** webpack实例 */
     CliMain.compiler = null;
-    /** 初始化 */
+    /** 初始化webpack实例 */
     CliMain.init = function () {
         CliMain.compiler = webpack_1.webpack(config_1.eConfig.speedTest
-            ? new speed_measure_webpack_plugin_1.default(config_1.eConfig.speedTest).wrap(webpack_merge_1.merge(config, config_1.eConfig.webpack))
-            : webpack_merge_1.merge(config, config_1.eConfig.webpack));
+            ? new speed_measure_webpack_plugin_1.default(config_1.eConfig.speedTest).wrap(webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack))
+            : webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack));
         var startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', function () {
             logs_1.llog('打包中...');

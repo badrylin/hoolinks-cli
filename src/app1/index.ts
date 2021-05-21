@@ -12,3 +12,5 @@ ReactDom.render(
     React.createElement(Page1),
     document.getElementById('app1'),
 )
+
+module['hot'] && module['hot'].accept()

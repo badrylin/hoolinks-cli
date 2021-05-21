@@ -13,5 +13,5 @@ export const plugins: Configuration['plugins'] = [
         'process.env.environment': JSON.stringify(Params.env),
         'process.env.apps': JSON.stringify(Params.apps),
         'process.env.uniqueName': JSON.stringify(Params.uniqueName),
-    })
+    }),
 ]

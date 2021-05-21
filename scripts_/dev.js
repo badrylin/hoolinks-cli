@@ -25,10 +25,9 @@ var config_1 = require("./utils/config");
 var global_1 = require("./utils/global");
 var logs_1 = require("./utils/logs");
 var webpack_1 = require("./webpack");
-exports.devServerConfig = __assign({ contentBase: global_1.SRC_PATH, 
-    /* open: true, */
-    stats: 'errors-only', noInfo: true, port: 9000, hot: true }, config_1.eConfig.devServer);
+exports.devServerConfig = __assign({ contentBase: global_1.SRC_PATH, open: true, stats: 'errors-only', noInfo: true, port: 9000, hot: true }, config_1.eConfig.devServer);
 exports.default = (function () {
+    webpack_dev_server_1.default.addDevServerEntrypoints(webpack_1.CliMain.config, exports.devServerConfig);
     // @ts-ignore
     new webpack_dev_server_1.default(webpack_1.CliMain.compiler, exports.devServerConfig).listen(exports.devServerConfig.port, function (error) {
         logs_1.llog(error, 'red');

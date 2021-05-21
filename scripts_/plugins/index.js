@@ -22,5 +22,5 @@ exports.plugins = __spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), [
         'process.env.environment': JSON.stringify(params_1.Params.env),
         'process.env.apps': JSON.stringify(params_1.Params.apps),
         'process.env.uniqueName': JSON.stringify(params_1.Params.uniqueName),
-    })
+    }),
 ]);

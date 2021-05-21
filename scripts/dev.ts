@@ -11,7 +11,7 @@ import { CliMain } from './webpack';
 
 export const devServerConfig: webpackDevServer.Configuration = {
     contentBase: SRC_PATH,
-    /* open: true, */
+    open: true,
     stats: 'errors-only',
     noInfo: true,
     port: 9000,
@@ -20,6 +20,7 @@ export const devServerConfig: webpackDevServer.Configuration = {
 }
 
 export default () => {
+    webpackDevServer.addDevServerEntrypoints(CliMain.config, devServerConfig)
     // @ts-ignore
     new webpackDevServer(CliMain.compiler, devServerConfig).listen(devServerConfig.port, (error) => {
         llog(error, 'red');

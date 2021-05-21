@@ -9,57 +9,56 @@ import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
 import { eConfig } from "./utils/config";
 import { devServerConfig } from "./dev";
 
-const entry = {};
-
-apps.forEach((app) => {
-    entry[app] = path.join(ROOT_PATH, `./src/${app}/index.ts`);
-});
-
-/** 主配置 */
-const config: Configuration = {
-    mode: "production",
-    devtool: "eval-source-map",
-    entry,
-    module,
-    plugins,
-    resolve: {
-        extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
-    },
-    output: {
-        path: DIST_PATH,
-        filename: "[name]/js/[name].[chunkhash:7].js",
-        publicPath: "../",
-        /* uniqueName: `${pkg.name}_[chunkhash:7]`, */
-        chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
-    },
-    optimization: {
-        runtimeChunk: false,
-        splitChunks: {
-            maxInitialRequests: 3,
-            maxAsyncRequests: 5,
-            minChunks: 1,
-            cacheGroups: {
-                common: {
-                    chunks: "initial",
-                    name: "common",
-                    minSize: 1,
-                    test: /([\\/]node_modules[\\/])/,
-                    priority: -10,
+export class CliMain {
+    /** webpack主配置 */
+    static config: Configuration = {
+        mode: "production",
+        devtool: "eval-source-map",
+        entry: () => {
+            const entry = {};
+            apps.forEach((app) => {
+                entry[app] = path.join(ROOT_PATH, `./src/${app}/index.ts`);
+            });
+            return entry
+        },
+        module,
+        plugins,
+        resolve: {
+            extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
+        },
+        output: {
+            path: DIST_PATH,
+            filename: "[name]/js/[name].[chunkhash:7].js",
+            publicPath: "../",
+            /* uniqueName: `${pkg.name}_[chunkhash:7]`, */
+            chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
+        },
+        optimization: {
+            runtimeChunk: false,
+            splitChunks: {
+                maxInitialRequests: 3,
+                maxAsyncRequests: 5,
+                minChunks: 1,
+                cacheGroups: {
+                    common: {
+                        chunks: "initial",
+                        name: "common",
+                        minSize: 1,
+                        test: /([\\/]node_modules[\\/])/,
+                        priority: -10,
+                    },
                 },
             },
         },
-    },
-};
-
-export class CliMain {
+    };
     /** webpack实例 */
     static compiler = null;
-    /** 初始化 */
+    /** 初始化webpack实例 */
     static init = () => {
         CliMain.compiler = webpack(
             eConfig.speedTest
-            ? new SpeedMeasurePlugin(eConfig.speedTest).wrap(merge(config, eConfig.webpack))
-            : merge(config, eConfig.webpack)
+            ? new SpeedMeasurePlugin(eConfig.speedTest).wrap(merge(CliMain.config, eConfig.webpack))
+            : merge(CliMain.config, eConfig.webpack)
         );
         let startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', () => {
