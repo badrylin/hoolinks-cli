@@ -13,9 +13,11 @@ commander_1.program
 var env = commander_1.program.createOption('--env [value]', '环境变量');
 var apps = commander_1.program.createOption('--apps [value]', '要构建的模块');
 var uniqueName = commander_1.program.createOption('--uniqueName [value]', '在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称');
-var optionAction = function (options) {
+var report = commander_1.program.createOption('-s, --report', '启动打包分析');
+var speed = commander_1.program.createOption('-t, --speed', '启动打包速度分析');
+var optionAction = function (options, isDev) {
     /** 存储用户参数 */
-    params_1.Params.init(options);
+    params_1.Params.init(options, isDev);
     /** 初始化webpack配置 */
     var CliMain = require("./webpack").CliMain;
     CliMain.init();
@@ -25,9 +27,10 @@ commander_1.program
     .addOption(env)
     .addOption(apps)
     .addOption(uniqueName)
+    .addOption(report)
+    .addOption(speed)
     .action(function (options) {
-    global_1.setIsDev(true);
-    optionAction(options);
+    optionAction(options, true);
     require("./dev").default();
 });
 commander_1.program
@@ -35,9 +38,10 @@ commander_1.program
     .addOption(env)
     .addOption(apps)
     .addOption(uniqueName)
+    .addOption(report)
+    .addOption(speed)
     .action(function (options) {
-    global_1.setIsDev(false);
-    optionAction(options);
+    optionAction(options, false);
     require("./build").default();
 });
 commander_1.program.parse();

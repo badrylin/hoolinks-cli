@@ -28,8 +28,6 @@ var DefautlConfigEntity = /** @class */ (function () {
         this.devServer = {
             port: 9000,
         };
-        /** 打包速度测试 */
-        this.speedTest = false;
     }
     return DefautlConfigEntity;
 }());

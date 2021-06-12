@@ -3,7 +3,7 @@ import { RuleSetRule } from 'webpack';
 import { ROOT_PATH } from '../utils/global';
 
 export const jsLoaders = (): RuleSetRule[] => {
-    return [{
+    return [
 
-    }]
+    ]
 }

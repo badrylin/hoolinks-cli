@@ -16,7 +16,10 @@ var tsLoaders = function () {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
-                    }
+                        plugins: [
+                            ["import", { "libraryName": "antd", style: true }, "antd"],
+                        ]
+                    },
                 },
                 'ts-loader'
             ],

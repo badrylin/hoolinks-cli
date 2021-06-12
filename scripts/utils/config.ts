@@ -1,3 +1,8 @@
+/*
+ * @Author: linzeqin
+ * @Date: 2021-06-09 16:39:53
+ * @description: 用户拓展配置
+ */
 import { Configuration } from "webpack"
 import WebpackDevServer from "webpack-dev-server"
 import path from 'path';
@@ -17,8 +22,6 @@ class DefautlConfigEntity {
         port: 9000,
     };
 
-    /** 打包速度测试 */
-    speedTest?: boolean = false;
 }
 
 export const eConfig: DefautlConfigEntity = {

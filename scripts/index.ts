@@ -4,7 +4,7 @@
  * @description: 入口
  */
 import { program } from 'commander';
-import { pkg, setIsDev } from "./utils/global";
+import { pkg } from "./utils/global";
 import { Params } from "./utils/params";
 
 program
@@ -13,9 +13,11 @@ program
 const env = program.createOption('--env [value]', '环境变量')
 const apps = program.createOption('--apps [value]', '要构建的模块')
 const uniqueName = program.createOption('--uniqueName [value]', '在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称')
-const optionAction = (options) => {
+const report = program.createOption('-s, --report', '启动打包分析')
+const speed = program.createOption('-t, --speed', '启动打包速度分析')
+const optionAction = (options, isDev) => {
     /** 存储用户参数 */
-    Params.init(options)
+    Params.init(options, isDev)
     /** 初始化webpack配置 */
     const { CliMain } = require("./webpack")
     CliMain.init();
@@ -26,9 +28,10 @@ program
 .addOption(env)
 .addOption(apps)
 .addOption(uniqueName)
+.addOption(report)
+.addOption(speed)
 .action((options) => {
-    setIsDev(true);
-    optionAction(options)
+    optionAction(options, true)
     require("./dev").default()
 })
 
@@ -37,9 +40,10 @@ program
 .addOption(env)
 .addOption(apps)
 .addOption(uniqueName)
+.addOption(report)
+.addOption(speed)
 .action((options) => {
-    setIsDev(false);
-    optionAction(options)
+    optionAction(options, false)
     require("./build").default()
 })
 

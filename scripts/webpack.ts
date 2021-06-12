@@ -1,39 +1,50 @@
+/*
+ * @Author: linzeqin
+ * @Date: 2021-06-09 17:05:13
+ * @description: webpack基础配置
+ */
 import path from "path";
 import { Configuration, webpack } from "webpack";
 import { module } from "./module";
 import { plugins } from "./plugins";
-import { DIST_PATH, ROOT_PATH, apps, pkg, IS_DEV } from "./utils/global";
+import { DIST_PATH, ROOT_PATH, SRC_PATH } from "./utils/global";
 import { llog } from "./utils/logs";
 import { merge } from 'webpack-merge';
 import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { eConfig } from "./utils/config";
 import { devServerConfig } from "./dev";
+import { Params } from "./utils/params";
 
 export class CliMain {
     /** webpack主配置 */
     static config: Configuration = {
-        mode: "production",
-        devtool: "eval-source-map",
+        mode: Params.isDev ? "development" : "production",
+        devtool: Params.isDev ? "eval-source-map" : false,
+        module,
+        plugins,
+        context: SRC_PATH,
         entry: () => {
             const entry = {};
-            apps.forEach((app) => {
+            Params.apps.forEach((app) => {
                 entry[app] = path.join(ROOT_PATH, `./src/${app}/index.ts`);
             });
             return entry
-        },
-        module,
-        plugins,
-        resolve: {
-            extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
         },
         output: {
             path: DIST_PATH,
             filename: "[name]/js/[name].[chunkhash:7].js",
             publicPath: "../",
-            /* uniqueName: `${pkg.name}_[chunkhash:7]`, */
+            uniqueName: Params.uniqueName,
             chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
         },
+        resolve: {
+            extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
+        },
         optimization: {
+            minimizer: [
+                ...!Params.isDev ? [ new CssMinimizerPlugin() ] : []
+            ],
             runtimeChunk: false,
             splitChunks: {
                 maxInitialRequests: 3,
@@ -56,13 +67,14 @@ export class CliMain {
     /** 初始化webpack实例 */
     static init = () => {
         CliMain.compiler = webpack(
-            eConfig.speedTest
-            ? new SpeedMeasurePlugin(eConfig.speedTest).wrap(merge(CliMain.config, eConfig.webpack))
+            Params.speed
+            ? new SpeedMeasurePlugin(Params.speed).wrap(merge(CliMain.config, eConfig.webpack))
             : merge(CliMain.config, eConfig.webpack)
         );
         let startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', () => {
             llog('打包中...')
+            llog(`打包应用[${Params.apps}]`);
             startTime = Date.now()
         })
         CliMain.compiler.hooks.done.tap('done', () => {

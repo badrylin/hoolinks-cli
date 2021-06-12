@@ -2,6 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jsLoaders = void 0;
 var jsLoaders = function () {
-    return [{}];
+    return [];
 };
 exports.jsLoaders = jsLoaders;

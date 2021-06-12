@@ -1,9 +1,13 @@
-import path from 'path';
 import { RuleSetRule } from 'webpack';
-import { ROOT_PATH } from '../utils/global';
 
 export const imageLoaders = (): RuleSetRule[] => {
-    return [{
-
-    }]
+    return [
+        {
+            test: /\.(png|jpe?g|gif)$/,
+            type: 'asset/resource',
+            generator: {
+                filename: 'common/images/[name].[hash:6][ext][query]'
+            },
+        }
+    ]
 }
