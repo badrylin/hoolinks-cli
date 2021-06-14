@@ -9,6 +9,9 @@ export const cssLoaders = (): RuleSetRule[] => {
         loader: MiniCssExtractPlugin.loader,
         options: {
             publicPath: (resourcePath, context) => {
+                if (Params.cdn) {
+                    return Params.cdn
+                }
                 /** 返回模块的相对路径 */
                 return path.relative(path.dirname(resourcePath), context) + '/';
             },

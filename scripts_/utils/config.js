@@ -28,7 +28,20 @@ var DefautlConfigEntity = /** @class */ (function () {
         this.devServer = {
             port: 9000,
         };
+        /** tsLoader配置拓展 */
+        this.tsOptions = {};
+        /** tsLoader解析文件拓展 */
+        this.tsInclude = [];
+        /** babelLoader配置拓展 */
+        this.babelOptions = {};
+        /** babelLoader解析文件拓展 */
+        this.babelInclude = [];
     }
     return DefautlConfigEntity;
 }());
-exports.eConfig = __assign(__assign({}, new DefautlConfigEntity()), require(path_1.default.join(global_1.ROOT_PATH, './cli.config.js')));
+var extraConfig = {};
+try {
+    extraConfig = require(path_1.default.join(global_1.ROOT_PATH, './cli.config.js'));
+}
+catch (error) { }
+exports.eConfig = __assign(__assign({}, new DefautlConfigEntity()), extraConfig);

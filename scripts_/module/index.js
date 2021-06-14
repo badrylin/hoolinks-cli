@@ -12,5 +12,9 @@ var imageLoaders_1 = require("./imageLoaders");
 var jsLoaders_1 = require("./jsLoaders");
 var tsLoaders_1 = require("./tsLoaders");
 exports.module = {
-    rules: __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], jsLoaders_1.jsLoaders()), tsLoaders_1.tsLoaders()), cssLoaders_1.cssLoaders()), fontLoaders_1.fontLoaders()), imageLoaders_1.imageLoaders())
+    rules: __spreadArray(__spreadArray(__spreadArray([
+        {
+            oneOf: __spreadArray(__spreadArray([], jsLoaders_1.jsLoaders()), tsLoaders_1.tsLoaders())
+        }
+    ], cssLoaders_1.cssLoaders()), fontLoaders_1.fontLoaders()), imageLoaders_1.imageLoaders())
 };

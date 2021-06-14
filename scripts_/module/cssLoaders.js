@@ -18,6 +18,9 @@ var cssLoaders = function () {
         loader: mini_css_extract_plugin_1.default.loader,
         options: {
             publicPath: function (resourcePath, context) {
+                if (params_1.Params.cdn) {
+                    return params_1.Params.cdn;
+                }
                 /** 返回模块的相对路径 */
                 return path_1.default.relative(path_1.default.dirname(resourcePath), context) + '/';
             },

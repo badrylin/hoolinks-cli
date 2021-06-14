@@ -12,7 +12,5 @@ exports.definePlugin = [
     new webpack_1.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(params_1.Params.env),
         'process.env.environment': JSON.stringify(params_1.Params.env),
-        'process.env.apps': JSON.stringify(params_1.Params.apps),
-        'process.env.uniqueName': JSON.stringify(params_1.Params.uniqueName),
     })
 ];

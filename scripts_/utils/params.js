@@ -21,6 +21,7 @@ var Params = /** @class */ (function () {
         this.isDev = isDev;
         this.env = options.env;
         this.uniqueName = options.uniqueName;
+        this.cdn = options.cdn;
         this.report = options.report;
         this.speed = options.speed;
         /** 获取非法app */

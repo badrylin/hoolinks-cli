@@ -7,8 +7,12 @@ import { tsLoaders } from "./tsLoaders";
 
 export const module: ModuleOptions = {
     rules: [
-        ...jsLoaders(),
-        ...tsLoaders(),
+        {
+            oneOf: [
+                ...jsLoaders(),
+                ...tsLoaders(),
+            ]
+        },
         ...cssLoaders(),
         ...fontLoaders(),
         ...imageLoaders(),

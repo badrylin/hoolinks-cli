@@ -1,6 +1,6 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { Configuration, DefinePlugin } from "webpack";
+import { Configuration } from "webpack";
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import WebpackBar from "webpackbar";
 import { Params } from "../utils/params";
@@ -10,12 +10,12 @@ import { htmlPlugin } from "./htmlPlugin";
 export const plugins: Configuration['plugins'] = [
     ...htmlPlugin,
     ...definePlugin,
+    /** 显示打包进度条 */
+    new WebpackBar({}),
     /** 打包分析 */
     ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
     /** 开发环境专用插件 */
     ...Params.isDev ? [
-        /** 显示打包进度条 */
-        new WebpackBar({}),
     ] : [],
     /** 生产环境专用插件 */
     ...!Params.isDev ? [

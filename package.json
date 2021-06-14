@@ -6,13 +6,14 @@
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
     "dev": "hoolinks dev --env=test --apps=app1 --uniqueName=name",
-    "build": "hoolinks build --env=test --apps=app1 --uniqueName=name"
+    "build": "hoolinks build --env=test --apps=app1 --uniqueName=name --cdn=http://127.0.0.1:8080/dist/"
   },
   "author": "",
   "license": "ISC",
   "bin": {
     "hoolinks": "./bin/index.js"
   },
+  "files": [ "bin", "script_" ],
   "dependencies": {
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.15",
@@ -39,6 +40,7 @@
     "postcss-preset-env": "^6.7.0",
     "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^2.0.0",
+    "thread-loader": "^3.0.4",
     "ts-loader": "^8.3.0",
     "typescript": "^4.2.4",
     "webpack": "^5.35.1",

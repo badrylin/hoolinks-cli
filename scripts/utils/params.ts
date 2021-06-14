@@ -16,6 +16,8 @@ export class Params {
     static apps: string[];
     /** webpack全局变量名 */
     static uniqueName: string;
+    /** cdn路径 */
+    static cdn: string;
     /** 是否启动打包分析 */
     static report: boolean;
     /** 是否启动打包速度分析 */
@@ -32,6 +34,7 @@ export class Params {
         this.isDev = isDev;
         this.env = options.env;
         this.uniqueName = options.uniqueName;
+        this.cdn = options.cdn;
         this.report = options.report;
         this.speed = options.speed;
         /** 获取非法app */

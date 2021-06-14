@@ -24,9 +24,10 @@ var webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
 var config_1 = require("./utils/config");
 var global_1 = require("./utils/global");
 var logs_1 = require("./utils/logs");
+var params_1 = require("./utils/params");
 var webpack_1 = require("./webpack");
 /** devServer默认配置 */
-exports.devServerConfig = __assign({ contentBase: global_1.DIST_PATH, open: true, stats: 'errors-only', noInfo: true, port: 9000, hot: true }, config_1.eConfig.devServer);
+exports.devServerConfig = __assign({ contentBase: global_1.DIST_PATH, open: true, stats: 'errors-only', noInfo: true, port: 9000, hot: true, openPage: params_1.Params.apps[0] + '/' }, config_1.eConfig.devServer);
 exports.default = (function () {
     /** 添加入口点 */
     webpack_dev_server_1.default.addDevServerEntrypoints(webpack_1.CliMain.config, exports.devServerConfig);

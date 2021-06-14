@@ -7,6 +7,7 @@ import webpackDevServer from 'webpack-dev-server';
 import { eConfig } from './utils/config';
 import { DIST_PATH, SRC_PATH } from './utils/global';
 import { llog } from './utils/logs';
+import { Params } from './utils/params';
 import { CliMain } from './webpack';
 
 /** devServer默认配置 */
@@ -17,6 +18,7 @@ export const devServerConfig: webpackDevServer.Configuration = {
     noInfo: true,
     port: 9000,
     hot: true,
+    openPage: Params.apps[0] + '/',
     ...eConfig.devServer,
 }
 

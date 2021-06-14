@@ -5,8 +5,6 @@ import Page1 from './page';
 
 console.log('app1', process.env.NODE_ENV);
 console.log('app1', process.env.environment);
-console.log('app1', process.env.apps);
-console.log('app1', process.env.uniqueName);
 
 ReactDom.render(
     React.createElement(Page1),

@@ -13,8 +13,9 @@ commander_1.program
 var env = commander_1.program.createOption('--env [value]', '环境变量');
 var apps = commander_1.program.createOption('--apps [value]', '要构建的模块');
 var uniqueName = commander_1.program.createOption('--uniqueName [value]', '在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称');
+var cdn = commander_1.program.createOption('--cdn [value]', 'js css img等模块cdn域名配置');
 var report = commander_1.program.createOption('-s, --report', '启动打包分析');
-var speed = commander_1.program.createOption('-t, --speed', '启动打包速度分析');
+var speed = commander_1.program.createOption('-p, --speed', '启动打包速度分析');
 var optionAction = function (options, isDev) {
     /** 存储用户参数 */
     params_1.Params.init(options, isDev);
@@ -27,6 +28,7 @@ commander_1.program
     .addOption(env)
     .addOption(apps)
     .addOption(uniqueName)
+    .addOption(cdn)
     .addOption(report)
     .addOption(speed)
     .action(function (options) {
@@ -38,6 +40,7 @@ commander_1.program
     .addOption(env)
     .addOption(apps)
     .addOption(uniqueName)
+    .addOption(cdn)
     .addOption(report)
     .addOption(speed)
     .action(function (options) {

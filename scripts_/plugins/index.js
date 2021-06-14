@@ -16,10 +16,10 @@ var webpackbar_1 = __importDefault(require("webpackbar"));
 var params_1 = require("../utils/params");
 var definePlugin_1 = require("./definePlugin");
 var htmlPlugin_1 = require("./htmlPlugin");
-exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), definePlugin_1.definePlugin), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? [
+exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), definePlugin_1.definePlugin), [
     /** 显示打包进度条 */
-    new webpackbar_1.default({}),
-] : []), !params_1.Params.isDev ? [
+    new webpackbar_1.default({})
+]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? [] : []), !params_1.Params.isDev ? [
     /** css文件分离 */
     new mini_css_extract_plugin_1.default({
         filename: function (pathData) {

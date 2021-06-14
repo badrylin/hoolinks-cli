@@ -1,25 +1,29 @@
-import path from 'path';
 import { RuleSetRule } from 'webpack';
-import { NODE_MODULES_PATH, ROOT_PATH } from '../utils/global';
+import { eConfig } from '../utils/config';
+import { SRC_PATH } from '../utils/global';
+import { babelLoaders } from './babelLoader';
 
 export const tsLoaders = (): RuleSetRule[] => {
     return [
         {
             test: /\.(ts|tsx)$/,
-            include: [path.join(ROOT_PATH, './src')],
             use: [
+                'thread-loader',
+                babelLoaders,
                 {
-                    loader: 'babel-loader',
+                    loader: 'ts-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
-                        plugins: [
-                            ["import", { "libraryName": "antd", style: true}, "antd"],
-                        ]
-                    },
-                },
-                'ts-loader'
+                        allowTsInNodeModules: true,
+                        happyPackMode: true,
+                        transpileOnly: true,
+                        ...eConfig.tsOptions,
+                    }
+                }
             ],
-            exclude: [ NODE_MODULES_PATH ]
+            include: [
+                SRC_PATH,
+                ...eConfig.tsInclude,
+            ]
         }
     ]
 }

@@ -10,7 +10,5 @@ export const definePlugin: DefinePlugin[] = [
     new DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(Params.env),
         'process.env.environment': JSON.stringify(Params.env),
-        'process.env.apps': JSON.stringify(Params.apps),
-        'process.env.uniqueName': JSON.stringify(Params.uniqueName),
     })
 ]

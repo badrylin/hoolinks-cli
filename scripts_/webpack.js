@@ -9,12 +9,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CliMain = void 0;
-/*
- * @Author: linzeqin
- * @Date: 2021-06-09 17:05:13
- * @description: webpack基础配置
- */
-var path_1 = __importDefault(require("path"));
 var webpack_1 = require("webpack");
 var module_1 = require("./module");
 var plugins_1 = require("./plugins");
@@ -36,17 +30,20 @@ var CliMain = /** @class */ (function () {
         module: module_1.module,
         plugins: plugins_1.plugins,
         context: global_1.SRC_PATH,
+        cache: {
+            type: 'filesystem',
+        },
         entry: function () {
             var entry = {};
             params_1.Params.apps.forEach(function (app) {
-                entry[app] = path_1.default.join(global_1.ROOT_PATH, "./src/" + app + "/index.ts");
+                entry[app] = global_1.SRC_PATH + "/" + app + "/index.ts";
             });
             return entry;
         },
         output: {
             path: global_1.DIST_PATH,
             filename: "[name]/js/[name].[chunkhash:7].js",
-            publicPath: "../",
+            publicPath: params_1.Params.cdn || "../",
             uniqueName: params_1.Params.uniqueName,
             chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
         },
@@ -87,7 +84,7 @@ var CliMain = /** @class */ (function () {
         });
         CliMain.compiler.hooks.done.tap('done', function () {
             logs_1.llog("\u6253\u5305\u5B8C\u6210\uFF0C\u8017\u65F6" + (Date.now() - startTime) / 1000 + "s");
-            logs_1.llog("\u76D1\u542C\u672C\u5730\uFF0Chttp://localhost:" + dev_1.devServerConfig.port + "/");
+            params_1.Params.isDev && logs_1.llog("\u76D1\u542C\u672C\u5730\uFF0Chttp://localhost:" + dev_1.devServerConfig.port + "/");
         });
     };
     return CliMain;

@@ -24,17 +24,20 @@ export class CliMain {
         module,
         plugins,
         context: SRC_PATH,
+        cache: {
+            type: 'filesystem',
+        },
         entry: () => {
             const entry = {};
             Params.apps.forEach((app) => {
-                entry[app] = path.join(ROOT_PATH, `./src/${app}/index.ts`);
+                entry[app] = `${SRC_PATH}/${app}/index.ts`;
             });
             return entry
         },
         output: {
             path: DIST_PATH,
             filename: "[name]/js/[name].[chunkhash:7].js",
-            publicPath: "../",
+            publicPath: Params.cdn || "../",
             uniqueName: Params.uniqueName,
             chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
         },
@@ -79,7 +82,7 @@ export class CliMain {
         })
         CliMain.compiler.hooks.done.tap('done', () => {
             llog(`打包完成，耗时${(Date.now() - startTime) / 1000}s`)
-            llog(`监听本地，http://localhost:${devServerConfig.port}/`);
+            Params.isDev && llog(`监听本地，http://localhost:${devServerConfig.port}/`);
         })
     }
 }
