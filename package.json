@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "hoolinks dev --env=test --apps=app1 --uniqueName=name",
-    "build": "hoolinks build --env=test --apps=app1 --uniqueName=name --cdn=http://127.0.0.1:8080/dist/"
+    "dev": "./bin/index.js dev --env=test --apps=app1 --uniqueName=name",
+    "build": "./bin/index.js build --env=test --apps=app1 --uniqueName=name --cdn=http://127.0.0.1:8080/dist/"
   },
   "author": "",
   "license": "ISC",
