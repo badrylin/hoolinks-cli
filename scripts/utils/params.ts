@@ -10,8 +10,8 @@ import { SRC_PATH } from './global';
 export class Params {
     /** 是否为开发环境 */
     static isDev = true;
-    /** 构建环境 */
-    static env: string;
+    /** 构建环境, 默认dev */
+    static env: string = 'dev';
     /** 要构建的模块 */
     static apps: string[];
     /** webpack全局变量名 */

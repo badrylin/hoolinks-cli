@@ -1,8 +1,7 @@
 {
   "name": "hoolinks-cli",
-  "version": "1.0.0",
+  "version": "v1.0.0-beta.3",
   "description": "昊链专用脚手架工具",
-  "private": true,
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
     "dev": "./bin/index.js dev --env=test --apps=app1 --uniqueName=name",
@@ -13,7 +12,10 @@
   "bin": {
     "hoolinks": "./bin/index.js"
   },
-  "files": [ "bin", "script_" ],
+  "files": [
+    "bin",
+    "script_"
+  ],
   "dependencies": {
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.15",

@@ -33,6 +33,8 @@ var Params = /** @class */ (function () {
     };
     /** 是否为开发环境 */
     Params.isDev = true;
+    /** 构建环境, 默认dev */
+    Params.env = 'dev';
     /** scr目录下的所有入口 */
     Params.allEntry = (function () {
         var ls = fs_1.default.readdirSync(global_1.SRC_PATH);

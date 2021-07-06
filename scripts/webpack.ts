@@ -15,12 +15,14 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { eConfig } from "./utils/config";
 import { devServerConfig } from "./dev";
 import { Params } from "./utils/params";
+import TerserPlugin from "terser-webpack-plugin";
 
 export class CliMain {
     /** webpack主配置 */
     static config: Configuration = {
         mode: Params.isDev ? "development" : "production",
         devtool: Params.isDev ? "eval-source-map" : false,
+        target: ['web', 'es5'],
         module,
         plugins,
         context: SRC_PATH,
@@ -45,9 +47,13 @@ export class CliMain {
             extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
         },
         optimization: {
-            minimizer: [
-                ...!Params.isDev ? [ new CssMinimizerPlugin() ] : []
+            minimizer: !Params.isDev && [
+                new CssMinimizerPlugin(),
+                new TerserPlugin({
+                    extractComments: false,
+                }),
             ],
+            minimize: !Params.isDev,
             runtimeChunk: false,
             splitChunks: {
                 maxInitialRequests: 3,
@@ -82,7 +88,7 @@ export class CliMain {
         })
         CliMain.compiler.hooks.done.tap('done', () => {
             llog(`打包完成，耗时${(Date.now() - startTime) / 1000}s`)
-            Params.isDev && llog(`监听本地，http://localhost:${devServerConfig.port}/`);
+            Params.isDev && llog(`监听本地，http://localhost:${devServerConfig.port}/${Params.apps[0]}`);
         })
     }
 }

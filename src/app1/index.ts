@@ -2,6 +2,7 @@ import { chunk } from 'lodash';
 import React from 'react';
 import ReactDom from 'react-dom';
 import Page1 from './page';
+import './test';
 
 console.log('app1', process.env.NODE_ENV);
 console.log('app1', process.env.environment);

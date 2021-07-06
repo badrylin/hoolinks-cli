@@ -1,9 +1,4 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -20,6 +15,7 @@ var css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webp
 var config_1 = require("./utils/config");
 var dev_1 = require("./dev");
 var params_1 = require("./utils/params");
+var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
 var CliMain = /** @class */ (function () {
     function CliMain() {
     }
@@ -27,6 +23,7 @@ var CliMain = /** @class */ (function () {
     CliMain.config = {
         mode: params_1.Params.isDev ? "development" : "production",
         devtool: params_1.Params.isDev ? "eval-source-map" : false,
+        target: ['web', 'es5'],
         module: module_1.module,
         plugins: plugins_1.plugins,
         context: global_1.SRC_PATH,
@@ -51,7 +48,13 @@ var CliMain = /** @class */ (function () {
             extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
         },
         optimization: {
-            minimizer: __spreadArray([], !params_1.Params.isDev ? [new css_minimizer_webpack_plugin_1.default()] : []),
+            minimizer: !params_1.Params.isDev && [
+                new css_minimizer_webpack_plugin_1.default(),
+                new terser_webpack_plugin_1.default({
+                    extractComments: false,
+                }),
+            ],
+            minimize: !params_1.Params.isDev,
             runtimeChunk: false,
             splitChunks: {
                 maxInitialRequests: 3,
@@ -84,7 +87,7 @@ var CliMain = /** @class */ (function () {
         });
         CliMain.compiler.hooks.done.tap('done', function () {
             logs_1.llog("\u6253\u5305\u5B8C\u6210\uFF0C\u8017\u65F6" + (Date.now() - startTime) / 1000 + "s");
-            params_1.Params.isDev && logs_1.llog("\u76D1\u542C\u672C\u5730\uFF0Chttp://localhost:" + dev_1.devServerConfig.port + "/");
+            params_1.Params.isDev && logs_1.llog("\u76D1\u542C\u672C\u5730\uFF0Chttp://localhost:" + dev_1.devServerConfig.port + "/" + params_1.Params.apps[0]);
         });
     };
     return CliMain;
