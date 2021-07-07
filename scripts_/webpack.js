@@ -48,12 +48,12 @@ var CliMain = /** @class */ (function () {
             extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
         },
         optimization: {
-            minimizer: !params_1.Params.isDev && [
+            minimizer: !params_1.Params.isDev ? [
                 new css_minimizer_webpack_plugin_1.default(),
                 new terser_webpack_plugin_1.default({
                     extractComments: false,
                 }),
-            ],
+            ] : [],
             minimize: !params_1.Params.isDev,
             runtimeChunk: false,
             splitChunks: {

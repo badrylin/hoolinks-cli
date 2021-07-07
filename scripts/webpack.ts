@@ -47,12 +47,12 @@ export class CliMain {
             extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
         },
         optimization: {
-            minimizer: !Params.isDev && [
+            minimizer: !Params.isDev ? [
                 new CssMinimizerPlugin(),
                 new TerserPlugin({
                     extractComments: false,
                 }),
-            ],
+            ] : [],
             minimize: !Params.isDev,
             runtimeChunk: false,
             splitChunks: {
