@@ -1,10 +1,16 @@
 
 module.exports = {
+    devServer: {
+        open: false,
+    },
     webpack: {
         cache: false,
     },
-    devServer: {
-        open: false,
+    dllWebpack: {
+        entry: {
+            verdor: ["react", "react-dom"],
+            lodash: ["lodash"],
+        }
     },
     babelOptions: {
         presets: [],

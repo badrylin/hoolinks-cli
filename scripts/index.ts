@@ -16,10 +16,14 @@ const uniqueName = program.createOption('--uniqueName [value]', '在全局环境
 const cdn = program.createOption('--cdn [value]', 'js css img等模块cdn域名配置')
 const report = program.createOption('-s, --report', '启动打包分析')
 const speed = program.createOption('-p, --speed', '启动打包速度分析')
-const optionAction = (options, isDev) => {
-    /** 存储用户参数 */
+
+/** 初始化用户参数，通用 */
+const initOption = (options, isDev) => {
     Params.init(options, isDev)
-    /** 初始化webpack配置 */
+}
+
+/** 初始化webpack配置, 只适用dev和build，不适用dll */
+const initWepack = () => {
     const { CliMain } = require("./webpack")
     CliMain.init();
 }
@@ -33,7 +37,8 @@ program
 .addOption(report)
 .addOption(speed)
 .action((options) => {
-    optionAction(options, true)
+    initOption(options, true);
+    initWepack();
     require("./dev").default()
 })
 
@@ -46,8 +51,19 @@ program
 .addOption(report)
 .addOption(speed)
 .action((options) => {
-    optionAction(options, false)
+    initOption(options, false)
+    initWepack();
     require("./build").default()
+})
+
+program
+.command('dll')
+.addOption(uniqueName)
+.addOption(report)
+.addOption(speed)
+.action((options) => {
+    initOption(options, false)
+    require("./dll").default()
 })
 
 program.parse()

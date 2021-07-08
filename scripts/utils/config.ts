@@ -7,20 +7,22 @@ import { Configuration, RuleSetConditionAbsolute, RuleSetRule } from "webpack"
 import WebpackDevServer from "webpack-dev-server"
 import path from 'path';
 import { ROOT_PATH } from "./global";
+import fs from 'fs';
+import merge from "webpack-merge";
 
 /** 用户拓展配置列表 */
 class DefautlConfigEntity {
-
-    /** webpack拓展配置 */
-    webpack?: Configuration = {};
-
-    /** dll拓展配置 */
-    dll?: Configuration = {};
 
     /** 开发服务拓展配置 */
     devServer?: WebpackDevServer.Configuration = {
         port: 9000,
     };
+
+    /** webpack拓展配置 */
+    webpack?: Configuration = {};
+
+    /** dll拓展配置 */
+    dllWebpack?: Configuration = {};
 
     /** tsLoader配置拓展 */
     tsOptions?: { [index: string]: any } = {};
@@ -37,11 +39,16 @@ class DefautlConfigEntity {
 }
 
 let extraConfig = {}
-try {
-    extraConfig = require(path.join(ROOT_PATH, './cli.config.js'))
-} catch (error) {}
+let stat = null;
+let cliFilePath = path.join(ROOT_PATH, './cli.config.js');
 
-export const eConfig: DefautlConfigEntity = {
-    ...new DefautlConfigEntity(),
-    ...extraConfig,
-};
+try{
+    /** 判断是否有config文件 */
+   stat = fs.statSync(cliFilePath)
+}catch(err) {}
+
+if (stat) {
+    extraConfig = require(cliFilePath)
+}
+
+export const eConfig: DefautlConfigEntity = merge(new DefautlConfigEntity(), extraConfig)

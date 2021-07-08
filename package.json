@@ -4,8 +4,9 @@
   "description": "昊链专用脚手架工具",
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "./bin/index.js dev --env=test --apps=app1 --uniqueName=name",
-    "build": "./bin/index.js build --env=test --apps=app1 --uniqueName=name --cdn=http://127.0.0.1:8080/dist/"
+    "dev": "./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
+    "build": "./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/dist/",
+    "dll": "./bin/index.js dll"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "@types/tapable": "^2.2.2",
     "@types/webpack-dev-server": "^3.11.2",
     "@types/webpack-merge": "^5.0.0",
+    "add-asset-html-webpack-plugin": "^3.2.0",
     "autoprefixer": "^10.2.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "^1.13.3",

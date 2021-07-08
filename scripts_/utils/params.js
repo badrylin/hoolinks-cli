@@ -24,10 +24,10 @@ var Params = /** @class */ (function () {
         this.cdn = options.cdn;
         this.report = options.report;
         this.speed = options.speed;
-        /** 获取非法app */
+        /** 过滤不匹配的app */
         this.apps = options.apps && options.apps.split(',').filter(function (app) {
             return _this.allEntry.includes(app);
-        });
+        }) || [];
         /** 如果没有匹配的app，则打包全部app */
         this.apps.length === 0 && (this.apps = this.allEntry);
     };
@@ -35,6 +35,8 @@ var Params = /** @class */ (function () {
     Params.isDev = true;
     /** 构建环境, 默认dev */
     Params.env = 'dev';
+    /** 要构建的模块 */
+    Params.apps = [];
     /** scr目录下的所有入口 */
     Params.allEntry = (function () {
         var ls = fs_1.default.readdirSync(global_1.SRC_PATH);

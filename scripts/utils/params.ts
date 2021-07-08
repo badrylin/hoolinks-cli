@@ -13,7 +13,7 @@ export class Params {
     /** 构建环境, 默认dev */
     static env: string = 'dev';
     /** 要构建的模块 */
-    static apps: string[];
+    static apps: string[] = [];
     /** webpack全局变量名 */
     static uniqueName: string;
     /** cdn路径 */
@@ -37,10 +37,10 @@ export class Params {
         this.cdn = options.cdn;
         this.report = options.report;
         this.speed = options.speed;
-        /** 获取非法app */
+        /** 过滤不匹配的app */
         this.apps = options.apps && (options.apps as string).split(',').filter((app) => {
             return this.allEntry.includes(app)
-        });
+        }) || [];
         /** 如果没有匹配的app，则打包全部app */
         this.apps.length === 0 && (this.apps = this.allEntry)
     }

@@ -5,11 +5,13 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import WebpackBar from "webpackbar";
 import { Params } from "../utils/params";
 import { definePlugin } from "./definePlugin";
+import { dllPlugin } from "./dllPlugin";
 import { htmlPlugin } from "./htmlPlugin";
 
 export const plugins: Configuration['plugins'] = [
     ...htmlPlugin,
     ...definePlugin,
+    ...dllPlugin,
     /** 显示打包进度条 */
     new WebpackBar({}),
     /** 打包分析 */
