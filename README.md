@@ -1,6 +1,6 @@
 # Hoolinks-cli
 
-昊链专用脚手架工具
+昊链专用脚手架工具，基于webpack5+, babelt7.13+, ypescript4+，node12+
 
 ## 功能点
 
@@ -15,6 +15,45 @@
 - [ ] 支持tslint
 - [x] DLL
 - [x] 多线程
+
+## Getting Started
+
+``` console
+npm install hoolinks-cli --save-dev
+or
+yarn add hoolinks-cli -D
+```
+
+## Usage
+
+```console
+Usage: hoolinks dev/build/dll [options]
+
+dev Options:
+  --env [value]         环境变量
+  --apps [value]        要构建的模块
+  --uniqueName [value]  在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称
+  --cdn [value]         js css img等模块cdn域名配置
+  -s, --report          启动打包分析
+  -p, --speed           启动打包速度分析
+  -h, --help            display help for command
+
+build Options:
+  --env [value]         环境变量
+  --apps [value]        要构建的模块
+  --uniqueName [value]  在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称
+  --cdn [value]         js css img等模块cdn域名配置
+  -s, --report          启动打包分析
+  -p, --speed           启动打包速度分析
+  -h, --help            display help for command
+
+dll Options:
+  --uniqueName [value]  在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称
+  -s, --report          启动打包分析
+  -p, --speed           启动打包速度分析
+  -h, --help            display help for command
+
+```
 
 ## To-do list
 
