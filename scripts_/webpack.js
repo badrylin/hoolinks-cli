@@ -23,13 +23,10 @@ var CliMain = /** @class */ (function () {
     CliMain.config = {
         mode: params_1.Params.isDev ? "development" : "production",
         devtool: params_1.Params.isDev ? "eval-source-map" : false,
-        target: ['web', 'es5'],
+        target: 'web',
         module: module_1.module,
         plugins: plugins_1.plugins,
         context: global_1.SRC_PATH,
-        cache: {
-            type: 'filesystem',
-        },
         entry: function () {
             var entry = {};
             params_1.Params.apps.forEach(function (app) {

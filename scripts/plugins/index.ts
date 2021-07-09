@@ -1,6 +1,6 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { Configuration } from "webpack";
+import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import WebpackBar from "webpackbar";
 import { Params } from "../utils/params";
@@ -29,5 +29,6 @@ export const plugins: Configuration['plugins'] = [
         }),
         /** 清空打包文件夹 */
         new CleanWebpackPlugin({}),
+
     ] : [],
 ]

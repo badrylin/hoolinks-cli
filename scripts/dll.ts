@@ -24,6 +24,8 @@ const config: Configuration = {
         filename: "[name].dll.[fullhash].js",
         /** 全局变量，防止冲突 */
         library: "[name]_dll_[fullhash]",
+        /** 默认umd模式 */
+        libraryTarget: "umd",
     },
     plugins: [
         /** 清空打包文件夹 */

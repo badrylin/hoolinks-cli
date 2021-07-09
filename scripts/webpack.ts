@@ -22,13 +22,10 @@ export class CliMain {
     static config: Configuration = {
         mode: Params.isDev ? "development" : "production",
         devtool: Params.isDev ? "eval-source-map" : false,
-        target: ['web', 'es5'],
+        target: 'web',
         module,
         plugins,
         context: SRC_PATH,
-        cache: {
-            type: 'filesystem',
-        },
         entry: () => {
             const entry = {};
             Params.apps.forEach((app) => {
