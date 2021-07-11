@@ -12,7 +12,7 @@ import { Params } from "../utils/params";
 import { eConfig } from "../utils/config";
 import { isObject } from "lodash";
 
-export const dllPlugin: Configuration['plugins'] = [
+export const dllPlugin: Configuration['plugins'] = eConfig.dllWebpack.entry ? [
     /** 按dll入口文件映射manifest文件 */
     ...isObject(eConfig.dllWebpack.entry) && Object.keys(eConfig.dllWebpack.entry).map((name) => {
         return new DllReferencePlugin({
@@ -26,4 +26,4 @@ export const dllPlugin: Configuration['plugins'] = [
         publicPath: Params.cdn ? `${Params.cdn}/common/js` : '../common/js',
         filepath: path.join(CACHE_PATH, './*.dll.*.js'),
     }),
-]
+] : []

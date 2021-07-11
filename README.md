@@ -67,6 +67,7 @@ dll Options:
 
 - fix: 修复devServer热更新问题
 - feat: 添加"core-js/stable"和"regenerator-runtime/runtime"以支持ie浏览器(10+)
+- fix: 修正dllPlugin加载策略, 减少非必要的plugin加载
 
 ### v1.0.0-beta.4 (2021-07-08)
 
