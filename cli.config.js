@@ -4,7 +4,7 @@ module.exports = {
         open: false,
     },
     webpack: {
-        cache: false,
+
     },
     dllWebpack: {
         entry: {
