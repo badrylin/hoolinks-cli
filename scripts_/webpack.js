@@ -73,9 +73,13 @@ var CliMain = /** @class */ (function () {
     CliMain.compiler = null;
     /** 初始化webpack实例 */
     CliMain.init = function () {
+        /** 合并配置 */
+        CliMain.config = webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack);
+        /** 初始化 */
         CliMain.compiler = webpack_1.webpack(params_1.Params.speed
-            ? new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack))
-            : webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack));
+            ? new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config)
+            : CliMain.config);
+        /** 事件监听 */
         var startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', function () {
             logs_1.llog('打包中...');

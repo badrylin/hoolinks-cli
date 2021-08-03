@@ -4,7 +4,7 @@
  * @description: webpack基础配置
  */
 import path from "path";
-import { Configuration, webpack } from "webpack";
+import { Compiler, Configuration, webpack } from "webpack";
 import { module } from "./module";
 import { plugins } from "./plugins";
 import { DIST_PATH, ROOT_PATH, SRC_PATH } from "./utils/global";
@@ -69,14 +69,18 @@ export class CliMain {
         },
     };
     /** webpack实例 */
-    static compiler = null;
+    static compiler: Compiler = null;
     /** 初始化webpack实例 */
     static init = () => {
+        /** 合并配置 */
+        CliMain.config = merge(CliMain.config, eConfig.webpack)
+        /** 初始化 */
         CliMain.compiler = webpack(
             Params.speed
-            ? new SpeedMeasurePlugin(Params.speed).wrap(merge(CliMain.config, eConfig.webpack))
-            : merge(CliMain.config, eConfig.webpack)
+            ? new SpeedMeasurePlugin(Params.speed).wrap(CliMain.config)
+            : CliMain.config
         );
+        /** 事件监听 */
         let startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', () => {
             llog('打包中...')
