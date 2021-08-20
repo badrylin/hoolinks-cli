@@ -58,20 +58,17 @@ exports.devServerConfig = void 0;
  */
 var Server_1 = __importDefault(require("webpack-dev-server/lib/Server"));
 var config_1 = require("./utils/config");
-var params_1 = require("./utils/params");
+var global_1 = require("./utils/global");
 var webpack_1 = require("./webpack");
 /** devServer默认配置 */
-exports.devServerConfig = __assign({ port: 9000, open: params_1.Params.apps[0] + '/', client: {
+exports.devServerConfig = __assign({ port: 9000, client: {
         logging: "error",
         overlay: false,
         progress: true,
-    }, 
-    // static: {
-    //     directory: DIST_PATH,
-    //     staticOptions: {},
-    //     watch: true,
-    // },
-    devMiddleware: {
+    }, static: {
+        directory: global_1.ROOT_PATH,
+        watch: true,
+    }, devMiddleware: {
         stats: 'errors-only',
     } }, config_1.eConfig.devServer);
 exports.default = (function () {

@@ -5,6 +5,7 @@
  */
 import Server from 'webpack-dev-server/lib/Server';
 import { eConfig } from './utils/config';
+import { ROOT_PATH, STATIC_PATH } from './utils/global';
 import { llog } from './utils/logs';
 import { Params } from './utils/params';
 import { CliMain } from './webpack';
@@ -12,17 +13,15 @@ import { CliMain } from './webpack';
 /** devServer默认配置 */
 export const devServerConfig = {
     port: 9000,
-    open: Params.apps[0] + '/',
     client: {
       logging: "error",
       overlay: false,
       progress: true,
     },
-    // static: {
-    //     directory: DIST_PATH,
-    //     staticOptions: {},
-    //     watch: true,
-    // },
+    static: {
+        directory: ROOT_PATH,
+        watch: true,
+    },
     devMiddleware: {
         stats: 'errors-only',
     },

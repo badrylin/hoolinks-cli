@@ -33,6 +33,9 @@ export default class Page1 extends React.Component {
             <br/><br/>
             {/* json取值测试 */}
             <div>{test.aa}</div>
+            <br/><br/>
+            {/* 静态文件测试 */}
+            <img src="../../static/avatar.png"></img>
         </div>
     }
 }

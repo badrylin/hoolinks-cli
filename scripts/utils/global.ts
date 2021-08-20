@@ -20,5 +20,8 @@ export const SRC_PATH = path.join(ROOT_PATH, './src');
 /** 打包后文件存放路径 */
 export const DIST_PATH = path.join(ROOT_PATH, './dist');
 
-/** 缓存文件夹路径 */
+/** dll缓存文件夹路径 */
 export const CACHE_PATH = path.join(ROOT_PATH, './.cache');
+
+/** 静态文件目录 */
+export const STATIC_PATH = path.join(ROOT_PATH, './static');

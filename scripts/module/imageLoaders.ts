@@ -1,4 +1,5 @@
 import { RuleSetRule } from 'webpack';
+import { SRC_PATH, STATIC_PATH } from '../utils/global';
 
 export const imageLoaders = (): RuleSetRule[] => {
     return [
@@ -8,6 +9,7 @@ export const imageLoaders = (): RuleSetRule[] => {
             generator: {
                 filename: 'common/images/[name].[hash:6][ext][query]'
             },
+            exclude: [STATIC_PATH],
         }
     ]
 }

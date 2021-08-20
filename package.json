@@ -5,7 +5,7 @@
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
     "dev": "./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
-    "build": "./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/dist/",
+    "build": "./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
     "dll": "./bin/index.js dll"
   },
   "author": "",
@@ -38,6 +38,7 @@
     "chalk": "^4.1.1",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "commander": "^7.2.0",
+    "copy-webpack-plugin": "^9.0.1",
     "core-js": "^3.15.2",
     "css-loader": "^5.2.6",
     "css-minimizer-webpack-plugin": "^2.0.0",

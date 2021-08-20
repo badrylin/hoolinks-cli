@@ -66,6 +66,7 @@ dll Options:
 ### v1.0.0-beta.6 (2021-08-20) (待发布)
 
 - feat: 升级webpack-dev-server到4.0.0
+- feat: 添加公共静态文件夹static
 
 ### v1.0.0-beta.5 (2021-07-08)
 
