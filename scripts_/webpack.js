@@ -23,10 +23,13 @@ var CliMain = /** @class */ (function () {
     CliMain.config = {
         mode: params_1.Params.isDev ? "development" : "production",
         devtool: params_1.Params.isDev ? "eval-source-map" : false,
-        target: 'web',
+        target: ['web', 'es5'],
         module: module_1.module,
         plugins: plugins_1.plugins,
         context: global_1.SRC_PATH,
+        infrastructureLogging: {
+            level: 'error',
+        },
         entry: function () {
             var entry = {};
             params_1.Params.apps.forEach(function (app) {
@@ -37,7 +40,7 @@ var CliMain = /** @class */ (function () {
         output: {
             path: global_1.DIST_PATH,
             filename: "[name]/js/[name].[chunkhash:7].js",
-            publicPath: params_1.Params.cdn || "../",
+            publicPath: params_1.Params.cdn || "auto",
             uniqueName: params_1.Params.uniqueName,
             chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
         },
@@ -87,8 +90,12 @@ var CliMain = /** @class */ (function () {
             startTime = Date.now();
         });
         CliMain.compiler.hooks.done.tap('done', function () {
-            logs_1.llog("\u6253\u5305\u5B8C\u6210\uFF0C\u8017\u65F6" + (Date.now() - startTime) / 1000 + "s");
-            params_1.Params.isDev && logs_1.llog("\u76D1\u542C\u672C\u5730\uFF0Chttp://localhost:" + dev_1.devServerConfig.port + "/" + params_1.Params.apps[0]);
+            logs_1.llog('打包完成');
+            params_1.Params.isDev && logs_1.devBoxLog({
+                time: (Date.now() - startTime) / 1000,
+                port: dev_1.devServerConfig.port,
+                path: params_1.Params.apps[0]
+            });
         });
     };
     return CliMain;

@@ -17,7 +17,7 @@ export const dllPlugin: Configuration['plugins'] = eConfig.dllWebpack.entry ? [
     ...isObject(eConfig.dllWebpack.entry) && Object.keys(eConfig.dllWebpack.entry).map((name) => {
         return new DllReferencePlugin({
             context: ROOT_PATH,
-            manifest: require(path.join(CACHE_PATH, 'verdor.dll.manifest.json')),
+            manifest: require(path.join(CACHE_PATH, `${name}.dll.manifest.json`)),
         })
     }),
     /** 把dll文件添加到html入口中 */

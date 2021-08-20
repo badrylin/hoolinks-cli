@@ -8,7 +8,7 @@ import { Compiler, Configuration, webpack } from "webpack";
 import { module } from "./module";
 import { plugins } from "./plugins";
 import { DIST_PATH, ROOT_PATH, SRC_PATH } from "./utils/global";
-import { llog } from "./utils/logs";
+import { devBoxLog, llog } from "./utils/logs";
 import { merge } from 'webpack-merge';
 import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
@@ -22,10 +22,13 @@ export class CliMain {
     static config: Configuration = {
         mode: Params.isDev ? "development" : "production",
         devtool: Params.isDev ? "eval-source-map" : false,
-        target: 'web',
+        target: ['web', 'es5'],
         module,
         plugins,
         context: SRC_PATH,
+        infrastructureLogging: {
+            level: 'error',
+        },
         entry: () => {
             const entry = {};
             Params.apps.forEach((app) => {
@@ -36,7 +39,7 @@ export class CliMain {
         output: {
             path: DIST_PATH,
             filename: "[name]/js/[name].[chunkhash:7].js",
-            publicPath: Params.cdn || "../",
+            publicPath: Params.cdn || "auto",
             uniqueName: Params.uniqueName,
             chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
         },
@@ -88,8 +91,12 @@ export class CliMain {
             startTime = Date.now()
         })
         CliMain.compiler.hooks.done.tap('done', () => {
-            llog(`打包完成，耗时${(Date.now() - startTime) / 1000}s`)
-            Params.isDev && llog(`监听本地，http://localhost:${devServerConfig.port}/${Params.apps[0]}`);
+            llog('打包完成');
+            Params.isDev && devBoxLog({
+                time: (Date.now() - startTime) / 1000,
+                port: devServerConfig.port,
+                path: Params.apps[0]
+            })
         })
     }
 }

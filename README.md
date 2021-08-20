@@ -63,7 +63,11 @@ dll Options:
 
 ## Change Log
 
-### v1.0.0-beta.5 (2021-07-08) (待发布)
+### v1.0.0-beta.6 (2021-08-20) (待发布)
+
+- feat: 升级webpack-dev-server到4.0.0
+
+### v1.0.0-beta.5 (2021-07-08)
 
 - fix: 修复devServer热更新问题
 - feat: 添加"core-js/stable"和"regenerator-runtime/runtime"以支持ie浏览器(10+)

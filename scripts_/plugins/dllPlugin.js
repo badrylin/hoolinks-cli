@@ -21,10 +21,10 @@ var add_asset_html_webpack_plugin_1 = __importDefault(require("add-asset-html-we
 var params_1 = require("../utils/params");
 var config_1 = require("../utils/config");
 var lodash_1 = require("lodash");
-exports.dllPlugin = __spreadArray(__spreadArray([], lodash_1.isObject(config_1.eConfig.dllWebpack.entry) && Object.keys(config_1.eConfig.dllWebpack.entry).map(function (name) {
+exports.dllPlugin = config_1.eConfig.dllWebpack.entry ? __spreadArray(__spreadArray([], lodash_1.isObject(config_1.eConfig.dllWebpack.entry) && Object.keys(config_1.eConfig.dllWebpack.entry).map(function (name) {
     return new webpack_1.DllReferencePlugin({
         context: global_1.ROOT_PATH,
-        manifest: require(path_1.default.join(global_1.CACHE_PATH, 'verdor.dll.manifest.json')),
+        manifest: require(path_1.default.join(global_1.CACHE_PATH, name + ".dll.manifest.json")),
     });
 })), [
     /** 把dll文件添加到html入口中 */
@@ -33,4 +33,4 @@ exports.dllPlugin = __spreadArray(__spreadArray([], lodash_1.isObject(config_1.e
         publicPath: params_1.Params.cdn ? params_1.Params.cdn + "/common/js" : '../common/js',
         filepath: path_1.default.join(global_1.CACHE_PATH, './*.dll.*.js'),
     }),
-]);
+]) : [];
