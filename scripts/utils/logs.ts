@@ -37,7 +37,7 @@ const defaultTemplate = `
 App running at:
 - Time: ${chalk.yellow(`${params.time}s`)}
 - Local: ${chalk.cyan(`http://localhost:${params.port}/${params.path}`)}
-- Network: ${chalk.cyan(`http://${getAvailableIPs()}:${params.port}/${params.path}`)}
+- Network: ${chalk.cyan(`http://${getAvailableIPs()[0] || '0.0.0.0'}:${params.port}/${params.path}`)}
 `;
     const message = boxen(defaultTemplate, {
         padding: { left: 2, right: 2, top: 0, bottom: 0},
