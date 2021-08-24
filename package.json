@@ -8,7 +8,7 @@
     "build": "./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
     "dll": "./bin/index.js dll"
   },
-  "author": "",
+  "author": "linzeqin <810390198@qq.com>",
   "license": "ISC",
   "bin": {
     "hoolinks": "./bin/index.js"
