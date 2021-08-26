@@ -4,9 +4,9 @@
   "description": "昊链专用脚手架工具",
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
-    "build": "./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
-    "dll": "./bin/index.js dll"
+    "dev": "node ./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
+    "build": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
+    "dll": "node ./bin/index.js dll"
   },
   "author": "linzeqin <810390198@qq.com>",
   "license": "ISC",
