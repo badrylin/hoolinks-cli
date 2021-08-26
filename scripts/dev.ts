@@ -28,7 +28,7 @@ export const devServerConfig = {
     ...eConfig.devServer,
 };
 
-export default () => {
+export const run = () => {
     const devServer = new Server(devServerConfig, CliMain.compiler);
     (async () => {
         await devServer.start();

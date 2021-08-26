@@ -50,7 +50,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.devServerConfig = void 0;
+exports.run = exports.devServerConfig = void 0;
 /*
  * @Author: linzeqin
  * @Date: 2021-04-27 09:08:55
@@ -71,7 +71,7 @@ exports.devServerConfig = __assign({ port: 9000, client: {
     }, devMiddleware: {
         stats: 'errors-only',
     } }, config_1.eConfig.devServer);
-exports.default = (function () {
+var run = function () {
     var devServer = new Server_1.default(exports.devServerConfig, webpack_1.CliMain.compiler);
     (function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -83,4 +83,5 @@ exports.default = (function () {
             }
         });
     }); })();
-});
+};
+exports.run = run;

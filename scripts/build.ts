@@ -6,7 +6,7 @@
 import { llog } from "./utils/logs";
 import { CliMain } from "./webpack";
 
-export default () => {
+export const run = () => {
     CliMain.compiler.run((err, stats) => {
         if (err) {
             llog(err.message, "red");

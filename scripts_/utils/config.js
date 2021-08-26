@@ -36,9 +36,9 @@ var cliFilePath = path_1.default.join(global_1.ROOT_PATH, './cli.config.js');
 try {
     /** 判断是否有config文件 */
     stat = fs_1.default.statSync(cliFilePath);
+    if (fs_1.default.existsSync(cliFilePath)) {
+        extraConfig = require(cliFilePath);
+    }
 }
 catch (err) { }
-if (stat) {
-    extraConfig = require(cliFilePath);
-}
 exports.eConfig = webpack_merge_1.default(new DefautlConfigEntity(), extraConfig);

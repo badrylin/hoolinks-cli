@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.run = void 0;
 /*
  * @Author: linzeqin
  * @Date: 2021-04-27 09:08:43
@@ -7,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var logs_1 = require("./utils/logs");
 var webpack_1 = require("./webpack");
-exports.default = (function () {
+var run = function () {
     webpack_1.CliMain.compiler.run(function (err, stats) {
         if (err) {
             logs_1.llog(err.message, "red");
@@ -25,4 +26,5 @@ exports.default = (function () {
             });
         }
     });
-});
+};
+exports.run = run;

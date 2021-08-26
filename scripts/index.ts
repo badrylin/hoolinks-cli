@@ -36,10 +36,14 @@ program
 .addOption(cdn)
 .addOption(report)
 .addOption(speed)
-.action((options) => {
+.action(async (options) => {
+    // 初始化用户参数配置
     initOption(options, true);
+    // 先验证dll是否已构建
+    await require("./dll").run()
+    // 再初始化webpack
     initWepack();
-    require("./dev").default()
+    require("./dev").run()
 })
 
 program
@@ -50,10 +54,14 @@ program
 .addOption(cdn)
 .addOption(report)
 .addOption(speed)
-.action((options) => {
+.action(async (options) => {
+    // 初始化用户参数配置
     initOption(options, false)
+    // 先验证dll是否已构建
+    await require("./dll").run()
+    // 再初始化配置
     initWepack();
-    require("./build").default()
+    require("./build").run()
 })
 
 program
@@ -63,7 +71,7 @@ program
 .addOption(speed)
 .action((options) => {
     initOption(options, false)
-    require("./dll").default()
+    require("./dll").run()
 })
 
 program.parse()

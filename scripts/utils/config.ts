@@ -44,11 +44,10 @@ let cliFilePath = path.join(ROOT_PATH, './cli.config.js');
 
 try{
     /** 判断是否有config文件 */
-   stat = fs.statSync(cliFilePath)
+    stat = fs.statSync(cliFilePath)
+    if (fs.existsSync(cliFilePath)) {
+        extraConfig = require(cliFilePath)
+    }
 }catch(err) {}
-
-if (stat) {
-    extraConfig = require(cliFilePath)
-}
 
 export const eConfig: DefautlConfigEntity = merge(new DefautlConfigEntity(), extraConfig)

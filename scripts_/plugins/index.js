@@ -22,7 +22,7 @@ var global_1 = require("../utils/global");
 var path_1 = __importDefault(require("path"));
 exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), definePlugin_1.definePlugin), dllPlugin_1.dllPlugin), [
     /** 显示打包进度条 */
-    new webpackbar_1.default({})
+    new webpackbar_1.default({ name: params_1.Params.isDev ? 'webpack dev' : 'webpack build' })
 ]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? [] : []), !params_1.Params.isDev ? [
     /** css文件分离 */
     new mini_css_extract_plugin_1.default({

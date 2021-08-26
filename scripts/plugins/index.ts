@@ -16,7 +16,7 @@ export const plugins: Configuration['plugins'] = [
     ...definePlugin,
     ...dllPlugin,
     /** 显示打包进度条 */
-    new WebpackBar({}),
+    new WebpackBar({ name: Params.isDev ? 'webpack dev' : 'webpack build'}),
     /** 打包分析 */
     ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
     /** 开发环境专用插件 */

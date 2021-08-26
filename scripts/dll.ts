@@ -3,8 +3,8 @@
  * @Date: 2021-07-08 11:46:18
  * @description: dll生成, 独立的webpack配置，跟dev和build不同
  */
-import { Configuration, webpack, DllPlugin } from "webpack";
-import { CACHE_PATH, DIST_PATH, NODE_MODULES_PATH, ROOT_PATH } from "./utils/global";
+import { Configuration, webpack, DllPlugin, util, EntryObject, MultiCompiler, Entry } from "webpack";
+import { CACHE_PATH, DIST_PATH, NODE_MODULES_PATH, pkg, ROOT_PATH } from "./utils/global";
 import { Params } from "./utils/params";
 import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
 import path from "path";
@@ -14,69 +14,113 @@ import TerserPlugin from "terser-webpack-plugin";
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { eConfig } from "./utils/config";
 import merge from "webpack-merge";
+import { isObject } from "lodash";
+import { checkDllForHash, createDllHash } from "./utils/dllVersion";
+import WebpackBarPlugin from "webpackbar";
 
-const config: Configuration = {
-    mode: 'production',
-    cache: false,
-    entry: {},
-    output: {
-        path: CACHE_PATH,
-        filename: "[name].dll.[fullhash].js",
-        /** 全局变量，防止冲突 */
-        library: "[name]_dll_[fullhash]",
-        /** 默认umd模式 */
-        libraryTarget: "umd",
-    },
-    plugins: [
-        /** 清空打包文件夹 */
-        new CleanWebpackPlugin(),
-        new DllPlugin({
-            path: path.join(CACHE_PATH, '[name].dll.manifest.json'),
-            /** 公开的dll函数的名称，和 output.library保持一致 */
-            name: "[name]_dll_[fullhash]",
-            format: true,
-        }),
-        ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
-    ],
-    resolve: {
-        modules: [ NODE_MODULES_PATH ],
-        extensions: [".js"],
-    },
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                extractComments: false,
+/** 创建dll配置 */
+const createConfiguration = (entry: Entry, hash: string, dllConfig: Configuration, isLast?: boolean): Configuration => {
+    const name = Object.keys(entry);
+    const config: Configuration = {
+        mode: 'production',
+        cache: false,
+        entry,
+        output: {
+            path: CACHE_PATH,
+            filename: `[name].dll.${hash}.js`,
+            /** 全局变量，防止冲突 */
+            library: `[name]_dll_${hash}`,
+            /** 默认umd模式 */
+            libraryTarget: "umd",
+        },
+        plugins: [
+            /** 清空打包文件夹 */
+            // ...isLast ? [ new CleanWebpackPlugin() ] : [],
+            new WebpackBarPlugin({name: `webpack dll [${name}]`}),
+            new DllPlugin({
+                path: path.join(CACHE_PATH, '[name].dll.manifest.json'),
+                /** 公开的dll函数的名称，和 output.library保持一致 */
+                name: `[name]_dll_${hash}`,
+                format: true,
             }),
+            ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
         ],
-        minimize: true,
+        resolve: {
+            modules: [ NODE_MODULES_PATH ],
+            extensions: [".js"],
+        },
+        optimization: {
+            minimizer: [
+                new TerserPlugin({
+                    extractComments: false,
+                }),
+            ],
+            minimize: true,
+        }
     }
+    return merge(config, dllConfig)
 };
 
-export default () => {
-    const compiler = webpack(
+/** 多入口dll处理 */
+const createMulConfiguration = (): Configuration[] => {
+    const { entry, ...dllConfig } = eConfig.dllWebpack;
+    const newEntry: Object = (!isObject(entry) ? { verdor: entry } : entry) as EntryObject;
+    return Object.entries(newEntry).map(([name, value], index, arr) => {
+        try{
+            const hash = createDllHash(value as string[])
+            /** 检测dll文件是否已存在 */
+            if (!checkDllForHash(name, hash)) {
+                return createConfiguration({ [name]: value }, hash, dllConfig, index === arr.length - 1)
+            } else {
+                return null
+            }
+        }catch(error) {
+            llog('dll entry configuration exception', 'yellow')
+            return null
+        }
+    }).filter(i => i)
+}
+
+export const run = async () => {
+    if (!eConfig.dllWebpack.entry) {
+        return
+    }
+    const mulConfig = createMulConfiguration()
+    if (mulConfig.length === 0) {
+        llog('skip webpack dll')
+        return
+    }
+    const compilerList = mulConfig.map((config) => webpack(
         Params.speed
-        ? new SpeedMeasurePlugin(Params.speed).wrap(merge(config, eConfig.dllWebpack))
-        : merge(config, eConfig.dllWebpack)
-    );
-    compiler.run((err, stats) => {
-        if (err) {
-            llog(err.message, "red");
-            return;
-        }
+        ? new SpeedMeasurePlugin(Params.speed).wrap(config)
+        : config
+    ));
+    await compilerList.reduce(async (pre, next, index) => {
+        await pre
+        return new Promise<Boolean>((resolve, reject) => {
+            next.run((err, stats) => {
+                if (err) {
+                    llog(err.message, "red");
+                    reject(false)
+                    return;
+                }
 
-        const info = stats.toJson();
+                const info = stats.toJson();
 
-        if (stats.hasErrors()) {
-            info.errors.forEach((item) => {
-                llog(item.message, "red");
-            });
-        }
+                if (stats.hasErrors()) {
+                    reject(false)
+                    info.errors.forEach((item) => {
+                        llog(item.message, "red");
+                    });
+                }
 
-        if (stats.hasWarnings()) {
-            info.warnings.forEach((item) => {
-                llog(item.message, "yellow");
-            });
-        }
-
-    })
+                if (stats.hasWarnings()) {
+                    info.warnings.forEach((item) => {
+                        llog(item.message, "yellow");
+                    });
+                }
+                resolve(true)
+            })
+        })
+    }, Promise.resolve(true))
 }
