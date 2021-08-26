@@ -67,6 +67,9 @@ dll Options:
 
 - feat: 升级webpack-dev-server到4.0.0
 - feat: 添加公共静态文件夹static
+- chore: 优化控制台展示效果
+- feat: 完善dll包检测机制
+- style: 优化控制台展示信息
 
 ### v1.0.0-beta.5 (2021-07-08)
 

@@ -29,13 +29,13 @@ function getAvailableIPs() {
 }
 
 export const devBoxLog = (params: {
-    time: number,
+    time: number | string,
     port: number,
     path: string,
 }) => {
 const defaultTemplate = `
 App running at:
-- Time: ${chalk.yellow(`${params.time}s`)}
+- Time: ${chalk.yellow(params.time)}
 - Local: ${chalk.cyan(`http://localhost:${params.port}/${params.path}`)}
 - Network: ${chalk.cyan(`http://${getAvailableIPs()[0] || '0.0.0.0'}:${params.port}/${params.path}`)}
 `;

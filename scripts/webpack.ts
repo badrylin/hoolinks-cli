@@ -75,6 +75,8 @@ export class CliMain {
     static compiler: Compiler = null;
     /** 初始化webpack实例 */
     static init = () => {
+        /** 显示当前构建应用 */
+        llog(`building [${Params.apps}]`);
         /** 合并配置 */
         CliMain.config = merge(CliMain.config, eConfig.webpack)
         /** 初始化 */
@@ -86,17 +88,19 @@ export class CliMain {
         /** 事件监听 */
         let startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', () => {
-            llog('打包中...')
-            llog(`打包应用[${Params.apps}]`);
             startTime = Date.now()
         })
         CliMain.compiler.hooks.done.tap('done', () => {
-            llog('打包完成');
-            Params.isDev && devBoxLog({
-                time: (Date.now() - startTime) / 1000,
-                port: devServerConfig.port,
-                path: Params.apps[0]
-            })
+            const time = `${(Date.now() - startTime) / 1000}s`
+            if (Params.isDev) {
+                devBoxLog({
+                    time,
+                    port: devServerConfig.port,
+                    path: Params.apps[0]
+                })
+            } else {
+                llog(`build time ${time}`)
+            }
         })
     }
 }

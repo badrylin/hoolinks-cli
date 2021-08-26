@@ -76,6 +76,8 @@ var CliMain = /** @class */ (function () {
     CliMain.compiler = null;
     /** 初始化webpack实例 */
     CliMain.init = function () {
+        /** 显示当前构建应用 */
+        logs_1.llog("building [" + params_1.Params.apps + "]");
         /** 合并配置 */
         CliMain.config = webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack);
         /** 初始化 */
@@ -85,17 +87,20 @@ var CliMain = /** @class */ (function () {
         /** 事件监听 */
         var startTime = 0;
         CliMain.compiler.hooks.compile.tap('compile', function () {
-            logs_1.llog('打包中...');
-            logs_1.llog("\u6253\u5305\u5E94\u7528[" + params_1.Params.apps + "]");
             startTime = Date.now();
         });
         CliMain.compiler.hooks.done.tap('done', function () {
-            logs_1.llog('打包完成');
-            params_1.Params.isDev && logs_1.devBoxLog({
-                time: (Date.now() - startTime) / 1000,
-                port: dev_1.devServerConfig.port,
-                path: params_1.Params.apps[0]
-            });
+            var time = (Date.now() - startTime) / 1000 + "s";
+            if (params_1.Params.isDev) {
+                logs_1.devBoxLog({
+                    time: time,
+                    port: dev_1.devServerConfig.port,
+                    path: params_1.Params.apps[0]
+                });
+            }
+            else {
+                logs_1.llog("build time " + time);
+            }
         });
     };
     return CliMain;
