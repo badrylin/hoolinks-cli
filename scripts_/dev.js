@@ -79,6 +79,9 @@ var run = function () {
                 case 0: return [4 /*yield*/, devServer.start()];
                 case 1:
                     _a.sent();
+                    process.on('SIGINT', function () {
+                        process.exit();
+                    });
                     return [2 /*return*/];
             }
         });
