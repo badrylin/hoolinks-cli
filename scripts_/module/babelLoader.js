@@ -17,6 +17,11 @@ var config_1 = require("../utils/config");
 exports.babelLoaders = {
     loader: 'babel-loader',
     options: __assign({}, webpack_merge_1.merge({
-        presets: ["@babel/preset-env", "@babel/preset-react"]
+        presets: ["@babel/preset-env", "@babel/preset-react"],
+        // presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+        // plugins: [
+        //     ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        //     ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+        // ],
     }, config_1.eConfig.babelOptions))
 };

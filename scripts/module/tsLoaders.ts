@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import { RuleSetRule } from 'webpack';
 import { eConfig } from '../utils/config';
 import { NODE_MODULES_PATH, SRC_PATH } from '../utils/global';

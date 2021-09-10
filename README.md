@@ -72,6 +72,7 @@ dll Options:
 - style: 优化控制台展示信息
 - fix: 修复dev-server关闭进程异常,临时采用直接杀死进程的方案
 - fix: 修复开启speed参数时，构建dll加载异常
+- feat: style解析添加多线程
 
 ### v1.0.0-beta.5 (2021-07-08)
 

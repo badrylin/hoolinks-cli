@@ -56,19 +56,19 @@ export const cssLoaders = (): RuleSetRule[] => {
         oneOf: [
             {
                 test: /\.modules\.less$/i,
-                use: [styleLoader, cssModulesLoader, ...postcssLoader, lessLoader],
+                use: ['thread-loader', styleLoader, cssModulesLoader, ...postcssLoader, lessLoader],
             },
             {
                 test: /\.less$/i,
-                use: [styleLoader, cssLoader, ...postcssLoader, lessLoader],
+                use: ['thread-loader', styleLoader, cssLoader, ...postcssLoader, lessLoader],
             },
             {
                 test: /\.modules\.css$/i,
-                use: [styleLoader, cssModulesLoader, ...postcssLoader],
+                use: ['thread-loader', styleLoader, cssModulesLoader, ...postcssLoader],
             },
             {
                 test: /\.css$/i,
-                use: [styleLoader, cssLoader, ...postcssLoader],
+                use: ['thread-loader', styleLoader, cssLoader, ...postcssLoader],
             },
         ]
     }]

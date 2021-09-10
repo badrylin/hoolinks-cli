@@ -7,7 +7,12 @@ export const babelLoaders: RuleSetUseItem = {
     options: {
         ...merge(
             {
-                presets: ["@babel/preset-env", "@babel/preset-react"]
+                presets: ["@babel/preset-env", "@babel/preset-react"],
+                // presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+                // plugins: [
+                //     ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                //     ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+                // ],
             },
             eConfig.babelOptions,
         )

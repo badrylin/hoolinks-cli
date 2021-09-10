@@ -64,19 +64,19 @@ var cssLoaders = function () {
             oneOf: [
                 {
                     test: /\.modules\.less$/i,
-                    use: __spreadArray(__spreadArray([styleLoader, cssModulesLoader], postcssLoader), [lessLoader]),
+                    use: __spreadArray(__spreadArray(['thread-loader', styleLoader, cssModulesLoader], postcssLoader), [lessLoader]),
                 },
                 {
                     test: /\.less$/i,
-                    use: __spreadArray(__spreadArray([styleLoader, cssLoader], postcssLoader), [lessLoader]),
+                    use: __spreadArray(__spreadArray(['thread-loader', styleLoader, cssLoader], postcssLoader), [lessLoader]),
                 },
                 {
                     test: /\.modules\.css$/i,
-                    use: __spreadArray([styleLoader, cssModulesLoader], postcssLoader),
+                    use: __spreadArray(['thread-loader', styleLoader, cssModulesLoader], postcssLoader),
                 },
                 {
                     test: /\.css$/i,
-                    use: __spreadArray([styleLoader, cssLoader], postcssLoader),
+                    use: __spreadArray(['thread-loader', styleLoader, cssLoader], postcssLoader),
                 },
             ]
         }];
