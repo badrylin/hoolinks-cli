@@ -16,6 +16,8 @@ import { eConfig } from "./utils/config";
 import { devServerConfig } from "./dev";
 import { Params } from "./utils/params";
 import TerserPlugin from "terser-webpack-plugin";
+import { dllPlugin } from "./plugins/dllPlugin";
+import { htmlPlugin } from "./plugins/htmlPlugin";
 
 export class CliMain {
     /** webpack主配置 */
@@ -24,7 +26,7 @@ export class CliMain {
         devtool: Params.isDev ? "eval-source-map" : false,
         target: ['web', 'es5'],
         module,
-        plugins,
+        ...!Params.speed && { plugins },
         context: SRC_PATH,
         infrastructureLogging: {
             level: 'error',
@@ -82,7 +84,7 @@ export class CliMain {
         /** 初始化 */
         CliMain.compiler = webpack(
             Params.speed
-            ? new SpeedMeasurePlugin(Params.speed).wrap(CliMain.config)
+            ? merge(new SpeedMeasurePlugin(Params.speed).wrap(CliMain.config),{plugins})
             : CliMain.config
         );
         /** 事件监听 */
