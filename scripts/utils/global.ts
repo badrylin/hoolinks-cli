@@ -23,5 +23,8 @@ export const DIST_PATH = path.join(ROOT_PATH, './dist');
 /** dll缓存文件夹路径 */
 export const CACHE_PATH = path.join(ROOT_PATH, './.cache');
 
+/** babel缓存文件夹路径 */
+export const BABEL_CACHE_PATH = path.join(NODE_MODULES_PATH, '.cache/babel-loader');
+
 /** 静态文件目录 */
 export const STATIC_PATH = path.join(ROOT_PATH, './static');

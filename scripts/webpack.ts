@@ -3,21 +3,18 @@
  * @Date: 2021-06-09 17:05:13
  * @description: webpack基础配置
  */
-import path from "path";
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 import { Compiler, Configuration, webpack } from "webpack";
+import { merge } from 'webpack-merge';
+import { devServerConfig } from "./dev";
 import { module } from "./module";
 import { plugins } from "./plugins";
-import { DIST_PATH, ROOT_PATH, SRC_PATH } from "./utils/global";
-import { devBoxLog, llog } from "./utils/logs";
-import { merge } from 'webpack-merge';
-import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { eConfig } from "./utils/config";
-import { devServerConfig } from "./dev";
+import { DIST_PATH, SRC_PATH } from "./utils/global";
+import { devBoxLog, llog } from "./utils/logs";
 import { Params } from "./utils/params";
-import TerserPlugin from "terser-webpack-plugin";
-import { dllPlugin } from "./plugins/dllPlugin";
-import { htmlPlugin } from "./plugins/htmlPlugin";
 
 export class CliMain {
     /** webpack主配置 */
@@ -30,6 +27,9 @@ export class CliMain {
         context: SRC_PATH,
         infrastructureLogging: {
             level: 'error',
+        },
+        cache: {
+            type: 'filesystem',
         },
         entry: () => {
             const entry = {};

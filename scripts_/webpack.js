@@ -15,24 +15,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CliMain = void 0;
+/*
+ * @Author: linzeqin
+ * @Date: 2021-06-09 17:05:13
+ * @description: webpack基础配置
+ */
+var css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webpack-plugin"));
+var speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
+var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
 var webpack_1 = require("webpack");
+var webpack_merge_1 = require("webpack-merge");
+var dev_1 = require("./dev");
 var module_1 = require("./module");
 var plugins_1 = require("./plugins");
+var config_1 = require("./utils/config");
 var global_1 = require("./utils/global");
 var logs_1 = require("./utils/logs");
-var webpack_merge_1 = require("webpack-merge");
-var speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
-var css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webpack-plugin"));
-var config_1 = require("./utils/config");
-var dev_1 = require("./dev");
 var params_1 = require("./utils/params");
-var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
 var CliMain = /** @class */ (function () {
     function CliMain() {
     }
     /** webpack主配置 */
     CliMain.config = __assign(__assign({ mode: params_1.Params.isDev ? "development" : "production", devtool: params_1.Params.isDev ? "eval-source-map" : false, target: ['web', 'es5'], module: module_1.module }, !params_1.Params.speed && { plugins: plugins_1.plugins }), { context: global_1.SRC_PATH, infrastructureLogging: {
             level: 'error',
+        }, cache: {
+            type: 'filesystem',
         }, entry: function () {
             var entry = {};
             params_1.Params.apps.forEach(function (app) {

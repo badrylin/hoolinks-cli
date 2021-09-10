@@ -3,20 +3,19 @@
  * @Date: 2021-07-08 11:46:18
  * @description: dll生成, 独立的webpack配置，跟dev和build不同
  */
-import { Configuration, webpack, DllPlugin, util, EntryObject, MultiCompiler, Entry } from "webpack";
-import { CACHE_PATH, DIST_PATH, NODE_MODULES_PATH, pkg, ROOT_PATH } from "./utils/global";
-import { Params } from "./utils/params";
-import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
-import path from "path";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import { llog } from "./utils/logs";
-import TerserPlugin from "terser-webpack-plugin";
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { eConfig } from "./utils/config";
-import merge from "webpack-merge";
 import { isObject } from "lodash";
-import { checkDllForHash, createDllHash } from "./utils/dllVersion";
+import path from "path";
+import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import { Configuration, DllPlugin, Entry, EntryObject, webpack } from "webpack";
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import merge from "webpack-merge";
 import WebpackBarPlugin from "webpackbar";
+import { eConfig } from "./utils/config";
+import { checkDllForHash, createDllHash } from "./utils/dllVersion";
+import { CACHE_PATH, NODE_MODULES_PATH } from "./utils/global";
+import { llog } from "./utils/logs";
+import { Params } from "./utils/params";
 
 /** 创建dll配置 */
 const createConfiguration = (entry: Entry, hash: string, dllConfig: Configuration, isLast?: boolean): Configuration => {
@@ -24,6 +23,7 @@ const createConfiguration = (entry: Entry, hash: string, dllConfig: Configuratio
     const config: Configuration = {
         mode: 'production',
         cache: false,
+        target: ['web', 'es5'],
         entry,
         output: {
             path: CACHE_PATH,

@@ -61,25 +61,26 @@ exports.run = void 0;
  * @Date: 2021-07-08 11:46:18
  * @description: dll生成, 独立的webpack配置，跟dev和build不同
  */
-var webpack_1 = require("webpack");
-var global_1 = require("./utils/global");
-var params_1 = require("./utils/params");
-var speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
-var path_1 = __importDefault(require("path"));
-var logs_1 = require("./utils/logs");
-var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
-var webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
-var config_1 = require("./utils/config");
-var webpack_merge_1 = __importDefault(require("webpack-merge"));
 var lodash_1 = require("lodash");
-var dllVersion_1 = require("./utils/dllVersion");
+var path_1 = __importDefault(require("path"));
+var speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
+var terser_webpack_plugin_1 = __importDefault(require("terser-webpack-plugin"));
+var webpack_1 = require("webpack");
+var webpack_bundle_analyzer_1 = require("webpack-bundle-analyzer");
+var webpack_merge_1 = __importDefault(require("webpack-merge"));
 var webpackbar_1 = __importDefault(require("webpackbar"));
+var config_1 = require("./utils/config");
+var dllVersion_1 = require("./utils/dllVersion");
+var global_1 = require("./utils/global");
+var logs_1 = require("./utils/logs");
+var params_1 = require("./utils/params");
 /** 创建dll配置 */
 var createConfiguration = function (entry, hash, dllConfig, isLast) {
     var name = Object.keys(entry);
     var config = {
         mode: 'production',
         cache: false,
+        target: ['web', 'es5'],
         entry: entry,
         output: {
             path: global_1.CACHE_PATH,
