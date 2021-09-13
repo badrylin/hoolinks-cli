@@ -63,7 +63,7 @@ dll Options:
 
 ## Change Log
 
-### v1.0.0-beta.6 (2021-08-20)
+### v1.1.0 (2021-09-13)
 
 - feat: 升级webpack-dev-server到4.0.0
 - feat: 添加公共静态文件夹static
@@ -74,6 +74,7 @@ dll Options:
 - fix: 修复开启speed参数时，构建dll加载异常
 - feat: style解析添加多线程
 - feat: 开启webpack filesystem和babel缓存模式
+- fix: 修复devServer static监听路径异常导致构建时间缓慢
 
 ### v1.0.0-beta.5 (2021-07-08)
 

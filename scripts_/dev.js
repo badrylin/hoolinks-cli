@@ -66,7 +66,7 @@ exports.devServerConfig = __assign({ port: 9000, client: {
         overlay: false,
         progress: true,
     }, static: {
-        directory: global_1.ROOT_PATH,
+        directory: global_1.STATIC_PATH,
         watch: true,
     }, devMiddleware: {
         stats: 'errors-only',

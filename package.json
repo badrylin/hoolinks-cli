@@ -4,8 +4,9 @@
   "description": "昊链专用脚手架工具",
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "node ./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
-    "build": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
+    "dev": "node ./bin/index.js dev -p --env=test --apps=app1,app2 --uniqueName=name",
+    "build": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name",
+    "build:cdn": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
     "dll": "node ./bin/index.js dll"
   },
   "author": "linzeqin <810390198@qq.com>",
@@ -61,7 +62,7 @@
     "webpack": "^5.52.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.1.1",
+    "webpack-dev-server": "^4.2.0",
     "webpack-merge": "^5.7.3",
     "webpackbar": "^5.0.0-3"
   },

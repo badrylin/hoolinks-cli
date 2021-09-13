@@ -5,9 +5,7 @@
  */
 import Server from 'webpack-dev-server/lib/Server';
 import { eConfig } from './utils/config';
-import { ROOT_PATH, STATIC_PATH } from './utils/global';
-import { llog } from './utils/logs';
-import { Params } from './utils/params';
+import { STATIC_PATH } from './utils/global';
 import { CliMain } from './webpack';
 
 /** devServer默认配置 */
@@ -19,7 +17,7 @@ export const devServerConfig = {
       progress: true,
     },
     static: {
-        directory: ROOT_PATH,
+        directory: STATIC_PATH,
         watch: true,
     },
     devMiddleware: {
