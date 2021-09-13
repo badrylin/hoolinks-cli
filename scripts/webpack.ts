@@ -12,7 +12,7 @@ import { devServerConfig } from "./dev";
 import { module } from "./module";
 import { plugins } from "./plugins";
 import { eConfig } from "./utils/config";
-import { DIST_PATH, SRC_PATH } from "./utils/global";
+import { DIST_PATH, ROOT_PATH, SRC_PATH } from "./utils/global";
 import { devBoxLog, llog } from "./utils/logs";
 import { Params } from "./utils/params";
 

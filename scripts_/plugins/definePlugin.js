@@ -10,6 +10,7 @@ var webpack_1 = require("webpack");
 var params_1 = require("../utils/params");
 exports.definePlugin = [
     new webpack_1.DefinePlugin({
+        '__DEV__': JSON.stringify(params_1.Params.isDev),
         'process.env.NODE_ENV': JSON.stringify(params_1.Params.env),
         'process.env.environment': JSON.stringify(params_1.Params.env),
     })

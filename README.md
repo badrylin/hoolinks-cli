@@ -75,6 +75,8 @@ dll Options:
 - feat: style解析添加多线程
 - feat: 开启webpack filesystem和babel缓存模式
 - fix: 修复devServer static监听路径异常导致构建时间缓慢
+- fix: 修复静态文件夹访问路径异常
+- feat: 新增__DEV__参数，用于判断当前环境是否为开发环境
 
 ### v1.0.0-beta.5 (2021-07-08)
 

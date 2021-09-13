@@ -68,6 +68,7 @@ exports.devServerConfig = __assign({ port: 9000, client: {
     }, static: {
         directory: global_1.STATIC_PATH,
         watch: true,
+        publicPath: '/static',
     }, devMiddleware: {
         stats: 'errors-only',
     } }, config_1.eConfig.devServer);

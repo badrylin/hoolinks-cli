@@ -9,6 +9,7 @@ import './test';
 console.log('app1', process.env.NODE_ENV);
 console.log('app1', process.env.environment);
 console.log('app3', process.env.environment);
+console.log('3'==='3')
 
 ReactDom.render(
     React.createElement(Page1),

@@ -19,6 +19,7 @@ export const devServerConfig = {
     static: {
         directory: STATIC_PATH,
         watch: true,
+        publicPath: '/static',
     },
     devMiddleware: {
         stats: 'errors-only',
