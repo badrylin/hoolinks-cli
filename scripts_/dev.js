@@ -51,17 +51,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = exports.devServerConfig = void 0;
-/*
- * @Author: linzeqin
- * @Date: 2021-04-27 09:08:55
- * @description: 开发环境
- */
 var Server_1 = __importDefault(require("webpack-dev-server/lib/Server"));
 var config_1 = require("./utils/config");
 var global_1 = require("./utils/global");
+var params_1 = require("./utils/params");
 var webpack_1 = require("./webpack");
 /** devServer默认配置 */
-exports.devServerConfig = __assign({ port: 9000, client: {
+exports.devServerConfig = __assign({ port: 9000, open: params_1.Params.apps[0], client: {
         logging: "error",
         overlay: false,
         progress: true,

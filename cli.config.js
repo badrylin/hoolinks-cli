@@ -1,7 +1,7 @@
 
 module.exports = {
     devServer: {
-        open: false,
+        // open: false,
     },
     webpack: {
 

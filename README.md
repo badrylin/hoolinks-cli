@@ -63,6 +63,10 @@ dll Options:
 
 ## Change Log
 
+### v1.1.1 (2021-09-14)
+
+- fix: 修复devServer open路径异常
+
 ### v1.1.0 (2021-09-13)
 
 - feat: 升级webpack-dev-server到4.0.0

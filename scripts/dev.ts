@@ -3,14 +3,17 @@
  * @Date: 2021-04-27 09:08:55
  * @description: 开发环境
  */
+import WebpackDevServer from 'webpack-dev-server';
 import Server from 'webpack-dev-server/lib/Server';
 import { eConfig } from './utils/config';
 import { STATIC_PATH } from './utils/global';
+import { Params } from './utils/params';
 import { CliMain } from './webpack';
 
 /** devServer默认配置 */
-export const devServerConfig = {
+export const devServerConfig: WebpackDevServer.Configuration = {
     port: 9000,
+    open: Params.apps[0],
     client: {
       logging: "error",
       overlay: false,

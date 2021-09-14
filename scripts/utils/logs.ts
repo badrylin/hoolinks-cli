@@ -30,7 +30,7 @@ function getAvailableIPs() {
 
 export const devBoxLog = (params: {
     time: number | string,
-    port: number,
+    port: number | string,
     path: string,
 }) => {
 const defaultTemplate = `
