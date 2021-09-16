@@ -66,6 +66,7 @@ dll Options:
 ### v1.1.1 (2021-09-14)
 
 - fix: 修复devServer open路径异常
+- fix: 开启Terser keep_fnames和keep_classnames模式，修复文件路径获取异常
 
 ### v1.1.0 (2021-09-13)
 

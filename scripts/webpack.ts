@@ -53,6 +53,11 @@ export class CliMain {
                 new CssMinimizerPlugin(),
                 new TerserPlugin({
                     extractComments: false,
+                    parallel: true,
+                    terserOptions: {
+                        keep_fnames: true,
+                        keep_classnames: true
+                    }
                 }),
             ] : [],
             minimize: !Params.isDev,

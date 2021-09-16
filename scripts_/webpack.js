@@ -59,6 +59,11 @@ var CliMain = /** @class */ (function () {
                 new css_minimizer_webpack_plugin_1.default(),
                 new terser_webpack_plugin_1.default({
                     extractComments: false,
+                    parallel: true,
+                    terserOptions: {
+                        keep_fnames: true,
+                        keep_classnames: true
+                    }
                 }),
             ] : [],
             minimize: !params_1.Params.isDev,
