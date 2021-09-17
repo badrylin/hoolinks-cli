@@ -8,8 +8,8 @@ import { Params } from "../utils/params";
 
 export const definePlugin: DefinePlugin[] = [
     new DefinePlugin({
-        '__DEV__': JSON.stringify(Params.isDev),
-        'process.env.NODE_ENV': JSON.stringify(Params.env),
+        'process.env.__DEV__': JSON.stringify(Params.isDev),
+        // 'process.env.NODE_ENV': JSON.stringify(Params.env),
         'process.env.environment': JSON.stringify(Params.env),
     })
 ]
