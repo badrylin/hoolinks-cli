@@ -7,7 +7,7 @@ import imgSrc3 from './images/header_icon2.png';
 
 export default class Page1 extends React.Component {
     state = {
-        a: 2
+        a: 2,
     }
     render() {
         return <div>

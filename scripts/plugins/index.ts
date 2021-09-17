@@ -10,6 +10,7 @@ import { dllPlugin } from "./dllPlugin";
 import { htmlPlugin } from "./htmlPlugin";
 import { DIST_PATH, STATIC_PATH } from "../utils/global";
 import path from "path";
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 export const plugins: Configuration['plugins'] = [
     ...htmlPlugin,
@@ -21,6 +22,11 @@ export const plugins: Configuration['plugins'] = [
     ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
     /** 开发环境专用插件 */
     ...Params.isDev ? [
+        new ESLintPlugin({
+            threads: true,
+            extensions: ['ts', 'tsx'],
+            // fix: true,
+        })
     ] : [],
     /** 生产环境专用插件 */
     ...!Params.isDev ? [

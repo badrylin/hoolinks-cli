@@ -1,10 +1,11 @@
-
 module.exports = {
     devServer: {
-        // open: false,
+        open: false,
     },
     webpack: {
-
+        // cache: {
+        //     type: 'memory'
+        // }
     },
     dllWebpack: {
         entry: {

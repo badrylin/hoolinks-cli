@@ -1,5 +1,5 @@
 import { forIn } from 'lodash';
-function Enumerable(
+function enumerable(
     target: unknown,
     propertyKey: string,
     descriptor: PropertyDescriptor
@@ -8,7 +8,7 @@ function Enumerable(
 };
 class TestForIn {
     a = 1;
-    @Enumerable
+    @enumerable
     get b(){
         return this.a;
     }
@@ -18,11 +18,11 @@ TestForIn.prototype = triangle; */
 const obj = new TestForIn;
 console.log('obj', obj);
 
-for (const key in obj) {
-    console.log('key', key)
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-    }
-}
+// for (const key in obj) {
+//     console.log('key', key)
+//     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+//     }
+// }
 forIn(obj, (v,k) => {
     console.log(v,k);
 })
