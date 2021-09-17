@@ -26,6 +26,7 @@ exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spre
 ]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? [] : []), !params_1.Params.isDev ? [
     /** css文件分离 */
     new mini_css_extract_plugin_1.default({
+        ignoreOrder: true,
         filename: function (pathData) {
             return pathData.chunk.name + "/styles/[name].[contenthash:7].css";
         }

@@ -26,6 +26,7 @@ export const plugins: Configuration['plugins'] = [
     ...!Params.isDev ? [
         /** css文件分离 */
         new MiniCssExtractPlugin({
+            ignoreOrder: true,
             filename: (pathData) => {
                 return `${pathData.chunk.name}/styles/[name].[contenthash:7].css`
             }

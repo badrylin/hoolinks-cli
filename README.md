@@ -63,6 +63,10 @@ dll Options:
 
 ## Change Log
 
+### v1.1.2 (2021-09-17)（待发布）
+
+- chore: MiniCssExtractPlugin开启ignoreOrder模式，CssMinimizerPlugin开启多线程模式
+
 ### v1.1.1 (2021-09-14)
 
 - fix: 修复devServer open路径异常

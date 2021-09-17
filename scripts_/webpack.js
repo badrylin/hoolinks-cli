@@ -56,7 +56,9 @@ var CliMain = /** @class */ (function () {
             extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
         }, optimization: {
             minimizer: !params_1.Params.isDev ? [
-                new css_minimizer_webpack_plugin_1.default(),
+                new css_minimizer_webpack_plugin_1.default({
+                    parallel: true,
+                }),
                 new terser_webpack_plugin_1.default({
                     extractComments: false,
                     parallel: true,

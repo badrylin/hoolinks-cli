@@ -50,7 +50,9 @@ export class CliMain {
         },
         optimization: {
             minimizer: !Params.isDev ? [
-                new CssMinimizerPlugin(),
+                new CssMinimizerPlugin({
+                    parallel: true,
+                }),
                 new TerserPlugin({
                     extractComments: false,
                     parallel: true,
