@@ -1,6 +1,6 @@
 {
   "name": "hoolinks-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "昊链专用脚手架工具",
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",

@@ -63,7 +63,7 @@ dll Options:
 
 ## Change Log
 
-### v1.1.2 (2021-09-17)（待发布）
+### v1.1.2 (2021-09-17)
 
 - chore: MiniCssExtractPlugin开启ignoreOrder模式，CssMinimizerPlugin开启多线程模式
 - fix: 恢复process.env.NODE_ENV默认值，添加process.env.__DEV__用于标识当前是否为开发环境
