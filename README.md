@@ -12,7 +12,8 @@
 - [x] 支持css modules, less
 - [x] 支持CDN
 - [x] 支持typescript
-- [ ] 支持tslint
+- ~~[ ] 支持tslint~~（已废弃）
+- [x] 支持eslint
 - [x] DLL
 - [x] 多线程
 
@@ -62,6 +63,10 @@ dll Options:
 - tslint和eslint的选择
 
 ## Change Log
+
+### v1.1.3 (2021-09-22)(待发布)
+
+- feat: 添加eslint配置
 
 ### v1.1.2 (2021-09-17)
 
