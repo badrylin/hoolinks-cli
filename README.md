@@ -64,7 +64,7 @@ dll Options:
 
 ## Change Log
 
-### v1.1.3 (2021-09-22)(待发布)
+### v1.1.3 (2021-09-22)
 
 - feat: 添加eslint配置
 - feat: 降低cache文件寿命并开启生产环境下的cache
