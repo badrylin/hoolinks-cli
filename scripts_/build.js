@@ -25,6 +25,10 @@ var run = function () {
                 logs_1.llog(item.message, "yellow");
             });
         }
+        /** close */
+        webpack_1.CliMain.compiler.close(function (err) {
+            err && logs_1.llog(err, "red");
+        });
     });
 };
 exports.run = run;

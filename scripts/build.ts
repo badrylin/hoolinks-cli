@@ -26,6 +26,9 @@ export const run = () => {
                 llog(item.message, "yellow");
             });
         }
-
+        /** close */
+        CliMain.compiler.close(err => {
+            err && llog(err, "red");
+        });
     })
 }

@@ -37,6 +37,9 @@ var CliMain = /** @class */ (function () {
         },
         cache: {
             type: 'filesystem',
+            maxMemoryGenerations: 1,
+            profile: true,
+            maxAge: 60 * 60 * 1000 * 24,
         },
         entry: function () {
             var entry = {};
