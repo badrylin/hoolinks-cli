@@ -3,6 +3,7 @@
  * @Date: 2021-04-27 09:08:55
  * @description: 开发环境
  */
+import { watch } from 'fs';
 import WebpackDevServer from 'webpack-dev-server';
 import Server from 'webpack-dev-server/lib/Server';
 import { eConfig } from './utils/config';
@@ -34,6 +35,9 @@ export const run = () => {
     const devServer = new Server(devServerConfig, CliMain.compiler);
     (async () => {
         await devServer.start();
+        // Ctrl + C is super duper slow because it has to close a bunch of fs.watch handles. Let's just skip
+        // all that.
+        // https://github.com/webpack/webpack-dev-server/issues/1479
         process.on('SIGINT', () => {
             process.exit();
         });

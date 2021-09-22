@@ -23,7 +23,7 @@ export class CliMain {
         devtool: Params.isDev ? "eval-source-map" : false,
         target: ['web', 'es5'],
         module,
-        ...!Params.speed && { plugins },
+        plugins,
         context: SRC_PATH,
         infrastructureLogging: {
             level: 'error',
@@ -91,7 +91,7 @@ export class CliMain {
         /** 初始化 */
         CliMain.compiler = webpack(
             Params.speed
-            ? merge(new SpeedMeasurePlugin(Params.speed).wrap(CliMain.config),{plugins})
+            ? merge(new SpeedMeasurePlugin(Params.speed).wrap(CliMain.config),{})
             : CliMain.config
         );
         /** 事件监听 */

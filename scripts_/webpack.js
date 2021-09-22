@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -36,25 +25,37 @@ var CliMain = /** @class */ (function () {
     function CliMain() {
     }
     /** webpack主配置 */
-    CliMain.config = __assign(__assign({ mode: params_1.Params.isDev ? "development" : "production", devtool: params_1.Params.isDev ? "eval-source-map" : false, target: ['web', 'es5'], module: module_1.module }, !params_1.Params.speed && { plugins: plugins_1.plugins }), { context: global_1.SRC_PATH, infrastructureLogging: {
+    CliMain.config = {
+        mode: params_1.Params.isDev ? "development" : "production",
+        devtool: params_1.Params.isDev ? "eval-source-map" : false,
+        target: ['web', 'es5'],
+        module: module_1.module,
+        plugins: plugins_1.plugins,
+        context: global_1.SRC_PATH,
+        infrastructureLogging: {
             level: 'error',
-        }, cache: {
+        },
+        cache: {
             type: 'filesystem',
-        }, entry: function () {
+        },
+        entry: function () {
             var entry = {};
             params_1.Params.apps.forEach(function (app) {
                 entry[app] = global_1.SRC_PATH + "/" + app + "/index.ts";
             });
             return entry;
-        }, output: {
+        },
+        output: {
             path: global_1.DIST_PATH,
             filename: "[name]/js/[name].[chunkhash:7].js",
             publicPath: params_1.Params.cdn || "auto",
             uniqueName: params_1.Params.uniqueName,
             chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
-        }, resolve: {
+        },
+        resolve: {
             extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
-        }, optimization: {
+        },
+        optimization: {
             minimizer: !params_1.Params.isDev ? [
                 new css_minimizer_webpack_plugin_1.default({
                     parallel: true,
@@ -84,7 +85,8 @@ var CliMain = /** @class */ (function () {
                     },
                 },
             },
-        } });
+        },
+    };
     /** webpack实例 */
     CliMain.compiler = null;
     /** 初始化webpack实例 */
@@ -95,7 +97,7 @@ var CliMain = /** @class */ (function () {
         CliMain.config = webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack);
         /** 初始化 */
         CliMain.compiler = webpack_1.webpack(params_1.Params.speed
-            ? webpack_merge_1.merge(new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config), { plugins: plugins_1.plugins })
+            ? webpack_merge_1.merge(new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config), {})
             : CliMain.config);
         /** 事件监听 */
         var startTime = 0;

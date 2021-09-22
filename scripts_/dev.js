@@ -76,6 +76,9 @@ var run = function () {
                 case 0: return [4 /*yield*/, devServer.start()];
                 case 1:
                     _a.sent();
+                    // Ctrl + C is super duper slow because it has to close a bunch of fs.watch handles. Let's just skip
+                    // all that.
+                    // https://github.com/webpack/webpack-dev-server/issues/1479
                     process.on('SIGINT', function () {
                         process.exit();
                     });

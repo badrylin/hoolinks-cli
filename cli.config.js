@@ -3,9 +3,9 @@ module.exports = {
         open: false,
     },
     webpack: {
-        // cache: {
-        //     type: 'memory'
-        // }
+        cache: {
+            type: 'memory'
+        }
     },
     dllWebpack: {
         entry: {

@@ -8,7 +8,7 @@ import { Params } from "../utils/params";
 import { definePlugin } from "./definePlugin";
 import { dllPlugin } from "./dllPlugin";
 import { htmlPlugin } from "./htmlPlugin";
-import { DIST_PATH, STATIC_PATH } from "../utils/global";
+import { DIST_PATH, NODE_MODULES_PATH, ROOT_PATH, SRC_PATH, STATIC_PATH } from "../utils/global";
 import path from "path";
 import ESLintPlugin from 'eslint-webpack-plugin';
 
@@ -23,10 +23,16 @@ export const plugins: Configuration['plugins'] = [
     /** 开发环境专用插件 */
     ...Params.isDev ? [
         new ESLintPlugin({
-            threads: true,
+            // threads: true,
+            context: ROOT_PATH,
             extensions: ['ts', 'tsx'],
+            emitWarning: true,
+            emitError: true,
+            // lintDirtyModulesOnly: true,
             // fix: true,
-        })
+            exclude: [ 'node_modules' ],
+            files: Params.apps.map((app) => path.resolve('src', app))
+        }),
     ] : [],
     /** 生产环境专用插件 */
     ...!Params.isDev ? [

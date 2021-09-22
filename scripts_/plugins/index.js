@@ -26,10 +26,16 @@ exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spre
     new webpackbar_1.default({ name: params_1.Params.isDev ? 'webpack dev' : 'webpack build' })
 ]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? [
     new eslint_webpack_plugin_1.default({
-        threads: true,
+        // threads: true,
+        context: global_1.ROOT_PATH,
         extensions: ['ts', 'tsx'],
+        emitWarning: true,
+        emitError: true,
+        // lintDirtyModulesOnly: true,
         // fix: true,
-    })
+        exclude: ['node_modules'],
+        files: params_1.Params.apps.map(function (app) { return path_1.default.resolve('src', app); })
+    }),
 ] : []), !params_1.Params.isDev ? [
     /** css文件分离 */
     new mini_css_extract_plugin_1.default({
