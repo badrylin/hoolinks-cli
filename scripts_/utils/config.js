@@ -27,6 +27,8 @@ var DefautlConfigEntity = /** @class */ (function () {
         this.babelOptions = {};
         /** babelLoader解析文件拓展 */
         this.babelInclude = [];
+        /** 是否开启eslint检查 */
+        this.eslint = true;
     }
     return DefautlConfigEntity;
 }());

@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
         to[j] = from[i];
@@ -21,22 +32,13 @@ var htmlPlugin_1 = require("./htmlPlugin");
 var global_1 = require("../utils/global");
 var path_1 = __importDefault(require("path"));
 var eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
+var config_1 = require("../utils/config");
 exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), definePlugin_1.definePlugin), dllPlugin_1.dllPlugin), [
     /** 显示打包进度条 */
     new webpackbar_1.default({ name: params_1.Params.isDev ? 'webpack dev' : 'webpack build' })
-]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? [
-    new eslint_webpack_plugin_1.default({
+]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? __spreadArray([], config_1.eConfig.eslint ? [new eslint_webpack_plugin_1.default(__assign({ 
         // threads: true,
-        context: global_1.ROOT_PATH,
-        extensions: ['ts', 'tsx'],
-        emitWarning: true,
-        emitError: true,
-        // lintDirtyModulesOnly: true,
-        // fix: true,
-        exclude: ['node_modules'],
-        files: params_1.Params.apps.map(function (app) { return path_1.default.resolve('src', app); })
-    }),
-] : []), !params_1.Params.isDev ? [
+        context: global_1.ROOT_PATH, extensions: ['js', 'jsx', 'ts', 'tsx'], files: params_1.Params.apps.map(function (app) { return path_1.default.resolve(global_1.SRC_PATH, app); }) }, typeof config_1.eConfig.eslint === 'boolean' ? {} : config_1.eConfig.eslint))] : []) : []), !params_1.Params.isDev ? [
     /** css文件分离 */
     new mini_css_extract_plugin_1.default({
         ignoreOrder: true,

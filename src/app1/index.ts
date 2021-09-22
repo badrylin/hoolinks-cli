@@ -9,8 +9,8 @@ import './test';
 console.log('app1', process.env.NODE_ENV);
 console.log('app1', process.env.environment);
 console.log('lodash', lodash);
-console.log('lodash', '1'=='1');
-const a: any = 1
+console.log('lodash', '1'==='1');
+// const a: any = 1
 
 ReactDom.render(
     React.createElement(Page1),

@@ -11,6 +11,7 @@ import { htmlPlugin } from "./htmlPlugin";
 import { DIST_PATH, NODE_MODULES_PATH, ROOT_PATH, SRC_PATH, STATIC_PATH } from "../utils/global";
 import path from "path";
 import ESLintPlugin from 'eslint-webpack-plugin';
+import { eConfig } from "../utils/config";
 
 export const plugins: Configuration['plugins'] = [
     ...htmlPlugin,
@@ -22,17 +23,13 @@ export const plugins: Configuration['plugins'] = [
     ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
     /** 开发环境专用插件 */
     ...Params.isDev ? [
-        new ESLintPlugin({
+        ...eConfig.eslint ? [new ESLintPlugin({
             // threads: true,
             context: ROOT_PATH,
-            extensions: ['ts', 'tsx'],
-            emitWarning: true,
-            emitError: true,
-            // lintDirtyModulesOnly: true,
-            // fix: true,
-            exclude: [ 'node_modules' ],
-            files: Params.apps.map((app) => path.resolve('src', app))
-        }),
+            extensions: ['js', 'jsx', 'ts', 'tsx'],
+            files: Params.apps.map((app) => path.resolve(SRC_PATH, app)),
+            ...typeof eConfig.eslint === 'boolean' ? {} : eConfig.eslint,
+        })] : [],
     ] : [],
     /** 生产环境专用插件 */
     ...!Params.isDev ? [

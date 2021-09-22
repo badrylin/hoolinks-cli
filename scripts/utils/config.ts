@@ -9,6 +9,8 @@ import path from 'path';
 import { ROOT_PATH } from "./global";
 import fs from 'fs';
 import merge from "webpack-merge";
+import { toUpper } from "lodash";
+import { Options as ESLintPluginOptions} from 'eslint-webpack-plugin';
 
 /** 用户拓展配置列表 */
 class DefautlConfigEntity {
@@ -36,6 +38,8 @@ class DefautlConfigEntity {
     /** babelLoader解析文件拓展 */
     babelInclude?: RuleSetConditionAbsolute[] = [];
 
+    /** 是否开启eslint检查 */
+    eslint?: boolean | ESLintPluginOptions = true;
 }
 
 let extraConfig = {}
