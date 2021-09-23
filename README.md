@@ -58,9 +58,8 @@ dll Options:
 
 ## To-do list
 
-- webpack-dev-server升级到4.0+（目前webpack-dev-server在beta版本，不稳定）
-- webpack-dev-server4以后支持target除了web模式之外的其他模式热更新，更改target为browserslist模式以支持ie10以上的开发环境调试
-- tslint和eslint的选择
+- cache filesystem模式没有清空过期缓存问题 [https://github.com/webpack/webpack/issues/13291](https://github.com/webpack/webpack/issues/13291)
+- webpack-dev-server 关闭进程问题 [https://github.com/webpack/webpack-dev-server/issues/1479](https://github.com/webpack/webpack-dev-server/issues/1479)
 
 ## Change Log
 
