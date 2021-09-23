@@ -12,8 +12,7 @@
 - [x] 支持css modules, less
 - [x] 支持CDN
 - [x] 支持typescript
-- ~~[ ] 支持tslint~~（已废弃）
-- [x] 支持eslint
+- [x] 支持eslint，废弃tslint(使用@typescript-eslint)
 - [x] DLL
 - [x] 多线程
 
