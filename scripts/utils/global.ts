@@ -26,5 +26,8 @@ export const CACHE_PATH = path.join(ROOT_PATH, './.cache');
 /** babel缓存文件夹路径 */
 export const BABEL_CACHE_PATH = path.join(NODE_MODULES_PATH, '.cache/babel-loader');
 
+/** eslint缓存文件夹路径 */
+export const ESLINT_CACHE_PATH = path.join(NODE_MODULES_PATH, '.cache/eslint');
+
 /** 静态文件目录 */
 export const STATIC_PATH = path.join(ROOT_PATH, './static');

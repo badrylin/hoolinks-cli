@@ -8,7 +8,7 @@ import { Params } from "../utils/params";
 import { definePlugin } from "./definePlugin";
 import { dllPlugin } from "./dllPlugin";
 import { htmlPlugin } from "./htmlPlugin";
-import { DIST_PATH, NODE_MODULES_PATH, ROOT_PATH, SRC_PATH, STATIC_PATH } from "../utils/global";
+import { CACHE_PATH, DIST_PATH, ESLINT_CACHE_PATH, NODE_MODULES_PATH, ROOT_PATH, SRC_PATH, STATIC_PATH } from "../utils/global";
 import path from "path";
 import ESLintPlugin from 'eslint-webpack-plugin';
 import { eConfig } from "../utils/config";
@@ -25,6 +25,8 @@ export const plugins: Configuration['plugins'] = [
     ...Params.isDev ? [
         ...eConfig.eslint ? [new ESLintPlugin({
             // threads: true,
+            cache: true,
+            cacheLocation: path.resolve(ESLINT_CACHE_PATH, './index.json'),
             context: ROOT_PATH,
             extensions: ['js', 'jsx', 'ts', 'tsx'],
             files: Params.apps.map((app) => path.resolve(SRC_PATH, app)),

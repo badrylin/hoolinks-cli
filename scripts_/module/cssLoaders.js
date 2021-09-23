@@ -1,8 +1,12 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -64,19 +68,19 @@ var cssLoaders = function () {
             oneOf: [
                 {
                     test: /\.modules\.less$/i,
-                    use: __spreadArray(__spreadArray([styleLoader, cssModulesLoader], postcssLoader), [lessLoader]),
+                    use: __spreadArray(__spreadArray([styleLoader, cssModulesLoader], postcssLoader, true), ['cache-loader', lessLoader], false),
                 },
                 {
                     test: /\.less$/i,
-                    use: __spreadArray(__spreadArray([styleLoader, cssLoader], postcssLoader), [lessLoader]),
+                    use: __spreadArray(__spreadArray([styleLoader, cssLoader], postcssLoader, true), ['cache-loader', lessLoader], false),
                 },
                 {
                     test: /\.modules\.css$/i,
-                    use: __spreadArray([styleLoader, cssModulesLoader], postcssLoader),
+                    use: __spreadArray([styleLoader, cssModulesLoader], postcssLoader, true),
                 },
                 {
                     test: /\.css$/i,
-                    use: __spreadArray([styleLoader, cssLoader], postcssLoader),
+                    use: __spreadArray([styleLoader, cssLoader], postcssLoader, true),
                 },
             ]
         }];

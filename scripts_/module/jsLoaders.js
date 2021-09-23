@@ -8,7 +8,7 @@ var jsLoaders = function () {
         {
             test: /\.(js|jsx)$/,
             use: [
-                'thread-loader',
+                // 'thread-loader',
                 babelLoader_1.babelLoaders
             ],
             include: [global_1.SRC_PATH],

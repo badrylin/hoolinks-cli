@@ -7,7 +7,7 @@ export const jsLoaders = (): RuleSetRule[] => {
         {
             test: /\.(js|jsx)$/,
             use: [
-                'thread-loader',
+                // 'thread-loader',
                 babelLoaders
             ],
             include: [ SRC_PATH ],

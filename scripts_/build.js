@@ -11,23 +11,23 @@ var webpack_1 = require("./webpack");
 var run = function () {
     webpack_1.CliMain.compiler.run(function (err, stats) {
         if (err) {
-            logs_1.llog(err.message, "red");
+            (0, logs_1.llog)(err.message, "red");
             return;
         }
         var info = stats.toJson();
         if (stats.hasErrors()) {
             info.errors.forEach(function (item) {
-                logs_1.llog(item.message, "red");
+                (0, logs_1.llog)(item.message, "red");
             });
         }
         if (stats.hasWarnings()) {
             info.warnings.forEach(function (item) {
-                logs_1.llog(item.message, "yellow");
+                (0, logs_1.llog)(item.message, "yellow");
             });
         }
         /** close */
         webpack_1.CliMain.compiler.close(function (err) {
-            err && logs_1.llog(err, "red");
+            err && (0, logs_1.llog)(err, "red");
         });
     });
 };

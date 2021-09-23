@@ -9,8 +9,9 @@ export const tsLoaders = (): RuleSetRule[] => {
         {
             test: /\.(ts|tsx)$/,
             use: [
-                'thread-loader',
+                // 'thread-loader',
                 babelLoaders,
+                'cache-loader',
                 {
                     loader: 'ts-loader',
                     options: {

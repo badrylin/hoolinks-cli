@@ -34,7 +34,7 @@ function getAvailableIPs() {
 }
 var devBoxLog = function (params) {
     var defaultTemplate = "\nApp running at:\n- Time: " + chalk_1.default.yellow(params.time) + "\n- Local: " + chalk_1.default.cyan("http://localhost:" + params.port + "/" + params.path) + "\n- Network: " + chalk_1.default.cyan("http://" + (getAvailableIPs()[0] || '0.0.0.0') + ":" + params.port + "/" + params.path) + "\n";
-    var message = boxen_1.default(defaultTemplate, {
+    var message = (0, boxen_1.default)(defaultTemplate, {
         padding: { left: 2, right: 2, top: 0, bottom: 0 },
         align: 'left',
         borderColor: 'blue',

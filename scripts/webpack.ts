@@ -28,12 +28,14 @@ export class CliMain {
         infrastructureLogging: {
             level: 'error',
         },
-        cache: {
-            type: 'filesystem',
-            maxMemoryGenerations: 1,
-            profile: true,
-            maxAge: 60 * 60 * 1000 * 24,
-        },
+        // 暂时弃用文件系统的cache
+        // 因为filesystem模式不会自动清除过期的cache文件
+        // https://github.com/webpack/webpack/issues/13291
+        // cache: {
+        //     type: 'filesystem',
+        //     profile: true,
+        //     maxAge: 1000 * 60,
+        // },
         entry: () => {
             const entry = {};
             Params.apps.forEach((app) => {

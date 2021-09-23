@@ -64,6 +64,11 @@ dll Options:
 
 ## Change Log
 
+### v1.1.4 (2021-09-23)
+
+- feat: 开启eslint缓存和less编译缓存，优化ts-loader缓存
+- fix: 暂时关闭cache filesystem, 因为filesystem模式不会自动清除过期的cache文件
+
 ### v1.1.3 (2021-09-22)
 
 - feat: 添加eslint配置
