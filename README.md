@@ -58,7 +58,7 @@ dll Options:
 
 ## To-do list
 
-- cache filesystem模式没有清空过期缓存问题 [https://github.com/webpack/webpack/issues/13291](https://github.com/webpack/webpack/issues/13291)
+- cache filesystem模式没有清空过期缓存问题,该问题会导致缓存文件不断堆积，达到几个G [https://github.com/webpack/webpack/issues/13291](https://github.com/webpack/webpack/issues/13291)
 - webpack-dev-server 关闭进程问题 [https://github.com/webpack/webpack-dev-server/issues/1479](https://github.com/webpack/webpack-dev-server/issues/1479)
 
 ## Change Log
