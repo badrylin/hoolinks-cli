@@ -62,7 +62,7 @@ dll Options:
 
 ## Change Log
 
-### v1.1.5 (2021-09-26)(待发布)
+### v1.1.5 (2021-09-26)
 
 - fix: 修改js载入顺序，优化初始化加载样式
 - fix: 修复babelInclude不生效
