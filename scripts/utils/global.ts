@@ -12,7 +12,7 @@ export const ROOT_PATH = process.cwd();
 export const pkg = require(path.join(ROOT_PATH, './package.json'));
 
 /** 第三方包路径 */
-export const NODE_MODULES_PATH = path.join(ROOT_PATH, './node_modules');
+export const NODE_MODULES_PATH = path.join(ROOT_PATH, '../node_modules');
 
 /** 打包前文件存放路径 */
 export const SRC_PATH = path.join(ROOT_PATH, './src');

@@ -65,6 +65,8 @@ dll Options:
 ### v1.1.5 (2021-09-26)(待发布)
 
 - fix: 修改js载入顺序，优化初始化加载样式
+- fix: 修复babelInclude不生效
+- fix: 修复dll在workspaces模式下node-modules异常
 
 ### v1.1.4 (2021-09-23)
 

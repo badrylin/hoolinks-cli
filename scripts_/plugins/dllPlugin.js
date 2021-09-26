@@ -1,12 +1,8 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -25,16 +21,16 @@ var add_asset_html_webpack_plugin_1 = __importDefault(require("add-asset-html-we
 var params_1 = require("../utils/params");
 var config_1 = require("../utils/config");
 var lodash_1 = require("lodash");
-exports.dllPlugin = config_1.eConfig.dllWebpack.entry ? __spreadArray(__spreadArray([], (0, lodash_1.isObject)(config_1.eConfig.dllWebpack.entry) && Object.keys(config_1.eConfig.dllWebpack.entry).map(function (name) {
+exports.dllPlugin = config_1.eConfig.dllWebpack.entry ? __spreadArray(__spreadArray([], lodash_1.isObject(config_1.eConfig.dllWebpack.entry) && Object.keys(config_1.eConfig.dllWebpack.entry).map(function (name) {
     return new webpack_1.DllReferencePlugin({
         context: global_1.ROOT_PATH,
         manifest: require(path_1.default.join(global_1.CACHE_PATH, name + ".dll.manifest.json")),
     });
-}), true), [
+})), [
     /** 把dll文件添加到html入口中 */
     new add_asset_html_webpack_plugin_1.default({
         outputPath: 'common/js',
         publicPath: params_1.Params.cdn ? params_1.Params.cdn + "/common/js" : '../common/js',
         filepath: path_1.default.join(global_1.CACHE_PATH, './*.dll.*.js'),
     }),
-], false) : [];
+]) : [];

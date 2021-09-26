@@ -46,14 +46,10 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -104,11 +100,11 @@ var createConfiguration = function (entry, hash, dllConfig, isLast) {
                 name: "[name]_dll_" + hash,
                 format: true,
             })
-        ], params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : [], true),
-        resolve: {
-            modules: [global_1.NODE_MODULES_PATH],
-            extensions: [".js"],
-        },
+        ], params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []),
+        // resolve: {
+        //     modules: [ NODE_MODULES_PATH ],
+        //     extensions: [".js"],
+        // },
         optimization: {
             minimizer: [
                 new terser_webpack_plugin_1.default({
@@ -118,19 +114,19 @@ var createConfiguration = function (entry, hash, dllConfig, isLast) {
             minimize: true,
         }
     };
-    return (0, webpack_merge_1.default)(config, dllConfig);
+    return webpack_merge_1.default(config, dllConfig);
 };
 /** 多入口dll处理 */
 var createMulConfiguration = function () {
     var _a = config_1.eConfig.dllWebpack, entry = _a.entry, dllConfig = __rest(_a, ["entry"]);
-    var newEntry = (!(0, lodash_1.isObject)(entry) ? { verdor: entry } : entry);
+    var newEntry = (!lodash_1.isObject(entry) ? { verdor: entry } : entry);
     return Object.entries(newEntry).map(function (_a, index, arr) {
         var _b;
         var name = _a[0], value = _a[1];
         try {
-            var hash = (0, dllVersion_1.createDllHash)(value);
+            var hash = dllVersion_1.createDllHash(value);
             /** 检测dll文件是否已存在 */
-            if (!(0, dllVersion_1.checkDllForHash)(name, hash)) {
+            if (!dllVersion_1.checkDllForHash(name, hash)) {
                 return createConfiguration((_b = {}, _b[name] = value, _b), hash, dllConfig, index === arr.length - 1);
             }
             else {
@@ -138,7 +134,7 @@ var createMulConfiguration = function () {
             }
         }
         catch (error) {
-            (0, logs_1.llog)('dll entry configuration exception', 'yellow');
+            logs_1.llog('dll entry configuration exception', 'yellow');
             return null;
         }
     }).filter(function (i) { return i; });
@@ -153,10 +149,10 @@ var run = function () { return __awaiter(void 0, void 0, void 0, function () {
                 }
                 mulConfig = createMulConfiguration();
                 if (mulConfig.length === 0) {
-                    (0, logs_1.llog)('skip webpack dll');
+                    logs_1.llog('skip webpack dll');
                     return [2 /*return*/];
                 }
-                compilerList = mulConfig.map(function (config) { return (0, webpack_1.webpack)(params_1.Params.speed
+                compilerList = mulConfig.map(function (config) { return webpack_1.webpack(params_1.Params.speed
                     ? new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(config)
                     : config); });
                 return [4 /*yield*/, compilerList.reduce(function (pre, next, index) { return __awaiter(void 0, void 0, void 0, function () {
@@ -168,7 +164,7 @@ var run = function () { return __awaiter(void 0, void 0, void 0, function () {
                                     return [2 /*return*/, new Promise(function (resolve, reject) {
                                             next.run(function (err, stats) {
                                                 if (err) {
-                                                    (0, logs_1.llog)(err.message, "red");
+                                                    logs_1.llog(err.message, "red");
                                                     reject(false);
                                                     return;
                                                 }
@@ -176,12 +172,12 @@ var run = function () { return __awaiter(void 0, void 0, void 0, function () {
                                                 if (stats.hasErrors()) {
                                                     reject(false);
                                                     info.errors.forEach(function (item) {
-                                                        (0, logs_1.llog)(item.message, "red");
+                                                        logs_1.llog(item.message, "red");
                                                     });
                                                 }
                                                 if (stats.hasWarnings()) {
                                                     info.warnings.forEach(function (item) {
-                                                        (0, logs_1.llog)(item.message, "yellow");
+                                                        logs_1.llog(item.message, "yellow");
                                                     });
                                                 }
                                                 resolve(true);

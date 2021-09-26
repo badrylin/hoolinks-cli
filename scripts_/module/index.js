@@ -1,12 +1,8 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.module = void 0;
@@ -18,7 +14,7 @@ var tsLoaders_1 = require("./tsLoaders");
 exports.module = {
     rules: __spreadArray(__spreadArray(__spreadArray([
         {
-            oneOf: __spreadArray(__spreadArray([], (0, jsLoaders_1.jsLoaders)(), true), (0, tsLoaders_1.tsLoaders)(), true)
+            oneOf: __spreadArray(__spreadArray([], jsLoaders_1.jsLoaders()), tsLoaders_1.tsLoaders())
         }
-    ], (0, cssLoaders_1.cssLoaders)(), true), (0, fontLoaders_1.fontLoaders)(), true), (0, imageLoaders_1.imageLoaders)(), true)
+    ], cssLoaders_1.cssLoaders()), fontLoaders_1.fontLoaders()), imageLoaders_1.imageLoaders())
 };

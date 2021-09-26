@@ -45,10 +45,10 @@ const createConfiguration = (entry: Entry, hash: string, dllConfig: Configuratio
             }),
             ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
         ],
-        resolve: {
-            modules: [ NODE_MODULES_PATH ],
-            extensions: [".js"],
-        },
+        // resolve: {
+        //     modules: [ NODE_MODULES_PATH ],
+        //     extensions: [".js"],
+        // },
         optimization: {
             minimizer: [
                 new TerserPlugin({
