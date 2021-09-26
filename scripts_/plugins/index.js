@@ -10,14 +10,10 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -37,12 +33,12 @@ var global_1 = require("../utils/global");
 var path_1 = __importDefault(require("path"));
 var eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
 var config_1 = require("../utils/config");
-exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin, true), definePlugin_1.definePlugin, true), dllPlugin_1.dllPlugin, true), [
+exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray(__spreadArray([], htmlPlugin_1.htmlPlugin), definePlugin_1.definePlugin), dllPlugin_1.dllPlugin), [
     /** 显示打包进度条 */
     new webpackbar_1.default({ name: params_1.Params.isDev ? 'webpack dev' : 'webpack build' })
-], false), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : [], true), params_1.Params.isDev ? __spreadArray([], config_1.eConfig.eslint ? [new eslint_webpack_plugin_1.default(__assign({ 
+]), params_1.Params.report ? [new webpack_bundle_analyzer_1.BundleAnalyzerPlugin()] : []), params_1.Params.isDev ? __spreadArray([], config_1.eConfig.eslint ? [new eslint_webpack_plugin_1.default(__assign({ 
         // threads: true,
-        cache: true, cacheLocation: path_1.default.resolve(global_1.ESLINT_CACHE_PATH, './index.json'), context: global_1.ROOT_PATH, extensions: ['js', 'jsx', 'ts', 'tsx'], files: params_1.Params.apps.map(function (app) { return path_1.default.resolve(global_1.SRC_PATH, app); }) }, typeof config_1.eConfig.eslint === 'boolean' ? {} : config_1.eConfig.eslint))] : [], true) : [], true), !params_1.Params.isDev ? [
+        cache: true, cacheLocation: path_1.default.resolve(global_1.ESLINT_CACHE_PATH, './index.json'), context: global_1.ROOT_PATH, extensions: ['js', 'jsx', 'ts', 'tsx'], files: params_1.Params.apps.map(function (app) { return path_1.default.resolve(global_1.SRC_PATH, app); }) }, typeof config_1.eConfig.eslint === 'boolean' ? {} : config_1.eConfig.eslint))] : []) : []), !params_1.Params.isDev ? [
     /** css文件分离 */
     new mini_css_extract_plugin_1.default({
         ignoreOrder: true,
@@ -60,4 +56,4 @@ exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spre
     }),
     /** 清空打包文件夹 */
     new clean_webpack_plugin_1.CleanWebpackPlugin({}),
-] : [], true);
+] : []);

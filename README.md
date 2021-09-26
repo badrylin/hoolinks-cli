@@ -62,6 +62,10 @@ dll Options:
 
 ## Change Log
 
+### v1.1.5 (2021-09-26)(待发布)
+
+- fix: 修改js载入顺序，优化初始化加载样式
+
 ### v1.1.4 (2021-09-23)
 
 - feat: 开启eslint缓存和less编译缓存，优化ts-loader缓存

@@ -97,12 +97,12 @@ var CliMain = /** @class */ (function () {
     /** 初始化webpack实例 */
     CliMain.init = function () {
         /** 显示当前构建应用 */
-        (0, logs_1.llog)("building [" + params_1.Params.apps + "]");
+        logs_1.llog("building [" + params_1.Params.apps + "]");
         /** 合并配置 */
-        CliMain.config = (0, webpack_merge_1.merge)(CliMain.config, config_1.eConfig.webpack);
+        CliMain.config = webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack);
         /** 初始化 */
-        CliMain.compiler = (0, webpack_1.webpack)(params_1.Params.speed
-            ? (0, webpack_merge_1.merge)(new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config), {})
+        CliMain.compiler = webpack_1.webpack(params_1.Params.speed
+            ? webpack_merge_1.merge(new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config), {})
             : CliMain.config);
         /** 事件监听 */
         var startTime = 0;
@@ -112,14 +112,14 @@ var CliMain = /** @class */ (function () {
         CliMain.compiler.hooks.done.tap('done', function () {
             var time = (Date.now() - startTime) / 1000 + "s";
             if (params_1.Params.isDev) {
-                (0, logs_1.devBoxLog)({
+                logs_1.devBoxLog({
                     time: time,
                     port: dev_1.devServerConfig.port,
                     path: params_1.Params.apps[0]
                 });
             }
             else {
-                (0, logs_1.llog)("build time " + time);
+                logs_1.llog("build time " + time);
             }
         });
     };
