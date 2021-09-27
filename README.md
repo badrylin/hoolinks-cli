@@ -62,6 +62,10 @@ dll Options:
 
 ## Change Log
 
+### v1.1.6 (2021-09-27)
+
+- fix: 启用CopyWebpackPlugin noErrorOnMissing属性，防止没有static文件夹时构建异常
+
 ### v1.1.5 (2021-09-26)
 
 - fix: 修改js载入顺序，优化初始化加载样式

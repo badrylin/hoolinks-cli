@@ -48,7 +48,8 @@ export const plugins: Configuration['plugins'] = [
                 from: STATIC_PATH,
                 to: path.resolve(DIST_PATH, './static'),
                 globOptions: {ignore: ['.*']},
-            }]
+                noErrorOnMissing: true,
+            }],
         }),
         /** 清空打包文件夹 */
         new CleanWebpackPlugin({}),

@@ -52,7 +52,8 @@ exports.plugins = __spreadArray(__spreadArray(__spreadArray(__spreadArray(__spre
                 from: global_1.STATIC_PATH,
                 to: path_1.default.resolve(global_1.DIST_PATH, './static'),
                 globOptions: { ignore: ['.*'] },
-            }]
+                noErrorOnMissing: true,
+            }],
     }),
     /** 清空打包文件夹 */
     new clean_webpack_plugin_1.CleanWebpackPlugin({}),
