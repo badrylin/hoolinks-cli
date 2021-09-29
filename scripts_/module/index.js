@@ -1,20 +1,21 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.module = void 0;
-var cssLoaders_1 = require("./cssLoaders");
-var fontLoaders_1 = require("./fontLoaders");
-var imageLoaders_1 = require("./imageLoaders");
-var jsLoaders_1 = require("./jsLoaders");
-var tsLoaders_1 = require("./tsLoaders");
+const cssLoaders_1 = require("./cssLoaders");
+const fontLoaders_1 = require("./fontLoaders");
+const imageLoaders_1 = require("./imageLoaders");
+const jsLoaders_1 = require("./jsLoaders");
+const tsLoaders_1 = require("./tsLoaders");
 exports.module = {
-    rules: __spreadArray(__spreadArray(__spreadArray([
+    rules: [
         {
-            oneOf: __spreadArray(__spreadArray([], jsLoaders_1.jsLoaders()), tsLoaders_1.tsLoaders())
-        }
-    ], cssLoaders_1.cssLoaders()), fontLoaders_1.fontLoaders()), imageLoaders_1.imageLoaders())
+            oneOf: [
+                ...(0, jsLoaders_1.jsLoaders)(),
+                ...(0, tsLoaders_1.tsLoaders)(),
+            ]
+        },
+        ...(0, cssLoaders_1.cssLoaders)(),
+        ...(0, fontLoaders_1.fontLoaders)(),
+        ...(0, imageLoaders_1.imageLoaders)(),
+    ]
 };

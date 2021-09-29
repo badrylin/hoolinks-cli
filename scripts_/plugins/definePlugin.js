@@ -6,8 +6,8 @@ exports.definePlugin = void 0;
  * @Date: 2021-06-09 14:19:40
  * @description: 全局变量管理
  */
-var webpack_1 = require("webpack");
-var params_1 = require("../utils/params");
+const webpack_1 = require("webpack");
+const params_1 = require("../utils/params");
 exports.definePlugin = [
     new webpack_1.DefinePlugin({
         'process.env.__DEV__': JSON.stringify(params_1.Params.isDev),

@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.eConfig = void 0;
-var path_1 = __importDefault(require("path"));
-var global_1 = require("./global");
-var fs_1 = __importDefault(require("fs"));
-var webpack_merge_1 = __importDefault(require("webpack-merge"));
+const path_1 = __importDefault(require("path"));
+const global_1 = require("./global");
+const fs_1 = __importDefault(require("fs"));
+const webpack_merge_1 = __importDefault(require("webpack-merge"));
 /** 用户拓展配置列表 */
-var DefautlConfigEntity = /** @class */ (function () {
-    function DefautlConfigEntity() {
+class DefautlConfigEntity {
+    constructor() {
         /** 开发服务拓展配置 */
         this.devServer = {
             port: 9000,
@@ -30,11 +30,10 @@ var DefautlConfigEntity = /** @class */ (function () {
         /** 是否开启eslint检查 */
         this.eslint = true;
     }
-    return DefautlConfigEntity;
-}());
-var extraConfig = {};
-var stat = null;
-var cliFilePath = path_1.default.join(global_1.ROOT_PATH, './cli.config.js');
+}
+let extraConfig = {};
+let stat = null;
+let cliFilePath = path_1.default.join(global_1.ROOT_PATH, './cli.config.js');
 try {
     /** 判断是否有config文件 */
     stat = fs_1.default.statSync(cliFilePath);
@@ -43,4 +42,4 @@ try {
     }
 }
 catch (err) { }
-exports.eConfig = webpack_merge_1.default(new DefautlConfigEntity(), extraConfig);
+exports.eConfig = (0, webpack_merge_1.default)(new DefautlConfigEntity(), extraConfig);

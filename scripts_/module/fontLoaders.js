@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fontLoaders = void 0;
-var global_1 = require("../utils/global");
-var fontLoaders = function () {
+const global_1 = require("../utils/global");
+const fontLoaders = () => {
     return [{
             test: /\.(woff|woff2|svg|eot|ttf)$/i,
             type: 'asset/inline',

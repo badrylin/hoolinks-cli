@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.imageLoaders = void 0;
-var global_1 = require("../utils/global");
-var imageLoaders = function () {
+const global_1 = require("../utils/global");
+const imageLoaders = () => {
     return [
         {
             test: /\.(png|jpe?g|gif)$/,

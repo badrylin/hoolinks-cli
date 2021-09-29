@@ -1,23 +1,18 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cssLoaders = void 0;
-var mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
-var path_1 = __importDefault(require("path"));
-var params_1 = require("../utils/params");
-var cssLoaders = function () {
+const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
+const path_1 = __importDefault(require("path"));
+const params_1 = require("../utils/params");
+const cssLoaders = () => {
     /** 开发环境把css插入到文档流中 */
-    var styleLoader = params_1.Params.isDev ? "style-loader" : {
+    const styleLoader = params_1.Params.isDev ? "style-loader" : {
         loader: mini_css_extract_plugin_1.default.loader,
         options: {
-            publicPath: function (resourcePath, context) {
+            publicPath: (resourcePath, context) => {
                 if (params_1.Params.cdn) {
                     return params_1.Params.cdn;
                 }
@@ -27,9 +22,9 @@ var cssLoaders = function () {
         }
     };
     /** 普通css文件解析 */
-    var cssLoader = "css-loader";
+    const cssLoader = "css-loader";
     /** css modules 文件解析 */
-    var cssModulesLoader = {
+    const cssModulesLoader = {
         loader: "css-loader",
         options: {
             esModule: true,
@@ -40,7 +35,7 @@ var cssLoaders = function () {
         }
     };
     /** less 文件解析 */
-    var lessLoader = {
+    const lessLoader = {
         loader: "less-loader",
         options: {
             lessOptions: {
@@ -50,7 +45,7 @@ var cssLoaders = function () {
         }
     };
     /** less 文件解析 */
-    var postcssLoader = !params_1.Params.isDev ? [{
+    const postcssLoader = !params_1.Params.isDev ? [{
             loader: "postcss-loader",
             options: {
                 postcssOptions: {
@@ -64,19 +59,19 @@ var cssLoaders = function () {
             oneOf: [
                 {
                     test: /\.modules\.less$/i,
-                    use: __spreadArray(__spreadArray([styleLoader, cssModulesLoader], postcssLoader), ['cache-loader', lessLoader]),
+                    use: [styleLoader, cssModulesLoader, ...postcssLoader, 'cache-loader', lessLoader],
                 },
                 {
                     test: /\.less$/i,
-                    use: __spreadArray(__spreadArray([styleLoader, cssLoader], postcssLoader), ['cache-loader', lessLoader]),
+                    use: [styleLoader, cssLoader, ...postcssLoader, 'cache-loader', lessLoader],
                 },
                 {
                     test: /\.modules\.css$/i,
-                    use: __spreadArray([styleLoader, cssModulesLoader], postcssLoader),
+                    use: [styleLoader, cssModulesLoader, ...postcssLoader],
                 },
                 {
                     test: /\.css$/i,
-                    use: __spreadArray([styleLoader, cssLoader], postcssLoader),
+                    use: [styleLoader, cssLoader, ...postcssLoader],
                 },
             ]
         }];

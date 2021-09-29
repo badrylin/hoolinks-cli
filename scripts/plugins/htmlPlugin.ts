@@ -13,6 +13,7 @@ export const htmlPlugin: HtmlWebpackPlugin[] = Params.apps.map(app => {
         filename: path.join(DIST_PATH, `${app}/index.html`),
         template: path.join(ROOT_PATH, `./src/${app}/index.html`),
         inject: 'body',
+        scriptLoading: 'blocking',
         chunks: ['common', app],
         chunksSortMode: "auto",
     })

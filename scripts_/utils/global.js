@@ -9,7 +9,7 @@ exports.STATIC_PATH = exports.ESLINT_CACHE_PATH = exports.BABEL_CACHE_PATH = exp
  * @Date: 2021-06-09 16:39:13
  * @description: 全局变量或路径管理
  */
-var path_1 = __importDefault(require("path"));
+const path_1 = __importDefault(require("path"));
 /** 根路径 */
 exports.ROOT_PATH = process.cwd();
 /** package配置 */

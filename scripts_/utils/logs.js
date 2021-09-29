@@ -9,22 +9,21 @@ exports.devBoxLog = exports.llog = void 0;
  * @Date: 2021-06-09 16:39:41
  * @description: 控制台日志管理
  */
-var chalk_1 = __importDefault(require("chalk"));
-var global_1 = require("./global");
-var boxen_1 = __importDefault(require("boxen"));
-var os_1 = __importDefault(require("os"));
+const chalk_1 = __importDefault(require("chalk"));
+const global_1 = require("./global");
+const boxen_1 = __importDefault(require("boxen"));
+const os_1 = __importDefault(require("os"));
 /** 控制台日志打印 */
-var llog = function (message, color) {
-    if (color === void 0) { color = 'green'; }
-    console.log(chalk_1.default.blue("[" + global_1.pkg.name + "]:" + chalk_1.default[color](message)));
+const llog = (message, color = 'green') => {
+    console.log(chalk_1.default.blue(`[${global_1.pkg.name}]:${chalk_1.default[color](message)}`));
 };
 exports.llog = llog;
 function getAvailableIPs() {
-    var interfaces = os_1.default.networkInterfaces();
-    var addresses = [];
-    for (var k in interfaces) {
-        for (var k2 in interfaces[k]) {
-            var address = interfaces[k][k2];
+    const interfaces = os_1.default.networkInterfaces();
+    const addresses = [];
+    for (const k in interfaces) {
+        for (const k2 in interfaces[k]) {
+            const address = interfaces[k][k2];
             if (address.family === 'IPv4' && !address.internal) {
                 addresses.push(address.address);
             }
@@ -32,9 +31,14 @@ function getAvailableIPs() {
     }
     return addresses;
 }
-var devBoxLog = function (params) {
-    var defaultTemplate = "\nApp running at:\n- Time: " + chalk_1.default.yellow(params.time) + "\n- Local: " + chalk_1.default.cyan("http://localhost:" + params.port + "/" + params.path) + "\n- Network: " + chalk_1.default.cyan("http://" + (getAvailableIPs()[0] || '0.0.0.0') + ":" + params.port + "/" + params.path) + "\n";
-    var message = boxen_1.default(defaultTemplate, {
+const devBoxLog = (params) => {
+    const defaultTemplate = `
+App running at:
+- Time: ${chalk_1.default.yellow(params.time)}
+- Local: ${chalk_1.default.cyan(`http://localhost:${params.port}/${params.path}`)}
+- Network: ${chalk_1.default.cyan(`http://${getAvailableIPs()[0] || '0.0.0.0'}:${params.port}/${params.path}`)}
+`;
+    const message = (0, boxen_1.default)(defaultTemplate, {
         padding: { left: 2, right: 2, top: 0, bottom: 0 },
         align: 'left',
         borderColor: 'blue',

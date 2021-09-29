@@ -9,15 +9,12 @@ exports.Params = void 0;
  * @Date: 2021-04-28 23:06:15
  * @description: 用户参数管理并输出
  */
-var fs_1 = __importDefault(require("fs"));
-var global_1 = require("./global");
+const fs_1 = __importDefault(require("fs"));
+const global_1 = require("./global");
 /** 用户参数 */
-var Params = /** @class */ (function () {
-    function Params() {
-    }
+class Params {
     /** 初始化参数 */
-    Params.init = function (options, isDev) {
-        var _this = this;
+    static init(options, isDev) {
         this.isDev = isDev;
         this.env = options.env;
         this.uniqueName = options.uniqueName;
@@ -25,23 +22,22 @@ var Params = /** @class */ (function () {
         this.report = options.report;
         this.speed = options.speed;
         /** 过滤不匹配的app */
-        this.apps = options.apps && options.apps.split(',').filter(function (app) {
-            return _this.allEntry.includes(app);
+        this.apps = options.apps && options.apps.split(',').filter((app) => {
+            return this.allEntry.includes(app);
         }) || [];
         /** 如果没有匹配的app，则打包全部app */
         this.apps.length === 0 && (this.apps = this.allEntry);
-    };
-    /** 是否为开发环境 */
-    Params.isDev = true;
-    /** 构建环境, 默认dev */
-    Params.env = 'dev';
-    /** 要构建的模块 */
-    Params.apps = [];
-    /** scr目录下的所有入口 */
-    Params.allEntry = (function () {
-        var ls = fs_1.default.readdirSync(global_1.SRC_PATH);
-        return ls.filter(function (app) { return app !== 'common'; });
-    })();
-    return Params;
-}());
+    }
+}
 exports.Params = Params;
+/** 是否为开发环境 */
+Params.isDev = true;
+/** 构建环境, 默认dev */
+Params.env = 'dev';
+/** 要构建的模块 */
+Params.apps = [];
+/** scr目录下的所有入口 */
+Params.allEntry = (() => {
+    let ls = fs_1.default.readdirSync(global_1.SRC_PATH);
+    return ls.filter((app) => app !== 'common');
+})();
