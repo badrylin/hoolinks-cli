@@ -25,16 +25,9 @@ class CliMain {
 }
 exports.CliMain = CliMain;
 /** webpack主配置 */
-CliMain.config = {
-    mode: params_1.Params.isDev ? "development" : "production",
-    devtool: params_1.Params.isDev ? "eval-source-map" : false,
-    target: ['web', 'es5'],
-    module: module_1.module,
-    plugins: plugins_1.plugins,
-    context: global_1.SRC_PATH,
-    infrastructureLogging: {
+CliMain.config = Object.assign(Object.assign({ mode: params_1.Params.isDev ? "development" : "production", devtool: params_1.Params.isDev ? "eval-source-map" : false, target: ['web', 'es5'], module: module_1.module }, !params_1.Params.speed && { plugins: plugins_1.plugins }), { context: global_1.SRC_PATH, infrastructureLogging: {
         level: 'error',
-    },
+    }, 
     // 暂时弃用文件系统的cache
     // 因为filesystem模式不会自动清除过期的cache文件
     // https://github.com/webpack/webpack/issues/13291
@@ -49,18 +42,15 @@ CliMain.config = {
             entry[app] = `${global_1.SRC_PATH}/${app}/index.ts`;
         });
         return entry;
-    },
-    output: {
+    }, output: {
         path: global_1.DIST_PATH,
         filename: "[name]/js/[name].[chunkhash:7].js",
         publicPath: params_1.Params.cdn || "auto",
         uniqueName: params_1.Params.uniqueName,
         chunkFilename: "common/js/[name].[chunkhash:7].bundle.js",
-    },
-    resolve: {
+    }, resolve: {
         extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
-    },
-    optimization: {
+    }, optimization: {
         minimizer: !params_1.Params.isDev ? [
             new css_minimizer_webpack_plugin_1.default({
                 parallel: true,
@@ -90,19 +80,18 @@ CliMain.config = {
                 },
             },
         },
-    },
-};
+    } });
 /** webpack实例 */
 CliMain.compiler = null;
 /** 初始化webpack实例 */
 CliMain.init = () => {
     /** 显示当前构建应用 */
-    (0, logs_1.llog)(`building [${params_1.Params.apps}]`);
+    logs_1.llog(`building [${params_1.Params.apps}]`);
     /** 合并配置 */
-    CliMain.config = (0, webpack_merge_1.merge)(CliMain.config, config_1.eConfig.webpack);
+    CliMain.config = webpack_merge_1.merge(CliMain.config, config_1.eConfig.webpack);
     /** 初始化 */
-    CliMain.compiler = (0, webpack_1.webpack)(params_1.Params.speed
-        ? (0, webpack_merge_1.merge)(new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config), {})
+    CliMain.compiler = webpack_1.webpack(params_1.Params.speed
+        ? webpack_merge_1.merge(new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(CliMain.config), { plugins: plugins_1.plugins })
         : CliMain.config);
     /** 事件监听 */
     let startTime = 0;
@@ -112,14 +101,14 @@ CliMain.init = () => {
     CliMain.compiler.hooks.done.tap('done', () => {
         const time = `${(Date.now() - startTime) / 1000}s`;
         if (params_1.Params.isDev) {
-            (0, logs_1.devBoxLog)({
+            logs_1.devBoxLog({
                 time,
                 port: dev_1.devServerConfig.port,
                 path: params_1.Params.apps[0]
             });
         }
         else {
-            (0, logs_1.llog)(`build time ${time}`);
+            logs_1.llog(`build time ${time}`);
         }
     });
 };

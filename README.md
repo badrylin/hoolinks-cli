@@ -62,6 +62,10 @@ dll Options:
 
 ## Change Log
 
+### v1.1.8 (待发布)
+
+- fix: 修复dev环境下开启-p参数时，dll构建异常
+
 ### v1.1.7 (2021-09-29)
 
 - fix: 修改js载入顺序，去除defer模式
