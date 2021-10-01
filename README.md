@@ -62,7 +62,7 @@ dll Options:
 
 ## Change Log
 
-### v1.1.8 (待发布)
+### v1.1.8 (2021-10-01)
 
 - fix: 修复dev环境下开启-p参数时，dll构建异常
 - fix: 修复NODE_MODULES_PATH取值错误
