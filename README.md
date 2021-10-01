@@ -65,6 +65,7 @@ dll Options:
 ### v1.1.8 (待发布)
 
 - fix: 修复dev环境下开启-p参数时，dll构建异常
+- fix: 修复NODE_MODULES_PATH取值错误
 
 ### v1.1.7 (2021-09-29)
 

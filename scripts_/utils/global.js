@@ -15,7 +15,7 @@ exports.ROOT_PATH = process.cwd();
 /** package配置 */
 exports.pkg = require(path_1.default.join(exports.ROOT_PATH, './package.json'));
 /** 第三方包路径 */
-exports.NODE_MODULES_PATH = path_1.default.join(exports.ROOT_PATH, '../node_modules');
+exports.NODE_MODULES_PATH = path_1.default.join(exports.ROOT_PATH, './node_modules');
 /** 打包前文件存放路径 */
 exports.SRC_PATH = path_1.default.join(exports.ROOT_PATH, './src');
 /** 打包后文件存放路径 */
