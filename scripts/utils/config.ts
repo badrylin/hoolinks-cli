@@ -52,6 +52,8 @@ try{
     if (fs.existsSync(cliFilePath)) {
         extraConfig = require(cliFilePath)
     }
-}catch(err) {}
+}catch(err) {
+    throw err
+}
 
 export const eConfig: DefautlConfigEntity = merge(new DefautlConfigEntity(), extraConfig)

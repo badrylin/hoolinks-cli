@@ -4,7 +4,7 @@
   "description": "昊链专用脚手架工具",
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
-    "dev": "node ./bin/index.js dev -p --env=test --apps=app1,app2 --uniqueName=name",
+    "dev": "node ./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
     "build": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name",
     "build:cdn": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
     "dll": "node ./bin/index.js dll"
