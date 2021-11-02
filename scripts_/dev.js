@@ -28,7 +28,11 @@ exports.devServerConfig = Object.assign({ port: 9000, open: params_1.Params.apps
         watch: true,
         publicPath: '/static',
     }, devMiddleware: {
-        stats: 'errors-warnings',
+        stats: {
+            all: false,
+            errors: true,
+            warnings: true
+        },
     } }, config_1.eConfig.devServer);
 const run = () => {
     const devServer = new Server_1.default(exports.devServerConfig, webpack_1.CliMain.compiler);

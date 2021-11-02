@@ -26,7 +26,11 @@ export const devServerConfig: WebpackDevServer.Configuration = {
         publicPath: '/static',
     },
     devMiddleware: {
-        stats: 'errors-warnings',
+        stats: {
+            all: false,
+            errors: true,
+            warnings: true
+        },
     },
     ...eConfig.devServer,
 };
