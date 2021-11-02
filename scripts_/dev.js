@@ -20,7 +20,7 @@ const params_1 = require("./utils/params");
 const webpack_1 = require("./webpack");
 /** devServer默认配置 */
 exports.devServerConfig = Object.assign({ port: 9000, open: params_1.Params.apps[0], client: {
-        logging: "error",
+        // logging: 'warn',
         overlay: false,
         progress: true,
     }, static: {
@@ -28,7 +28,7 @@ exports.devServerConfig = Object.assign({ port: 9000, open: params_1.Params.apps
         watch: true,
         publicPath: '/static',
     }, devMiddleware: {
-        stats: 'errors-only',
+        stats: 'errors-warnings',
     } }, config_1.eConfig.devServer);
 const run = () => {
     const devServer = new Server_1.default(exports.devServerConfig, webpack_1.CliMain.compiler);

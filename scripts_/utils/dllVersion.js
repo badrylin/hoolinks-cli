@@ -41,13 +41,13 @@ const getVersion = (vendorName) => {
     const packageJson = emulateNodeRecursiveLookup(process.cwd(), `node_modules/${vendorName}/package.json`);
     let vendorVersion = '';
     if (!packageJson) {
-        (0, logs_1.llog)(`vendor[${vendorName}] package not found`, 'yellow');
+        logs_1.llog(`vendor[${vendorName}] package not found`, 'yellow');
     }
     else {
         vendorVersion = packageJson.version;
     }
     if (!vendorVersion) {
-        (0, logs_1.llog)(`vendor[${vendorName}] version is empty`, 'yellow');
+        logs_1.llog(`vendor[${vendorName}] version is empty`, 'yellow');
     }
     return vendorVersion;
 };

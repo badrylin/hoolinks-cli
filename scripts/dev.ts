@@ -16,9 +16,9 @@ export const devServerConfig: WebpackDevServer.Configuration = {
     port: 9000,
     open: Params.apps[0],
     client: {
-      logging: "error",
-      overlay: false,
-      progress: true,
+        // logging: 'warn',
+        overlay: false,
+        progress: true,
     },
     static: {
         directory: STATIC_PATH,
@@ -26,7 +26,7 @@ export const devServerConfig: WebpackDevServer.Configuration = {
         publicPath: '/static',
     },
     devMiddleware: {
-        stats: 'errors-only',
+        stats: 'errors-warnings',
     },
     ...eConfig.devServer,
 };

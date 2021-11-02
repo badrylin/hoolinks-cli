@@ -44,4 +44,4 @@ try {
 catch (err) {
     throw err;
 }
-exports.eConfig = (0, webpack_merge_1.default)(new DefautlConfigEntity(), extraConfig);
+exports.eConfig = webpack_merge_1.default(new DefautlConfigEntity(), extraConfig);

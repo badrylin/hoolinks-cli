@@ -10,12 +10,12 @@ exports.module = {
     rules: [
         {
             oneOf: [
-                ...(0, jsLoaders_1.jsLoaders)(),
-                ...(0, tsLoaders_1.tsLoaders)(),
+                ...jsLoaders_1.jsLoaders(),
+                ...tsLoaders_1.tsLoaders(),
             ]
         },
-        ...(0, cssLoaders_1.cssLoaders)(),
-        ...(0, fontLoaders_1.fontLoaders)(),
-        ...(0, imageLoaders_1.imageLoaders)(),
+        ...cssLoaders_1.cssLoaders(),
+        ...fontLoaders_1.fontLoaders(),
+        ...imageLoaders_1.imageLoaders(),
     ]
 };

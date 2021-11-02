@@ -24,6 +24,7 @@ export class CliMain {
         target: ['web', 'es5'],
         module,
         ...!Params.speed && { plugins },
+        ignoreWarnings: [/default\-exporting/], // 过滤json命名导出警告
         context: SRC_PATH,
         infrastructureLogging: {
             level: 'error',
