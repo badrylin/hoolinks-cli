@@ -1,3 +1,5 @@
+
+/** @type {import('./scripts_/utils/config').eConfig} */
 module.exports = {
     devServer: {
         open: false,

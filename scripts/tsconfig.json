@@ -3,7 +3,8 @@
       "module": "commonjs",
       "target": "es6",
       "outDir": "../scripts_",
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "declaration": true,
     },
     "include": [
         ".",
