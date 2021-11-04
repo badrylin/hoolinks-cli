@@ -6,7 +6,7 @@ const config_1 = require("../utils/config");
 const global_1 = require("../utils/global");
 exports.babelLoaders = {
     loader: 'babel-loader',
-    options: Object.assign({}, webpack_merge_1.merge({
+    options: Object.assign({}, (0, webpack_merge_1.merge)({
         presets: ["@babel/preset-env", "@babel/preset-react"],
         cacheDirectory: global_1.BABEL_CACHE_PATH,
         // presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],

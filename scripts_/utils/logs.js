@@ -38,7 +38,7 @@ App running at:
 - Local: ${chalk_1.default.cyan(`http://localhost:${params.port}/${params.path}`)}
 - Network: ${chalk_1.default.cyan(`http://${getAvailableIPs()[0] || '0.0.0.0'}:${params.port}/${params.path}`)}
 `;
-    const message = boxen_1.default(defaultTemplate, {
+    const message = (0, boxen_1.default)(defaultTemplate, {
         padding: { left: 2, right: 2, top: 0, bottom: 0 },
         align: 'left',
         borderColor: 'blue',

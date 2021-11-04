@@ -11,23 +11,23 @@ const webpack_1 = require("./webpack");
 const run = () => {
     webpack_1.CliMain.compiler.run((err, stats) => {
         if (err) {
-            logs_1.llog(err.message, "red");
+            (0, logs_1.llog)(err.message, "red");
             return;
         }
         const info = stats.toJson();
         if (stats.hasErrors()) {
             info.errors.forEach((item) => {
-                logs_1.llog(item.message, "red");
+                (0, logs_1.llog)(item.message, "red");
             });
         }
         if (stats.hasWarnings()) {
             info.warnings.forEach((item) => {
-                logs_1.llog(item.message, "yellow");
+                (0, logs_1.llog)(item.message, "yellow");
             });
         }
         /** close */
         webpack_1.CliMain.compiler.close(err => {
-            err && logs_1.llog(err, "red");
+            err && (0, logs_1.llog)(err, "red");
         });
     });
 };

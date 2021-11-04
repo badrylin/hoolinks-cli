@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cssLoaders = void 0;
 const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
-const path_1 = __importDefault(require("path"));
 const params_1 = require("../utils/params");
 const cssLoaders = () => {
     /** 开发环境把css插入到文档流中 */
@@ -16,8 +15,7 @@ const cssLoaders = () => {
                 if (params_1.Params.cdn) {
                     return params_1.Params.cdn;
                 }
-                /** 返回模块的相对路径 */
-                return path_1.default.relative(path_1.default.dirname(resourcePath), context) + '/';
+                return 'auto';
             },
         }
     };

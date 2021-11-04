@@ -83,17 +83,17 @@ const createConfiguration = (entry, hash, dllConfig, isLast) => {
             minimize: true,
         }
     };
-    return webpack_merge_1.default(config, dllConfig);
+    return (0, webpack_merge_1.default)(config, dllConfig);
 };
 /** 多入口dll处理 */
 const createMulConfiguration = () => {
     const _a = config_1.eConfig.dllWebpack, { entry } = _a, dllConfig = __rest(_a, ["entry"]);
-    const newEntry = (!lodash_1.isObject(entry) ? { verdor: entry } : entry);
+    const newEntry = (!(0, lodash_1.isObject)(entry) ? { verdor: entry } : entry);
     return Object.entries(newEntry).map(([name, value], index, arr) => {
         try {
-            const hash = dllVersion_1.createDllHash(value);
+            const hash = (0, dllVersion_1.createDllHash)(value);
             /** 检测dll文件是否已存在 */
-            if (!dllVersion_1.checkDllForHash(name, hash)) {
+            if (!(0, dllVersion_1.checkDllForHash)(name, hash)) {
                 return createConfiguration({ [name]: value }, hash, dllConfig, index === arr.length - 1);
             }
             else {
@@ -101,7 +101,7 @@ const createMulConfiguration = () => {
             }
         }
         catch (error) {
-            logs_1.llog('dll entry configuration exception', 'yellow');
+            (0, logs_1.llog)('dll entry configuration exception', 'yellow');
             return null;
         }
     }).filter(i => i);
@@ -112,10 +112,10 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     const mulConfig = createMulConfiguration();
     if (mulConfig.length === 0) {
-        logs_1.llog('skip webpack dll');
+        (0, logs_1.llog)('skip webpack dll');
         return;
     }
-    const compilerList = mulConfig.map((config) => webpack_1.webpack(params_1.Params.speed
+    const compilerList = mulConfig.map((config) => (0, webpack_1.webpack)(params_1.Params.speed
         ? new speed_measure_webpack_plugin_1.default(params_1.Params.speed).wrap(config)
         : config));
     yield compilerList.reduce((pre, next, index) => __awaiter(void 0, void 0, void 0, function* () {
@@ -123,7 +123,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
             next.run((err, stats) => {
                 if (err) {
-                    logs_1.llog(err.message, "red");
+                    (0, logs_1.llog)(err.message, "red");
                     reject(false);
                     return;
                 }
@@ -131,12 +131,12 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
                 if (stats.hasErrors()) {
                     reject(false);
                     info.errors.forEach((item) => {
-                        logs_1.llog(item.message, "red");
+                        (0, logs_1.llog)(item.message, "red");
                     });
                 }
                 if (stats.hasWarnings()) {
                     info.warnings.forEach((item) => {
-                        logs_1.llog(item.message, "yellow");
+                        (0, logs_1.llog)(item.message, "yellow");
                     });
                 }
                 resolve(true);

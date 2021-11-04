@@ -6,7 +6,7 @@
     "compile": "tsc --build ./scripts/tsconfig.json -w",
     "dev": "node ./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
     "build": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name",
-    "build:cdn": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8080/",
+    "build:cdn": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8081/dist/",
     "dll": "node ./bin/index.js dll"
   },
   "author": "linzeqin <810390198@qq.com>",
@@ -53,7 +53,7 @@
     "html-webpack-plugin": "^5.3.1",
     "less": "^3.13.1",
     "less-loader": "^8.1.1",
-    "mini-css-extract-plugin": "^1.6.0",
+    "mini-css-extract-plugin": "^2.4.3",
     "postcss": "^8.3.2",
     "postcss-loader": "^5.3.0",
     "postcss-preset-env": "^6.7.0",

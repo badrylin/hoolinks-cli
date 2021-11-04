@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import './styles/index.less';
+import './styles/test/index.less';
 import styles from './styles/index.modules.less'
 import test from './json/test.json';
 import imgSrc3 from './images/header_icon2.png';
