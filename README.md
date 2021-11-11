@@ -62,6 +62,10 @@ dll Options:
 
 ## Change Log
 
+### v1.1.10 (待发布)
+
+- feat: 支持在package.json中传入theme属性覆盖less变量
+
 ### v1.1.9 (2021-11-05)
 
 - feat: 添加配置文件异常日志

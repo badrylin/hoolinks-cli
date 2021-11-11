@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from 'path';
 import { RuleSetRule, RuleSetUseItem } from 'webpack';
+import { pkg } from "../utils/global";
 import { Params } from '../utils/params';
 
 export const cssLoaders = (): RuleSetRule[] => {
@@ -36,6 +37,7 @@ export const cssLoaders = (): RuleSetRule[] => {
             lessOptions: {
                 javascriptEnabled: true,
                 relativeUrls: true,
+                modifyVars: pkg.theme || {},
             },
         }
     }

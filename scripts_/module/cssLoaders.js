@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cssLoaders = void 0;
 const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
+const global_1 = require("../utils/global");
 const params_1 = require("../utils/params");
 const cssLoaders = () => {
     /** 开发环境把css插入到文档流中 */
@@ -39,6 +40,7 @@ const cssLoaders = () => {
             lessOptions: {
                 javascriptEnabled: true,
                 relativeUrls: true,
+                modifyVars: global_1.pkg.theme || {},
             },
         }
     };
