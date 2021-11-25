@@ -9,16 +9,19 @@ import { CliMain } from "./webpack";
 export const run = () => {
     CliMain.compiler.run((err, stats) => {
         if (err) {
-            llog(err.message, "red");
-            return;
+            llog('error--'+ err.message, "red");
+            process.exit(5)
         }
 
-        const info = stats.toJson();
+        const info = stats.toJson({
+            colors: true,
+        });
 
         if (stats.hasErrors()) {
-            info.errors.forEach((item) => {
-                llog(item.message, "red");
+            info.errors.forEach((item, index) => {
+                llog('stats-'+(index+1)+'-' + item.message, "red");
             });
+            process.exit(3)
         }
 
         if (stats.hasWarnings()) {

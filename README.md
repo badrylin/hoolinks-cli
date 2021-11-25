@@ -65,6 +65,7 @@ dll Options:
 ### v1.1.10 (待发布)
 
 - feat: 支持在package.json中传入theme属性覆盖less变量
+- fix: 修复生产环境构建异常没有自动退出进程
 
 ### v1.1.9 (2021-11-05)
 

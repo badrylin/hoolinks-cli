@@ -11,14 +11,17 @@ const webpack_1 = require("./webpack");
 const run = () => {
     webpack_1.CliMain.compiler.run((err, stats) => {
         if (err) {
-            (0, logs_1.llog)(err.message, "red");
-            return;
+            (0, logs_1.llog)('error--' + err.message, "red");
+            process.exit(5);
         }
-        const info = stats.toJson();
+        const info = stats.toJson({
+            colors: true,
+        });
         if (stats.hasErrors()) {
-            info.errors.forEach((item) => {
-                (0, logs_1.llog)(item.message, "red");
+            info.errors.forEach((item, index) => {
+                (0, logs_1.llog)('stats-' + (index + 1) + '-' + item.message, "red");
             });
+            process.exit(3);
         }
         if (stats.hasWarnings()) {
             info.warnings.forEach((item) => {
