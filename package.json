@@ -4,10 +4,13 @@
   "description": "昊链专用脚手架工具",
   "scripts": {
     "compile": "tsc --build ./scripts/tsconfig.json -w",
+    "compile:build": "tsc --build ./scripts/tsconfig.json",
     "dev": "node ./bin/index.js dev --env=test --apps=app1,app2 --uniqueName=name",
     "build": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name",
     "build:cdn": "node ./bin/index.js build --env=test --apps=app1,app2 --uniqueName=name --cdn=http://127.0.0.1:8081/dist/",
-    "dll": "node ./bin/index.js dll"
+    "dll": "node ./bin/index.js dll",
+    "release": "node ./release.cjs",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path ."
   },
   "author": "linzeqin <810390198@qq.com>",
   "license": "ISC",
@@ -85,8 +88,12 @@
     "@types/webpack-dev-server": "^4.1.0",
     "@types/webpack-merge": "^5.0.0",
     "antd": "^2.7.4",
+    "conventional-changelog-cli": "^2.1.1",
     "lodash": "^4.17.21",
+    "minimist": "^1.2.5",
+    "prompts": "^2.4.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "semver": "^7.3.5"
   }
 }
