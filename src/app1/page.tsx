@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useReducer, useState } from 'react';
 import { Button } from 'antd';
 import './styles/test/index.less';
 import styles from './styles/index.modules.less'
 import test from './json/test.json';
 import imgSrc3 from './images/header_icon2.png';
+
+const HooksDemo: React.FC = () => {
+    const [test1, setTest1] = useReducer((state, action) => {
+        console.log('111', action)
+        return state
+    }, 1)
+    const [test2, setTest2] = useReducer((state, action) => {
+        console.log('222', action)
+        return state
+    }, 1)
+    return <div>
+        <Button onClick={() => {
+            setTest1(1)
+            setTest1(1)
+        }}>test1</Button>
+        <Button onClick={() => {
+            setTest2(1)
+        }}>test2</Button>
+    </div>
+}
 
 export default class Page1 extends React.Component {
     state = {
@@ -36,6 +56,7 @@ export default class Page1 extends React.Component {
             <br/><br/>
             {/* 静态文件测试 */}
             <img src="../../static/avatar.png"></img>
+            <HooksDemo></HooksDemo>
         </div>
     }
 }
