@@ -1,3 +1,17 @@
+# [1.2.0](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v1.1.9...v1.2.0) (2021-12-15)
+
+
+### Bug Fixes
+
+* 修复生产环境构建异常没有自动退出进程 ([1199e13](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/commits/1199e134d022ca9665938f2f75a321bd5514ef39))
+
+
+### Features
+
+* 支持在package.json中传入theme属性覆盖less变量 ([8de2e5d](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/commits/8de2e5d45d7838bd874ff3436b721623c3532bf1))
+
+
+
 ## 1.1.9 (2021-11-05)
 
 - feat: 添加配置文件异常日志
