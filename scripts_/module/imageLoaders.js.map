@@ -1,0 +1,1 @@
+{"version":3,"file":"imageLoaders.js","sourceRoot":"","sources":["../../scripts/module/imageLoaders.ts"],"names":[],"mappings":";;;AACA,4CAAwD;AAEjD,MAAM,YAAY,GAAG,GAAkB,EAAE;IAC5C,OAAO;QACH;YACI,IAAI,EAAE,oBAAoB;YAC1B,IAAI,EAAE,gBAAgB;YACtB,SAAS,EAAE;gBACP,QAAQ,EAAE,2CAA2C;aACxD;YACD,OAAO,EAAE,CAAC,oBAAW,CAAC;SACzB;KACJ,CAAA;AACL,CAAC,CAAA;AAXY,QAAA,YAAY,gBAWxB"}

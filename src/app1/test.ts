@@ -1,5 +1,0 @@
-console.log('1111', document.head.querySelectorAll('script')[0])
-console.log('2222')
-console.log('2222')
-console.log('2222', document.head.querySelectorAll('script')[0])
-console.log('3333', document.body.append('<div>2222</div>'))

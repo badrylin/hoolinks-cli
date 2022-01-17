@@ -1,4 +1,5 @@
 import { merge } from 'lodash';
+import path from 'path';
 import { RuleSetRule } from 'webpack';
 import { eConfig } from '../utils/config';
 import { NODE_MODULES_PATH, SRC_PATH } from '../utils/global';
@@ -7,11 +8,10 @@ import { babelLoaders } from './babelLoader';
 export const tsLoaders = (): RuleSetRule[] => {
     return [
         {
-            test: /\.(ts|tsx)$/,
+            test: /\.(js|jsx|ts|tsx)$/,
             use: [
-                // 'thread-loader',
-                babelLoaders,
                 'cache-loader',
+                path.join(__dirname, './importLoader'),
                 {
                     loader: 'ts-loader',
                     options: {
@@ -20,7 +20,7 @@ export const tsLoaders = (): RuleSetRule[] => {
                         transpileOnly: true,
                         ...eConfig.tsOptions,
                     }
-                }
+                },
             ],
             include: [
                 SRC_PATH,

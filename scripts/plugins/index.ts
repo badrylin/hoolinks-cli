@@ -20,39 +20,37 @@ export const plugins: Configuration['plugins'] = [
     /** 显示打包进度条 */
     new WebpackBar({ name: Params.isDev ? 'webpack dev' : 'webpack build'}),
     /** 打包分析 */
-    ...Params.report ? [ new BundleAnalyzerPlugin() ] : [],
-    /** 开发环境专用插件 */
-    ...Params.isDev ? [
-        ...eConfig.eslint ? [new ESLintPlugin({
-            // threads: true,
-            cache: true,
-            cacheLocation: path.resolve(ESLINT_CACHE_PATH, './index.json'),
-            context: ROOT_PATH,
-            extensions: ['js', 'jsx', 'ts', 'tsx'],
-            files: Params.apps.map((app) => path.resolve(SRC_PATH, app)),
-            ...typeof eConfig.eslint === 'boolean' ? {} : eConfig.eslint,
-        })] : [],
-    ] : [],
-    /** 生产环境专用插件 */
-    ...!Params.isDev ? [
-        /** css文件分离 */
-        new MiniCssExtractPlugin({
-            ignoreOrder: true,
-            filename: (pathData) => {
-                return `${pathData.chunk.name}/styles/[name].[contenthash:7].css`
-            }
-        }),
-        /** 拷贝静态文件 */
-        new CopyWebpackPlugin({
-            patterns: [{
-                from: STATIC_PATH,
-                to: path.resolve(DIST_PATH, './static'),
-                globOptions: {ignore: ['.*']},
-                noErrorOnMissing: true,
-            }],
-        }),
-        /** 清空打包文件夹 */
-        new CleanWebpackPlugin({}),
+    Params.report && new BundleAnalyzerPlugin(),
 
-    ] : [],
-]
+    /* ---------------- 开发环境专用插件 ---------------- */
+    /* 开启eslint */
+    Params.isDev && eConfig.eslint && new ESLintPlugin({
+        // threads: true,
+        cache: true,
+        cacheLocation: path.resolve(ESLINT_CACHE_PATH, './index.json'),
+        context: ROOT_PATH,
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        files: Params.apps.map((app) => path.resolve(SRC_PATH, app)),
+        ...typeof eConfig.eslint === 'boolean' ? {} : eConfig.eslint,
+    }),
+
+    /* ---------------- 生产环境专用插件 ---------------- */
+    /** css文件分离 */
+    !Params.isDev && new MiniCssExtractPlugin({
+        ignoreOrder: true,
+        filename: (pathData) => {
+            return `${pathData.chunk.name}/styles/[name].[contenthash:7].css`
+        }
+    }),
+    /** 拷贝静态文件 */
+    !Params.isDev && new CopyWebpackPlugin({
+        patterns: [{
+            from: STATIC_PATH,
+            to: path.resolve(DIST_PATH, './static'),
+            globOptions: {ignore: ['.*']},
+            noErrorOnMissing: true,
+        }],
+    }),
+    /** 清空打包文件夹 */
+    !Params.isDev && new CleanWebpackPlugin({}),
+].filter(Boolean)

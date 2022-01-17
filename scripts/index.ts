@@ -40,7 +40,7 @@ program
     // 初始化用户参数配置
     initOption(options, true);
     // 先验证dll是否已构建
-    await require("./dll").run()
+    // await require("./dll").run()
     // 再初始化webpack
     initWepack();
     require("./dev").run()

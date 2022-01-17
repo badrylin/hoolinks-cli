@@ -3,7 +3,6 @@
  * @Date: 2021-04-27 09:08:55
  * @description: 开发环境
  */
-import { watch } from 'fs';
 import WebpackDevServer from 'webpack-dev-server';
 import Server from 'webpack-dev-server/lib/Server';
 import { eConfig } from './utils/config';
@@ -32,6 +31,7 @@ export const devServerConfig: WebpackDevServer.Configuration = {
             warnings: true
         },
     },
+    hot: true,
     ...eConfig.devServer,
 };
 

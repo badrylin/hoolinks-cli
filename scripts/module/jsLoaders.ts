@@ -5,16 +5,16 @@ import { babelLoaders } from './babelLoader';
 
 export const jsLoaders = (): RuleSetRule[] => {
     return [
-        {
-            test: /\.(js|jsx)$/,
-            use: [
-                // 'thread-loader',
-                babelLoaders
-            ],
-            include: [
-                SRC_PATH,
-                ...eConfig.babelInclude,
-            ],
-        }
+        // {
+        //     test: /\.(js|jsx)$/,
+        //     use: [
+        //         // 'thread-loader',
+        //         // babelLoaders
+        //     ],
+        //     include: [
+        //         SRC_PATH,
+        //         ...eConfig.babelInclude,
+        //     ],
+        // }
     ]
 }

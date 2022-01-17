@@ -18,7 +18,7 @@ const config_1 = require("../utils/config");
 const lodash_1 = require("lodash");
 exports.dllPlugin = config_1.eConfig.dllWebpack.entry ? [
     /** 按dll入口文件映射manifest文件 */
-    ...(0, lodash_1.isObject)(config_1.eConfig.dllWebpack.entry) && Object.keys(config_1.eConfig.dllWebpack.entry).map((name) => {
+    ...lodash_1.isObject(config_1.eConfig.dllWebpack.entry) && Object.keys(config_1.eConfig.dllWebpack.entry).map((name) => {
         return new webpack_1.DllReferencePlugin({
             context: global_1.ROOT_PATH,
             manifest: require(path_1.default.join(global_1.CACHE_PATH, `${name}.dll.manifest.json`)),
@@ -31,3 +31,4 @@ exports.dllPlugin = config_1.eConfig.dllWebpack.entry ? [
         filepath: path_1.default.join(global_1.CACHE_PATH, './*.dll.*.js'),
     }),
 ] : [];
+//# sourceMappingURL=dllPlugin.js.map

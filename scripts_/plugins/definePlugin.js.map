@@ -1,0 +1,1 @@
+{"version":3,"file":"definePlugin.js","sourceRoot":"","sources":["../../scripts/plugins/definePlugin.ts"],"names":[],"mappings":";;;AAAA;;;;GAIG;AACH,qCAAuC;AACvC,4CAAyC;AAE5B,QAAA,YAAY,GAAmB;IACxC,IAAI,sBAAY,CAAC;QACb,qBAAqB,EAAE,IAAI,CAAC,SAAS,CAAC,eAAM,CAAC,KAAK,CAAC;QACnD,sDAAsD;QACtD,yBAAyB,EAAE,IAAI,CAAC,SAAS,CAAC,eAAM,CAAC,GAAG,CAAC;KACxD,CAAC;CACL,CAAA"}

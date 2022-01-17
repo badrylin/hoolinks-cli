@@ -4,7 +4,7 @@ import lodash from 'lodash';
 import React from 'react';
 import ReactDom from 'react-dom';
 import Page1 from './page';
-import './test';
+import './hooks';
 
 console.log('app1', process.env.NODE_ENV);
 console.log('app1', process.env.environment);
@@ -18,4 +18,7 @@ ReactDom.render(
 )
 
 // @ts-ignore
-module['hot'] && module['hot'].accept()
+console.log('module', module['hot']);
+if (module['hot']) {
+    module['hot'].accept()
+}
