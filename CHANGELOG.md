@@ -1,3 +1,12 @@
+## [2.0.1](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v2.0.0...v2.0.1) (2022-01-18)
+
+
+### Bug Fixes
+
+* 由于种种原因,暂时关闭react-refresh的支持 ([58fdb9d](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/commits/58fdb9d28219e95b7d76a1d61ee8ea60ec93a70a))
+
+
+
 # [2.0.0](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v1.2.0...v2.0.0) (2022-01-18)
 
 ### ⚠ BREAKING CHANGES
