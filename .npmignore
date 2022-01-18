@@ -9,4 +9,4 @@ static
 tsconfig.json
 yarn-error.log
 yarn.lock
-*.d.ts.map
+*.map
