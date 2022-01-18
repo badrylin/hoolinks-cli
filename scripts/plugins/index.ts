@@ -12,7 +12,6 @@ import { CACHE_PATH, DIST_PATH, ESLINT_CACHE_PATH, NODE_MODULES_PATH, ROOT_PATH,
 import path from "path";
 import ESLintPlugin from 'eslint-webpack-plugin';
 import { eConfig } from "../utils/config";
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 export const plugins: Configuration['plugins'] = [
     ...htmlPlugin,
@@ -35,7 +34,7 @@ export const plugins: Configuration['plugins'] = [
         ...typeof eConfig.eslint === 'boolean' ? {} : eConfig.eslint,
     }),
     /* react热更新 */
-    Params.isDev && new ReactRefreshWebpackPlugin(),
+    // Params.isDev && new ReactRefreshWebpackPlugin(),
 
     /* ---------------- 生产环境专用插件 ---------------- */
     /** css文件分离 */

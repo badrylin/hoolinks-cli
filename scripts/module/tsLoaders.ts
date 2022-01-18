@@ -18,9 +18,9 @@ export const tsLoaders = (): RuleSetRule[] => {
                         // happyPackMode: true,
                         transpileOnly: true,
                         ...eConfig.tsOptions,
-                        getCustomTransformers: () => ({
-                            before: [ReactRefreshTypeScript()],
-                        }),
+                        // getCustomTransformers: () => ({
+                        //     before: [ReactRefreshTypeScript()],
+                        // }),
                     }
                 },
             ],

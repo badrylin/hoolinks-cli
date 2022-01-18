@@ -31,7 +31,6 @@ export const devServerConfig: WebpackDevServer.Configuration = {
             warnings: true
         },
     },
-    hot: true,
     ...eConfig.devServer,
 };
 

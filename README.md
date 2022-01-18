@@ -15,7 +15,7 @@
 - [x] 支持eslint，废弃tslint(使用@typescript-eslint)
 - [x] DLL
 - [x] 多线程
-- [x] 支持react-refresh
+- [ ] 支持react-refresh
 
 ## Getting Started
 
