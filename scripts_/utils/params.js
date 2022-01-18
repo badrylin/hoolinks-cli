@@ -41,3 +41,4 @@ Params.allEntry = (() => {
     let ls = fs_1.default.readdirSync(global_1.SRC_PATH);
     return ls.filter((app) => app !== 'common');
 })();
+//# sourceMappingURL=params.js.map

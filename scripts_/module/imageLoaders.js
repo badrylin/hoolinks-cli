@@ -15,3 +15,4 @@ const imageLoaders = () => {
     ];
 };
 exports.imageLoaders = imageLoaders;
+//# sourceMappingURL=imageLoaders.js.map

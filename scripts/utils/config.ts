@@ -33,10 +33,10 @@ class DefautlConfigEntity {
     tsInclude?: RuleSetConditionAbsolute[] = [];
 
     /** babelLoader配置拓展 */
-    babelOptions?: { [index: string]: any } = {};
+    // babelOptionss?: { [index: string]: any } = {};
 
     /** babelLoader解析文件拓展 */
-    babelInclude?: RuleSetConditionAbsolute[] = [];
+    // babelInclude?: RuleSetConditionAbsolute[] = [];
 
     /** 是否开启eslint检查 */
     eslint?: boolean | ESLintPluginOptions = true;

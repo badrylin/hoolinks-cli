@@ -24,9 +24,9 @@ class DefautlConfigEntity {
         /** tsLoader解析文件拓展 */
         this.tsInclude = [];
         /** babelLoader配置拓展 */
-        this.babelOptions = {};
+        // babelOptionss?: { [index: string]: any } = {};
         /** babelLoader解析文件拓展 */
-        this.babelInclude = [];
+        // babelInclude?: RuleSetConditionAbsolute[] = [];
         /** 是否开启eslint检查 */
         this.eslint = true;
     }
@@ -45,3 +45,4 @@ catch (err) {
     throw err;
 }
 exports.eConfig = webpack_merge_1.default(new DefautlConfigEntity(), extraConfig);
+//# sourceMappingURL=config.js.map

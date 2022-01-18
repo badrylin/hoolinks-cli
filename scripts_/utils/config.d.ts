@@ -16,11 +16,7 @@ declare class DefautlConfigEntity {
     /** tsLoader解析文件拓展 */
     tsInclude?: RuleSetConditionAbsolute[];
     /** babelLoader配置拓展 */
-    babelOptions?: {
-        [index: string]: any;
-    };
     /** babelLoader解析文件拓展 */
-    babelInclude?: RuleSetConditionAbsolute[];
     /** 是否开启eslint检查 */
     eslint?: boolean | ESLintPluginOptions;
 }

@@ -16,7 +16,7 @@ export const babelLoaders: RuleSetUseItem = {
                 //     ["@babel/plugin-proposal-class-properties", { "loose" : true }]
                 // ],
             },
-            eConfig.babelOptions,
+            // eConfig.babelOptions,
         )
     }
 }

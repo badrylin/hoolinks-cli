@@ -19,3 +19,4 @@ exports.module = {
         ...imageLoaders_1.imageLoaders(),
     ]
 };
+//# sourceMappingURL=index.js.map
