@@ -6,10 +6,11 @@ import ReactDom from 'react-dom';
 import Page1 from './page';
 import './hooks';
 
-console.log('app1', process.env.NODE_ENV);
-console.log('app1', process.env.environment);
+// console.log('app1', process.env.NODE_ENV);
+// console.log('app1', process.env.environment);
 console.log('lodash', lodash);
 console.log('lodash', '1'==='1');
+console.log('1');
 // const a: any = 1
 
 ReactDom.render(
@@ -18,7 +19,7 @@ ReactDom.render(
 )
 
 // @ts-ignore
-console.log('module', module['hot']);
-if (module['hot']) {
-    module['hot'].accept()
-}
+// console.log('module', module['hot']);
+// if (module['hot']) {
+//     module['hot'].accept()
+// }

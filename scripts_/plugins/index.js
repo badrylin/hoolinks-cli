@@ -17,6 +17,7 @@ const global_1 = require("../utils/global");
 const path_1 = __importDefault(require("path"));
 const eslint_webpack_plugin_1 = __importDefault(require("eslint-webpack-plugin"));
 const config_1 = require("../utils/config");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 exports.plugins = [
     ...htmlPlugin_1.htmlPlugin,
     ...definePlugin_1.definePlugin,
@@ -30,6 +31,8 @@ exports.plugins = [
     params_1.Params.isDev && config_1.eConfig.eslint && new eslint_webpack_plugin_1.default(Object.assign({ 
         // threads: true,
         cache: true, cacheLocation: path_1.default.resolve(global_1.ESLINT_CACHE_PATH, './index.json'), context: global_1.ROOT_PATH, extensions: ['js', 'jsx', 'ts', 'tsx'], files: params_1.Params.apps.map((app) => path_1.default.resolve(global_1.SRC_PATH, app)) }, typeof config_1.eConfig.eslint === 'boolean' ? {} : config_1.eConfig.eslint)),
+    /* react热更新 */
+    params_1.Params.isDev && new ReactRefreshWebpackPlugin(),
     /* ---------------- 生产环境专用插件 ---------------- */
     /** css文件分离 */
     !params_1.Params.isDev && new mini_css_extract_plugin_1.default({

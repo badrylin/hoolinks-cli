@@ -1,9 +1,8 @@
-import { merge } from 'lodash';
 import path from 'path';
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 import { RuleSetRule } from 'webpack';
 import { eConfig } from '../utils/config';
-import { NODE_MODULES_PATH, SRC_PATH } from '../utils/global';
-import { babelLoaders } from './babelLoader';
+import { SRC_PATH } from '../utils/global';
 
 export const tsLoaders = (): RuleSetRule[] => {
     return [
@@ -16,9 +15,12 @@ export const tsLoaders = (): RuleSetRule[] => {
                     loader: 'ts-loader',
                     options: {
                         allowTsInNodeModules: true,
-                        happyPackMode: true,
+                        // happyPackMode: true,
                         transpileOnly: true,
                         ...eConfig.tsOptions,
+                        getCustomTransformers: () => ({
+                            before: [ReactRefreshTypeScript()],
+                        }),
                     }
                 },
             ],

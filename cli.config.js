@@ -10,10 +10,10 @@ module.exports = {
         }
     },
     dllWebpack: {
-        entry: {
-            verdor: ["react", "react-dom"],
-            lodash: ["lodash"],
-        }
+        // entry: {
+        //     verdor: ["react", "react-dom"],
+        //     lodash: ["lodash"],
+        // }
     },
     babelOptions: {
         presets: [],

@@ -4,7 +4,7 @@ import {
     Input,
 } from 'antd';
 import './styles/test/index.less';
-
+console.log('hooks1')
 export const HooksDemo: React.FC = () => {
     const [test1, setTest1] = useReducer((state, action) => {
         console.log('111', action)
@@ -28,6 +28,6 @@ export const HooksDemo: React.FC = () => {
             setTest2(1)
         }}>test2</Button>
         <Input></Input>
-        <div>1111245678</div>
+        <div>11112456</div>
     </div>
 }
