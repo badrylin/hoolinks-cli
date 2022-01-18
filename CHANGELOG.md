@@ -1,5 +1,9 @@
 # [2.0.0](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v1.2.0...v2.0.0) (2022-01-18)
 
+### ⚠ BREAKING CHANGES
+
+* 移除babel，js和ts均由tsc编译, terser压缩改为esbuild压缩
+
 
 ### Features
 
