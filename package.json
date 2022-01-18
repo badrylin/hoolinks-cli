@@ -18,10 +18,6 @@
   "bin": {
     "hoolinks": "./bin/index.js"
   },
-  "files": [
-    "bin",
-    "scripts_"
-  ],
   "browserslist": [
     "ie 10",
     "last 2 version"
