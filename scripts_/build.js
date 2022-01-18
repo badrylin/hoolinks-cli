@@ -35,4 +35,3 @@ const run = () => {
     });
 };
 exports.run = run;
-//# sourceMappingURL=build.js.map

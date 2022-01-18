@@ -10,4 +10,3 @@ const fontLoaders = () => {
         }];
 };
 exports.fontLoaders = fontLoaders;
-//# sourceMappingURL=fontLoaders.js.map

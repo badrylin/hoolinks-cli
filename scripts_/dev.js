@@ -33,7 +33,7 @@ exports.devServerConfig = Object.assign({ port: 9000, open: params_1.Params.apps
             errors: true,
             warnings: true
         },
-    }, hot: true }, config_1.eConfig.devServer);
+    } }, config_1.eConfig.devServer);
 const run = () => {
     const devServer = new Server_1.default(exports.devServerConfig, webpack_1.CliMain.compiler);
     (() => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,4 +47,3 @@ const run = () => {
     }))();
 };
 exports.run = run;
-//# sourceMappingURL=dev.js.map

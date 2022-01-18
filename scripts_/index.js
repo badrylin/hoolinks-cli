@@ -46,7 +46,7 @@ commander_1.program
     // 初始化用户参数配置
     initOption(options, true);
     // 先验证dll是否已构建
-    // await require("./dll").run()
+    yield require("./dll").run();
     // 再初始化webpack
     initWepack();
     require("./dev").run();
@@ -78,4 +78,3 @@ commander_1.program
     require("./dll").run();
 });
 commander_1.program.parse();
-//# sourceMappingURL=index.js.map

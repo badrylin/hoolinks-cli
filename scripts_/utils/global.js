@@ -28,4 +28,3 @@ exports.BABEL_CACHE_PATH = path_1.default.join(exports.NODE_MODULES_PATH, '.cach
 exports.ESLINT_CACHE_PATH = path_1.default.join(exports.NODE_MODULES_PATH, '.cache/eslint');
 /** 静态文件目录 */
 exports.STATIC_PATH = path_1.default.join(exports.ROOT_PATH, './static');
-//# sourceMappingURL=global.js.map

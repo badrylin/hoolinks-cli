@@ -23,4 +23,3 @@ exports.htmlPlugin = params_1.Params.apps.map(app => {
         chunksSortMode: "auto",
     });
 });
-//# sourceMappingURL=htmlPlugin.js.map

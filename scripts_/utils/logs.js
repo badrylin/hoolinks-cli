@@ -46,4 +46,3 @@ App running at:
     console.log(message);
 };
 exports.devBoxLog = devBoxLog;
-//# sourceMappingURL=logs.js.map

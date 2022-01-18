@@ -1,3 +1,12 @@
+# [2.0.0](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v1.2.0...v2.0.0) (2022-01-18)
+
+
+### Features
+
+* 新增react-refresh的支持 ([df105df](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/commits/df105dffc4b16ea39c90e6a32cdca48d8ed8f4e3))
+
+
+
 # [1.2.0](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v1.1.9...v1.2.0) (2021-12-15)
 
 
