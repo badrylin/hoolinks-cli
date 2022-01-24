@@ -23,7 +23,7 @@ async function importLoader(source, map) {
             const newImport = /(?<={).*(?=})/.exec(
                 entry.replace(/(\r\n)|(\n)|(\s)/g, '')
             )[0]?.split(',').map((name) => {
-                return name && `import ${name} from "antd/lib/${camel2Dash(name)}";import "antd/lib/${camel2Dash(name)}/style/css";`;
+                return name && `import ${name} from "antd/lib/${camel2Dash(name)}";import "antd/lib/${camel2Dash(name)}/style";`;
             });
             code = (source as string).replace(entry, newImport.join(''))
         }

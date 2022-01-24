@@ -4,6 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CliMain = void 0;
+/*
+ * @Author: linzeqin
+ * @Date: 2021-06-09 17:05:13
+ * @description: webpack基础配置
+ */
+const css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webpack-plugin"));
 const speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
 const webpack_1 = require("webpack");
 const webpack_merge_1 = require("webpack-merge");
@@ -46,9 +52,9 @@ CliMain.config = Object.assign(Object.assign({ mode: params_1.Params.isDev ? "de
         extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
     }, optimization: {
         minimizer: !params_1.Params.isDev ? [
-            // new CssMinimizerPlugin({
-            //     parallel: true,
-            // }),
+            new css_minimizer_webpack_plugin_1.default({
+                parallel: true,
+            }),
             // new TerserPlugin({
             //     extractComments: false,
             //     parallel: true,
@@ -59,7 +65,7 @@ CliMain.config = Object.assign(Object.assign({ mode: params_1.Params.isDev ? "de
             // }),
             new ESBuildMinifyPlugin({
                 keepNames: true,
-                css: true,
+                // css: true,
                 target: 'es5'
             }),
         ] : [],

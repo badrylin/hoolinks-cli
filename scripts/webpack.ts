@@ -58,9 +58,9 @@ export class CliMain {
         },
         optimization: {
             minimizer: !Params.isDev ? [
-                // new CssMinimizerPlugin({
-                //     parallel: true,
-                // }),
+                new CssMinimizerPlugin({
+                    parallel: true,
+                }),
                 // new TerserPlugin({
                 //     extractComments: false,
                 //     parallel: true,
@@ -71,7 +71,7 @@ export class CliMain {
                 // }),
                 new ESBuildMinifyPlugin({
                     keepNames: true,
-                    css: true,
+                    // css: true,
                     target: 'es5'
                 } as MinifyPluginOptions),
             ] : [],

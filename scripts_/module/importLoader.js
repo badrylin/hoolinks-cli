@@ -32,7 +32,7 @@ function importLoader(source, map) {
             if (importSpecifier.n === 'antd') {
                 const entry = source.substring(importSpecifier.ss, importSpecifier.se);
                 const newImport = (_a = /(?<={).*(?=})/.exec(entry.replace(/(\r\n)|(\n)|(\s)/g, ''))[0]) === null || _a === void 0 ? void 0 : _a.split(',').map((name) => {
-                    return name && `import ${name} from "antd/lib/${camel2Dash(name)}";import "antd/lib/${camel2Dash(name)}/style/css";`;
+                    return name && `import ${name} from "antd/lib/${camel2Dash(name)}";import "antd/lib/${camel2Dash(name)}/style";`;
                 });
                 code = source.replace(entry, newImport.join(''));
             }
