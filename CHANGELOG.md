@@ -1,3 +1,12 @@
+## [2.0.2](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v2.0.1...v2.0.2) (2022-01-24)
+
+
+### Bug Fixes
+
+* 关闭esbuild css压缩功能,修复样式异常 ([650143c](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/commits/650143c737047b56fb606aef97021a59372b149d))
+
+
+
 ## [2.0.1](https://gogs.hoolinks.com/Front-End-Project/hoolinks-cli/compare/v2.0.0...v2.0.1) (2022-01-18)
 
 
