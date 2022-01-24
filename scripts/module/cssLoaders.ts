@@ -57,11 +57,11 @@ export const cssLoaders = (): RuleSetRule[] => {
         oneOf: [
             {
                 test: /\.modules\.less$/i,
-                use: [styleLoader, cssModulesLoader, ...postcssLoader,'cache-loader', lessLoader],
+                use: [styleLoader, 'cache-loader', cssModulesLoader, ...postcssLoader, lessLoader],
             },
             {
                 test: /\.less$/i,
-                use: [styleLoader, cssLoader, ...postcssLoader,'cache-loader', lessLoader],
+                use: [styleLoader, 'cache-loader', cssLoader, ...postcssLoader, lessLoader],
             },
             {
                 test: /\.modules\.css$/i,
