@@ -1,6 +1,6 @@
 # Hoolinks-cli
 
-昊链专用脚手架工具，基于webpack5+, babelt7.13+, ypescript4+，node12+
+昊链专用脚手架工具，基于webpack5+, babelt7.13+, typescript4+，node12+
 
 ## 功能点
 
