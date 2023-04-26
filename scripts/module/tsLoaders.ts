@@ -8,21 +8,31 @@ export const tsLoaders = (): RuleSetRule[] => {
     return [
         {
             test: /\.(js|jsx|ts|tsx)$/,
+            // use: [
+            //     'cache-loader',
+            //     path.join(__dirname, './importLoader'),
+            //     {
+            //         loader: 'ts-loader',
+            //         options: {
+            //             allowTsInNodeModules: true,
+            //             // happyPackMode: true,
+            //             transpileOnly: true,
+            //             ...eConfig.tsOptions,
+            //             // getCustomTransformers: () => ({
+            //             //     before: [ReactRefreshTypeScript()],
+            //             // }),
+            //         }
+            //     },
+            // ],
             use: [
                 'cache-loader',
-                path.join(__dirname, './importLoader'),
                 {
-                    loader: 'ts-loader',
+                    loader: 'esbuild-loader',
                     options: {
-                        allowTsInNodeModules: true,
-                        // happyPackMode: true,
-                        transpileOnly: true,
-                        ...eConfig.tsOptions,
-                        // getCustomTransformers: () => ({
-                        //     before: [ReactRefreshTypeScript()],
-                        // }),
-                    }
-                },
+                        target: 'es5',
+                        jsx: 'automatic',
+                    },
+                }
             ],
             include: [
                 SRC_PATH,

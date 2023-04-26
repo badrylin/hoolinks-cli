@@ -15,8 +15,7 @@ export const HooksDemo: React.FC = () => {
         return state
     }, 1)
     console.log([
-
-        ...test1===2&&[<div>1111</div>],
+        ...test1===2 ? [<div key="1">1111</div>] : [],
     ])
     return <div>
         <Button onClick={() => {

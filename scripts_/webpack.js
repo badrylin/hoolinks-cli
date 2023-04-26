@@ -4,12 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CliMain = void 0;
-/*
- * @Author: linzeqin
- * @Date: 2021-06-09 17:05:13
- * @description: webpack基础配置
- */
-const css_minimizer_webpack_plugin_1 = __importDefault(require("css-minimizer-webpack-plugin"));
 const speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
 const webpack_1 = require("webpack");
 const webpack_merge_1 = require("webpack-merge");
@@ -20,7 +14,7 @@ const config_1 = require("./utils/config");
 const global_1 = require("./utils/global");
 const logs_1 = require("./utils/logs");
 const params_1 = require("./utils/params");
-const { ESBuildMinifyPlugin } = require('esbuild-loader');
+const esbuild_loader_1 = require("esbuild-loader");
 class CliMain {
 }
 exports.CliMain = CliMain;
@@ -52,24 +46,15 @@ CliMain.config = Object.assign(Object.assign({ mode: params_1.Params.isDev ? "de
         extensions: [".js", ".json", ".ts", ".tsx", ".jsx"],
     }, optimization: {
         minimizer: !params_1.Params.isDev ? [
-            new css_minimizer_webpack_plugin_1.default({
-                parallel: true,
-            }),
-            // new TerserPlugin({
-            //     extractComments: false,
-            //     parallel: true,
-            //     terserOptions: {
-            //         keep_fnames: true,
-            //         keep_classnames: true
-            //     }
-            // }),
-            new ESBuildMinifyPlugin({
+            new esbuild_loader_1.EsbuildPlugin({
+                treeShaking: true,
                 keepNames: true,
-                // css: true,
+                legalComments: 'none',
+                css: true,
                 target: 'es5'
             }),
         ] : [],
-        minimize: !params_1.Params.isDev,
+        minimize: false,
         runtimeChunk: false,
         splitChunks: {
             maxInitialRequests: 3,

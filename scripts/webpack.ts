@@ -15,8 +15,7 @@ import { eConfig } from "./utils/config";
 import { DIST_PATH, ROOT_PATH, SRC_PATH } from "./utils/global";
 import { devBoxLog, llog } from "./utils/logs";
 import { Params } from "./utils/params";
-import type { MinifyPluginOptions } from 'esbuild-loader/dist/interfaces'
-const { ESBuildMinifyPlugin } = require('esbuild-loader')
+import { EsbuildPlugin  } from 'esbuild-loader';
 
 export class CliMain {
     /** webpack主配置 */
@@ -58,24 +57,15 @@ export class CliMain {
         },
         optimization: {
             minimizer: !Params.isDev ? [
-                new CssMinimizerPlugin({
-                    parallel: true,
-                }),
-                // new TerserPlugin({
-                //     extractComments: false,
-                //     parallel: true,
-                //     terserOptions: {
-                //         keep_fnames: true,
-                //         keep_classnames: true
-                //     }
-                // }),
-                new ESBuildMinifyPlugin({
+                new EsbuildPlugin({
+                    treeShaking: true,
                     keepNames: true,
-                    // css: true,
+                    legalComments: 'none',
+                    css: true,
                     target: 'es5'
-                } as MinifyPluginOptions),
+                }),
             ] : [],
-            minimize: !Params.isDev,
+            minimize: false,
             runtimeChunk: false,
             splitChunks: {
                 maxInitialRequests: 3,
