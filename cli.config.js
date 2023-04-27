@@ -5,9 +5,9 @@ module.exports = {
         open: false,
     },
     webpack: {
-        cache: {
-            type: 'memory'
-        }
+        // cache: {
+        //     type: 'memory'
+        // }
     },
     dllWebpack: {
         // entry: {
@@ -17,8 +17,6 @@ module.exports = {
     },
     babelOptions: {
         presets: [],
-        plugins: [
-            ["import", { "libraryName": "antd", "style": true}, "antd"],
-        ]
+        plugins: []
     }
 }

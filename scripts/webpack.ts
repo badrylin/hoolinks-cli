@@ -3,9 +3,7 @@
  * @Date: 2021-06-09 17:05:13
  * @description: webpack基础配置
  */
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
-import TerserPlugin from "terser-webpack-plugin";
 import { Compiler, Configuration, webpack } from "webpack";
 import { merge } from 'webpack-merge';
 import { devServerConfig } from "./dev";
@@ -33,11 +31,10 @@ export class CliMain {
         // 暂时弃用文件系统的cache
         // 因为filesystem模式不会自动清除过期的cache文件
         // https://github.com/webpack/webpack/issues/13291
-        // cache: {
-        //     type: 'filesystem',
-        //     profile: true,
-        //     maxAge: 1000 * 60,
-        // },
+        cache: {
+            type: 'filesystem',
+            profile: true,
+        },
         entry: () => {
             const entry = {};
             Params.apps.forEach((app) => {
@@ -62,10 +59,10 @@ export class CliMain {
                     keepNames: true,
                     legalComments: 'none',
                     css: true,
-                    target: 'es5'
+                    // target: 'es5',
                 }),
             ] : [],
-            minimize: false,
+            minimize: true,
             runtimeChunk: false,
             splitChunks: {
                 maxInitialRequests: 3,

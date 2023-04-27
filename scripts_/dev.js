@@ -19,7 +19,7 @@ const global_1 = require("./utils/global");
 const params_1 = require("./utils/params");
 const webpack_1 = require("./webpack");
 /** devServer默认配置 */
-exports.devServerConfig = Object.assign({ port: 9000, open: params_1.Params.apps[0], client: {
+exports.devServerConfig = Object.assign({ port: 9000, open: params_1.Params.apps[0], hot: true, client: {
         // logging: 'warn',
         overlay: false,
         progress: true,

@@ -12,6 +12,8 @@ import { CACHE_PATH, DIST_PATH, ESLINT_CACHE_PATH, NODE_MODULES_PATH, ROOT_PATH,
 import path from "path";
 import ESLintPlugin from 'eslint-webpack-plugin';
 import { eConfig } from "../utils/config";
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 export const plugins: Configuration['plugins'] = [
     ...htmlPlugin,
@@ -21,6 +23,13 @@ export const plugins: Configuration['plugins'] = [
     new WebpackBar({ name: Params.isDev ? 'webpack dev' : 'webpack build'}),
     /** 打包分析 */
     Params.report && new BundleAnalyzerPlugin(),
+    /** 类型检查 */
+    new ForkTsCheckerWebpackPlugin({
+        typescript: {
+            configFile: path.join(ROOT_PATH, 'tsconfig.json'),
+            context: ROOT_PATH,
+        }
+    }),
 
     /* ---------------- 开发环境专用插件 ---------------- */
     /* 开启eslint */
@@ -34,7 +43,7 @@ export const plugins: Configuration['plugins'] = [
         ...typeof eConfig.eslint === 'boolean' ? {} : eConfig.eslint,
     }),
     /* react热更新 */
-    // Params.isDev && new ReactRefreshWebpackPlugin(),
+    Params.isDev && new ReactRefreshWebpackPlugin(),
 
     /* ---------------- 生产环境专用插件 ---------------- */
     /** css文件分离 */

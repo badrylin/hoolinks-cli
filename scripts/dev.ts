@@ -14,6 +14,7 @@ import { CliMain } from './webpack';
 export const devServerConfig: WebpackDevServer.Configuration = {
     port: 9000,
     open: Params.apps[0],
+    hot: true,
     client: {
         // logging: 'warn',
         overlay: false,

@@ -4,6 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CliMain = void 0;
+/*
+ * @Author: linzeqin
+ * @Date: 2021-06-09 17:05:13
+ * @description: webpack基础配置
+ */
 const speed_measure_webpack_plugin_1 = __importDefault(require("speed-measure-webpack-plugin"));
 const webpack_1 = require("webpack");
 const webpack_merge_1 = require("webpack-merge");
@@ -25,12 +30,10 @@ CliMain.config = Object.assign(Object.assign({ mode: params_1.Params.isDev ? "de
     // 暂时弃用文件系统的cache
     // 因为filesystem模式不会自动清除过期的cache文件
     // https://github.com/webpack/webpack/issues/13291
-    // cache: {
-    //     type: 'filesystem',
-    //     profile: true,
-    //     maxAge: 1000 * 60,
-    // },
-    entry: () => {
+    cache: {
+        type: 'filesystem',
+        profile: true,
+    }, entry: () => {
         const entry = {};
         params_1.Params.apps.forEach((app) => {
             entry[app] = `${global_1.SRC_PATH}/${app}/index.ts`;
@@ -51,10 +54,10 @@ CliMain.config = Object.assign(Object.assign({ mode: params_1.Params.isDev ? "de
                 keepNames: true,
                 legalComments: 'none',
                 css: true,
-                target: 'es5'
+                // target: 'es5',
             }),
         ] : [],
-        minimize: false,
+        minimize: true,
         runtimeChunk: false,
         splitChunks: {
             maxInitialRequests: 3,

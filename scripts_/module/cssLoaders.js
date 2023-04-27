@@ -59,11 +59,11 @@ const cssLoaders = () => {
             oneOf: [
                 {
                     test: /\.modules\.less$/i,
-                    use: [styleLoader, 'cache-loader', cssModulesLoader, ...postcssLoader, lessLoader],
+                    use: [styleLoader, cssModulesLoader, ...postcssLoader, lessLoader],
                 },
                 {
                     test: /\.less$/i,
-                    use: [styleLoader, 'cache-loader', cssLoader, ...postcssLoader, lessLoader],
+                    use: [styleLoader, cssLoader, ...postcssLoader, lessLoader],
                 },
                 {
                     test: /\.modules\.css$/i,
